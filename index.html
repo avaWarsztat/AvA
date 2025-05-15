@@ -174,167 +174,82 @@
   </button>
 </section>
 
-<section style="background-color: #f9f9f9; padding: 40px 20px; text-align: center;">
-  <h2 style="font-size: 2rem; margin-bottom: 30px;">Opinie klientów</h2>
-
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-
-    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 300px;">
-      <p style="font-style: italic;">"Bardzo profesjonalny serwis! Szybka diagnoza i naprawa. Polecam!"</p>
-      <p style="color: gold; font-size: 1.2rem;">⭐⭐⭐⭐⭐</p>
-      <p style="font-weight: bold; margin-top: 10px;">– Marek K.</p>
-    </div>
-
-    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 300px;">
-      <p style="font-style: italic;">"Najlepszy warsztat w okolicy. Rzetelni, uczciwi, i ceny normalne."</p>
-      <p style="color: gold; font-size: 1.2rem;">⭐⭐⭐⭐⭐</p>
-      <p style="font-weight: bold; margin-top: 10px;">– Anna Z.</p>
-    </div>
-
-    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 300px;">
-      <p style="font-style: italic;">"Auto jak nowe! Dziękuję za świetną obsługę."</p>
-      <p style="color: gold; font-size: 1.2rem;">⭐⭐⭐⭐⭐</p>
-      <p style="font-weight: bold; margin-top: 10px;">– Paweł T.</p>
-    </div>
-
-  </div>
-</section>
-
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSc7RrshxqEyu3-GZ1DOuuG0652Fc2XuJS5U5B74-rR9gn1wRg/viewform?usp=header" target="_blank">
-  <button style="padding: 10px 20px; font-size: 16px;">Dodaj opinię</button>
-</a>
-
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AVA Warsztat - Opinie klientów</title>
-<style>
-  body { font-family: Arial, sans-serif; background: #f7f7f7; padding: 20px; }
-  h2 { color: #333; }
-  form { background: white; padding: 15px; margin-bottom: 20px; border-radius: 5px; }
-  label { display: block; margin-top: 10px; }
-  textarea { width: 100%; height: 70px; }
-  input[type="text"] { width: 100%; padding: 5px; }
-  .stars {
-    margin: 10px 0;
-  }
-  .star {
-    font-size: 24px;
-    cursor: pointer;
-    color: lightgray;
-  }
-  .star.selected {
-    color: gold;
-  }
-  .opinion {
-    background: white;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-  }
-  .opinion .stars {
-    font-size: 20px;
-    color: gold;
-  }
-  .opinion .author {
-    margin-top: 10px;
-    font-style: italic;
-    color: #555;
-  }
-</style>
-</head>
-<body>
-
-<h2>Dodaj opinię</h2>
-<form id="opinionForm">
-  <label for="opinia">Twoja opinia:</label>
-  <textarea id="opinia" required></textarea>
-
-  <label for="gwiazdki">Ocena:</label>
-  <div id="starContainer" class="stars">
-    <span class="star" data-value="1">&#9733;</span>
-    <span class="star" data-value="2">&#9733;</span>
-    <span class="star" data-value="3">&#9733;</span>
-    <span class="star" data-value="4">&#9733;</span>
-    <span class="star" data-value="5">&#9733;</span>
-  </div>
-
-  <label for="autor">Imię (opcjonalnie):</label>
-  <input type="text" id="autor" placeholder="Twoje imię" />
-
-  <button type="submit">Wyślij</button>
-</form>
-
 <h2>Opinie naszych klientów</h2>
-<div id="opinieLista">
-  <!-- Tu będą opinie -->
+
+<!-- Przycisk, który pokazuje formularz -->
+<button id="showFormBtn" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
+  Dodaj opinię
+</button>
+
+<!-- Ukryty formularz opinii -->
+<div id="opinionForm" style="display: none; margin-top: 20px;">
+  <form id="feedbackForm">
+    <label>
+      Ocena warsztatu:<br>
+      <select name="rating" required>
+        <option value="">Wybierz ocenę</option>
+        <option value="5">⭐⭐⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="1">⭐</option>
+      </select>
+    </label>
+    <br><br>
+    <label>
+      Twoja opinia:<br>
+      <textarea name="comment" rows="4" cols="40" required></textarea>
+    </label>
+    <br><br>
+    <label>
+      Imię (opcjonalnie):<br>
+      <input type="text" name="name" placeholder="np. Marek K.">
+    </label>
+    <br><br>
+    <button type="submit" style="padding: 8px 16px; cursor: pointer;">Wyślij opinię</button>
+  </form>
+</div>
+
+<!-- Tu będą wyświetlane opinie -->
+<div id="reviews" style="margin-top: 40px;">
+  <!-- Przykładowa opinia -->
+  <div>
+    <p>"Bardzo profesjonalny serwis! Szybka diagnoza i naprawa. Polecam!"</p>
+    <p>⭐⭐⭐⭐⭐</p>
+    <p>– Marek K.</p>
+  </div>
 </div>
 
 <script>
-  const stars = document.querySelectorAll('.star');
-  let selectedRating = 0;
-
-  stars.forEach(star => {
-    star.addEventListener('click', () => {
-      selectedRating = star.dataset.value;
-      updateStars(selectedRating);
-    });
+  // Pokaż formularz po kliknięciu przycisku
+  document.getElementById('showFormBtn').addEventListener('click', function() {
+    document.getElementById('opinionForm').style.display = 'block';
+    this.style.display = 'none'; // ukryj przycisk po kliknięciu
   });
 
-  function updateStars(rating) {
-    stars.forEach(star => {
-      if(star.dataset.value <= rating) {
-        star.classList.add('selected');
-      } else {
-        star.classList.remove('selected');
-      }
-    });
-  }
-
-  const form = document.getElementById('opinionForm');
-  const opinieLista = document.getElementById('opinieLista');
-
-  form.addEventListener('submit', (e) => {
+  // Obsługa wysyłania formularza (tylko lokalnie - dodaje opinię na stronie)
+  document.getElementById('feedbackForm').addEventListener('submit', function(e) {
     e.preventDefault();
-    const opiniaText = document.getElementById('opinia').value.trim();
-    const autorText = document.getElementById('autor').value.trim() || 'Anonim';
-    if(selectedRating === 0) {
-      alert('Proszę wybrać ocenę (gwiazdki).');
-      return;
-    }
 
-    // Dodaj opinię do listy
-    dodajOpinie(opiniaText, selectedRating, autorText);
+    const rating = this.rating.value;
+    const comment = this.comment.value;
+    const name = this.name.value || 'Anonim';
 
-    // Wyczyść formularz
-    form.reset();
-    selectedRating = 0;
-    updateStars(0);
-  });
-
-  function dodajOpinie(text, rating, autor) {
-    const div = document.createElement('div');
-    div.classList.add('opinion');
-    const starsHTML = '⭐'.repeat(rating);
-
-    div.innerHTML = `
-      <p>"${text}"</p>
-      <div class="stars">${starsHTML}</div>
-      <div class="author">– ${autor}</div>
+    // Tworzymy HTML nowej opinii
+    const newReview = document.createElement('div');
+    newReview.innerHTML = `
+      <p>"${comment}"</p>
+      <p>${'⭐'.repeat(rating)}</p>
+      <p>– ${name}</p>
+      <hr>
     `;
 
-    // Dodaj na początek, żeby najnowsze były u góry
-    opinieLista.prepend(div);
-  }
+    // Dodajemy opinię na koniec listy
+    document.getElementById('reviews').appendChild(newReview);
 
-  // Przykładowe opinie startowe (możesz usunąć jeśli chcesz)
-  dodajOpinie('Bardzo profesjonalny serwis! Szybka diagnoza i naprawa. Polecam!', 5, 'Marek K.');
-  dodajOpinie('Najlepszy warsztat w okolicy. Rzetelni, uczciwi, i ceny normalne.', 5, 'Anna Z.');
-  dodajOpinie('Auto jak nowe! Dziękuję za świetną obsługę.', 5, 'Paweł T.');
-
+    // Czyścimy formularz i chowamy go ponownie
+    this.reset();
+    document.getElementById('opinionForm').style.display = 'none';
+    document.getElementById('showFormBtn').style.display = 'inline-block';
+  });
 </script>
-
-</body>
-</html>

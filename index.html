@@ -49,244 +49,173 @@
       padding: 20px;
       font-size: 14px;
       background-color: #ddd;
-      body {
     }
   </style>
 </head>
 <body>
+
+  <!-- Główny nagłówek -->
   <header>
     <h1>AVA Warsztat Samochodowy</h1>
     <p class="subtitle">Naprawy, Diagnostyka, Serwis — Zapraszamy!</p>
   </header>
 
+  <!-- Przyciski kontaktowe -->
   <div class="buttons">
-   <a href="tel:+48601749485" style="
-  display: inline-block;
-  background-color: #28a745;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-">
-  📞 Zadzwoń teraz
-</a>
+    <a href="tel:+48601749485" style="background-color: #28a745;">📞 Zadzwoń teraz</a>
     <a href="https://maps.google.com?q=warsztat+AVA" target="_blank">📍 Dojazd</a>
-  <a href="mailto:ava.autosklep@gmail.com" style="
-  display: inline-block;
-  background-color: #00eeff;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-">
-  ✉️ Napisz do nas
-</a>
+    <a href="mailto:ava.autosklep@gmail.com" style="background-color: #00eeff;">✉️ Napisz do nas</a>
   </div>
 
-  <footer>
-    Adres: Strachocin 1c<br>
-    Telefon: +48601749485<br>
-    Email: ava.autosklep@gmail.com
-    <footer>O Zapisy prosimy dzwonic na numer +48 601 749 485, i opisać problem a podamy wolne terminy</footer>
+  <!-- Sekcja z misją -->
+  <section id="misja" style="padding: 40px; background-color: #f3f4f6;">
+    <h2>Nasza Misja</h2>
+    <p style="max-width: 700px; margin: 0 auto;">
+      Naszą misją jest dostarczanie niezawodnych i uczciwych usług motoryzacyjnych każdemu klientowi.
+      Z pasji do aut i perfekcji – naprawiamy tak, jakby to było nasze własne auto.
+    </p>
+  </section>
 
-    </section>
+  <!-- Dlaczego warto -->
+  <section style="padding: 40px 20px; background-color: #e6f0ff;">
+    <h2>Dlaczego warto wybrać AVA?</h2>
+    <ul style="max-width: 600px; margin: 20px auto; list-style: none; padding: 0;">
+      <li>✅ Doświadczona kadra mechaników</li>
+      <li>✅ Szybkie terminy realizacji</li>
+      <li>✅ Uczciwe i przejrzyste ceny</li>
+      <li>✅ Gwarancja na wykonane usługi</li>
+    </ul>
+  </section>
+
+  <!-- Zdjęcie warsztatu -->
+  <section>
+    <h2>Zdjęcie naszego warsztatu</h2>
+    <img src="AVA%20STR.jpeg" alt="Warsztat AVA" style="max-width: 90%; height: auto; border-radius: 10px;">
+  </section>
+
+  <!-- O nas -->
+  <section id="o-nas" style="max-width: 700px; margin: 2rem auto;">
+    <h2>O nas</h2>
+    <p>
+      W AVA dbamy o Twój samochód tak, jak o własny. Nasza pasja do motoryzacji i doświadczenie pozwalają nam oferować usługi na najwyższym poziomie. Zapraszamy do współpracy każdego, kto ceni sobie profesjonalizm i rzetelność.
+    </p>
+  </section>
+
+  <!-- Usługi -->
+  <section id="uslugi" style="max-width: 700px; margin: 2rem auto;">
+    <h2>Nasze usługi</h2>
+    <ul style="list-style: none; padding: 0; text-align: left;">
+      <li>🔧 Diagnostyka komputerowa</li>
+      <li>🔩 Wymiana oleju i filtrów</li>
+      <li>🚗 Naprawy zawieszenia</li>
+      <li>❄️ Serwis klimatyzacji</li>
+      <li>🛞 Wulkanizacja</li>
+    </ul>
+  </section>
+
+  <!-- Godziny otwarcia -->
+  <section id="godziny" style="text-align: center; margin-top: 2rem;">
+    <h2>🕒 Godziny otwarcia</h2>
+    <p>Poniedziałek – Piątek: <strong>9:00 – 17:00</strong></p>
+    <p>Sobota: <strong>Nieczynne</strong></p>
+    <p>Niedziela: <strong>Nieczynne</strong></p>
+    <p id="statusWarsztatu" style="font-weight: bold;"></p>
+  </section>
+
+  <!-- Opinie -->
+  <section id="opinie" style="text-align: center; margin-top: 2rem;">
+    <h2>Opinie naszych klientów</h2>
+    <button id="showFormBtn">Dodaj opinię</button>
+
+    <div id="opinionForm" style="display: none; margin-top: 20px;">
+      <form id="feedbackForm">
+        <label>Ocena warsztatu:<br>
+          <select name="rating" required>
+            <option value="">Wybierz ocenę</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="1">⭐</option>
+          </select>
+        </label><br><br>
+        <label>Twoja opinia:<br>
+          <textarea name="comment" rows="4" cols="40" required></textarea>
+        </label><br><br>
+        <label>Imię (opcjonalnie):<br>
+          <input type="text" name="name" placeholder="np. Marek K.">
+        </label><br><br>
+        <button type="submit">Wyślij opinię</button>
+      </form>
+    </div>
+
+    <div id="reviews" style="margin-top: 40px;">
+      <div>
+        <p>"Bardzo profesjonalny serwis! Szybka diagnoza i naprawa. Polecam!"</p>
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>– Marek K.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kontakt -->
+  <section id="kontakt" style="text-align: center; margin: 2rem;">
+    <h2>Skontaktuj się z nami</h2>
+    <p>Zadzwoń: <a href="tel:+48601749485">+48 601 749 485</a></p>
+    <p>Napisz: <a href="mailto:ava.autoserwis@gmail.com">ava.autoserwis@gmail.com</a></p>
+    <button onclick="window.location.href='tel:+48601749485'" style="padding: 10px 20px;">Zadzwoń teraz</button>
+  </section>
+
+  <!-- Sponsor -->
+  <div style="margin-top: 40px; padding: 30px 20px; background-color: #f5f5f5;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Valvoline_logo.svg/2560px-Valvoline_logo.svg.png" alt="Valvoline Logo" style="max-width: 180px;">
+    <p style="font-weight: bold;">Sponsorowane przez: Valvoline</p>
+    <p style="color: #666;">Dziękujemy firmie Valvoline za wspieranie naszego warsztatu AVA.</p>
+  </div>
+
+  <!-- Stopka -->
+  <footer>
+    <p>Adres: Strachocin 1c</p>
+    <p>Telefon: +48 601 749 485</p>
+    <p>Email: ava.autosklep@gmail.com</p>
+    <p>O zapisy prosimy dzwonić i opisać problem – podamy wolny termin.</p>
   </footer>
-  <section id="misja" style="padding: 40px; background-color: #f3f4f6; text-align: center;">
-  <h2 style="font-size: 2rem; margin-bottom: 20px;">Nasza Misja</h2>
-  <p style="max-width: 700px; margin: 0 auto; font-size: 1.2rem;">
-    Naszą misją jest dostarczanie niezawodnych i uczciwych usług motoryzacyjnych każdemu klientowi.
-    Z pasji do aut i perfekcji – naprawiamy tak, jakby to było nasze własne auto.
-  </p>
-</section>
+
+  <!-- Skrypty -->
+  <script>
+    document.getElementById('showFormBtn').addEventListener('click', function () {
+      document.getElementById('opinionForm').style.display = 'block';
+      this.style.display = 'none';
+    });
+
+    document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const rating = this.rating.value;
+      const comment = this.comment.value;
+      const name = this.name.value || 'Anonim';
+      const newReview = document.createElement('div');
+      newReview.innerHTML = `<p>"${comment}"</p><p>${'⭐'.repeat(rating)}</p><p>– ${name}</p><hr>`;
+      document.getElementById('reviews').appendChild(newReview);
+      this.reset();
+      document.getElementById('opinionForm').style.display = 'none';
+      document.getElementById('showFormBtn').style.display = 'inline-block';
+    });
+
+    function sprawdzGodzine() {
+      const teraz = new Date();
+      const dzien = teraz.getDay();
+      const godzina = teraz.getHours();
+      const status = document.getElementById('statusWarsztatu');
+      if ([1, 2, 3, 4, 5].includes(dzien) && godzina >= 9 && godzina < 17) {
+        status.textContent = "🔧 Otwarte – zapraszamy!";
+        status.style.color = "green";
+      } else {
+        status.textContent = "❌ Zamknięte – zapraszamy w godzinach 9:00–17:00 (pn–pt)";
+        status.style.color = "red";
+      }
+    }
+    sprawdzGodzine();
+  </script>
+
 </body>
 </html>
-
-<section id="godziny" style="text-align: center; margin-top: 2rem;">
-  <h2>🕒Godziny otwarcia</h2>
-  <p>Poniedziałek – Piątek: <strong>9:00 – 17:00</strong></p>
-  <p>Sobota: <strong>Nieczynne</strong></p>
-  <p>Niedziela: <strong>Nieczynne</strong></p>
-  <p id="statusWarsztatu" style="text-align: center; font-weight: bold; margin-top: 10px;"></p>
-</section>
-
-<section id="szczegoly" style="text-align: center; margin-top: 2rem;">
-  <h2>Usługi</h2>
-  <ul style="list-style: none; padding: 0;">
-    <li>✅ Diagnostyka komputerowa</li>
-    <li>✅ Wymiana oleju i filtrów</li>
-    <li>✅ Naprawy zawieszenia</li>
-    <li>✅ Klimatyzacja – serwis i napełnianie</li>
-    <li>✅ Wulkanizacja</li>
-    <li>   <b>Założyciel: Mirosław Podgórski</li></b>
-    <li>   Kod Pocztowy: 73-110</li>
-    <li>   Mail: ava.autoserwis@gmail.com</li>
-    <li>   Kontakt: 601 749 485</li>
-  </ul>
-</section>
-
-<section style="text-align: center; margin-top: 2rem;">
-  <h2>Zdjęcie naszego warsztatu</h2>
-  <img src="AVA%20STR.jpeg" alt="Warsztat AVA" style="max-width: 90%; height: auto; border-radius: 10px;">
-</section>
-
-<header style="
-  position: relative;
-  height: 300px;
-  background-image: url('background.jpg'); /* zamień na swój obrazek jeśli chcesz */
-  background-size: cover;
-  background-position: center;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-">
-  <!-- Ciemna nakładka -->
-  <div style="
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-  "></div>
-
-  <!-- Tekst -->
-  <div style="position: relative; z-index: 2;">
-    <h1>AVA Warsztat Samochodowy</h1>
-    <p>Z pasji do aut i perfekcji w każdym detalu</p>
-  </div>
-</header>
-
-<section id="o-nas" style="max-width: 700px; margin: 2rem auto; text-align: center;">
-  <h2>O nas</h2>
-  <p>
-    W AVA dbamy o Twój samochód tak, jak o własny. Nasza pasja do motoryzacji i doświadczenie pozwalają nam oferować usługi na najwyższym poziomie. Zapraszamy do współpracy każdego, kto ceni sobie profesjonalizm i rzetelność.
-  </p>
-</section>
-
-<section id="uslugi" style="max-width: 700px; margin: 2rem auto;">
-  <h2>Nasze usługi</h2>
-  <ul style="list-style: none; padding: 0; text-align: left;">
-    <li>🔧 Diagnostyka komputerowa</li>
-    <li>🔩 Wymiana oleju i filtrów</li>
-    <li>🚗 Naprawy zawieszenia</li>
-    <li>❄️ Serwis klimatyzacji</li>
-    <li>🛞 Wulkanizacja</li>
-  </ul>
-</section>
-
-<section id="kontakt" style="text-align: center; margin: 2rem;">
-  <h2>Skontaktuj się z nami</h2>
-  <p>Zadzwoń: <a href="tel:+48601749485">+48 601 749 485</a></p>
-  <p>Napisz: <a href="mailto:ava.autoserwis@gmail.com">ava.autoserwis@gmail.com</a></p>
-  <button onclick="window.location.href='tel:+48123456789'" style="padding: 10px 20px; font-size: 1.1rem; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">
-    Zadzwoń teraz
-  </button>
-</section>
-
-<h2>Opinie naszych klientów</h2>
-
-<!-- Przycisk, który pokazuje formularz -->
-<button id="showFormBtn" style="padding: 10px 20px; font-size: 16px; cursor: pointer;">
-  Dodaj opinię
-</button>
-
-<!-- Ukryty formularz opinii -->
-<div id="opinionForm" style="display: none; margin-top: 20px;">
-  <form id="feedbackForm">
-    <label>
-      Ocena warsztatu:<br>
-      <select name="rating" required>
-        <option value="">Wybierz ocenę</option>
-        <option value="5">⭐⭐⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="2">⭐⭐</option>
-        <option value="1">⭐</option>
-      </select>
-    </label>
-    <br><br>
-    <label>
-      Twoja opinia:<br>
-      <textarea name="comment" rows="4" cols="40" required></textarea>
-    </label>
-    <br><br>
-    <label>
-      Imię (opcjonalnie):<br>
-      <input type="text" name="name" placeholder="np. Marek K.">
-    </label>
-    <br><br>
-    <button type="submit" style="padding: 8px 16px; cursor: pointer;">Wyślij opinię</button>
-  </form>
-</div>
-
-<!-- Tu będą wyświetlane opinie -->
-<div id="reviews" style="margin-top: 40px;">
-  <!-- Przykładowa opinia -->
-  <div>
-    <p>"Bardzo profesjonalny serwis! Szybka diagnoza i naprawa. Polecam!"</p>
-    <p>⭐⭐⭐⭐⭐</p>
-    <p>– Marek K.</p>
-  </div>
-</div>
-
-<script>
-  // Pokaż formularz po kliknięciu przycisku
-  document.getElementById('showFormBtn').addEventListener('click', function() {
-    document.getElementById('opinionForm').style.display = 'block';
-    this.style.display = 'none'; // ukryj przycisk po kliknięciu
-  });
-
-  // Obsługa wysyłania formularza (tylko lokalnie - dodaje opinię na stronie)
-  document.getElementById('feedbackForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const rating = this.rating.value;
-    const comment = this.comment.value;
-    const name = this.name.value || 'Anonim';
-
-    // Tworzymy HTML nowej opinii
-    const newReview = document.createElement('div');
-    newReview.innerHTML = `
-      <p>"${comment}"</p>
-      <p>${'⭐'.repeat(rating)}</p>
-      <p>– ${name}</p>
-      <hr>
-    `;
-
-    // Dodajemy opinię na koniec listy
-    document.getElementById('reviews').appendChild(newReview);
-
-    // Czyścimy formularz i chowamy go ponownie
-    this.reset();
-    document.getElementById('opinionForm').style.display = 'none';
-    document.getElementById('showFormBtn').style.display = 'inline-block';
-  });
-</script>
-
-<script>
-  function sprawdzGodzine() {
-    const teraz = new Date();
-    const dzien = teraz.getDay(); // 0 = niedziela, 1 = poniedziałek, ..., 6 = sobota
-    const godzina = teraz.getHours();
-    const status = document.getElementById('statusWarsztatu');
-
-    const otwarteDni = [1, 2, 3, 4, 5]; // pon-pt
-
-    if (otwarteDni.includes(dzien) && godzina >= 9 && godzina < 17) {
-      status.textContent = "🔧 Otwarte – zapraszamy!";
-      status.style.color = "green";
-    } else {
-      if (dzien === 6 || dzien === 0) {
-        status.textContent = "❌ Zamknięte – zapraszamy w poniedziałek!";
-      } else {
-        status.textContent = "❌ Zamknięte – zapraszamy jutro od 9:00!";
-      }
-      status.style.color = "red";
-    }
-  }
-
-  sprawdzGodzine();
-</script>
-</body>

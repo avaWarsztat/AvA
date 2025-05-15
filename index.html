@@ -84,20 +84,18 @@ footer {
   z-index: -1; /* tło z tyłu */
 }
 
-.animated-background::before {
+..animated-background::before {
   content: "";
   position: absolute;
   width: 300%;
   height: 300%;
   background:
-    radial-gradient(circle, yellow 6px, transparent 8px),
-    radial-gradient(circle, yellow 6px, transparent 8px),
-    radial-gradient(circle, yellow 6px, transparent 8px);
-  background-size: 70px 70px;
-  background-position: 0 0, 35px 35px, 15px 15px;
-  animation: moveDots 40s linear infinite, glowDots 3s ease-in-out infinite alternate;
-  opacity: 0.8;
-  filter: drop-shadow(0 0 6px yellow);
+    radial-gradient(yellow 5px, transparent 6px),
+    radial-gradient(yellow 5px, transparent 6px),
+    radial-gradient(yellow 5px, transparent 6px);
+  background-size: 50px 50px;
+  animation: moveDots 40s linear infinite, glowDots 2s ease-in-out infinite alternate;
+  opacity: 0.6;
 }
 
 @keyframes glowDots {

@@ -203,3 +203,51 @@
 <a href="https://docs.google.com/forms/d/e/1FAIpQLSc7RrshxqEyu3-GZ1DOuuG0652Fc2XuJS5U5B74-rR9gn1wRg/viewform?usp=header" target="_blank">
   <button style="padding: 10px 20px; font-size: 16px;">Dodaj opinię</button>
 </a>
+
+<div id="opinie-klientow">
+  <h2>Opinie naszych klientów</h2>
+  <div id="opinie-lista">Ładowanie opinii...</div>
+</div>
+
+<script>
+  async function loadOpinie() {
+    const sheetId = '1KAgBd08bHLsign2pHMk1Q6LOLHNaZZj5W--tjm5cz9A';
+    const sheetGid = '1983314087';
+    const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&gid=${sheetGid}`;
+
+    const response = await fetch(url);
+    const text = await response.text();
+    const jsonData = JSON.parse(text.substring(47, text.length - 2));
+    const rows = jsonData.table.rows;
+
+    if(rows.length === 0) {
+      document.getElementById('opinie-lista').innerText = "Brak opinii do wyświetlenia.";
+      return;
+    }
+
+    const opinieHtml = rows.map(row => {
+      const ocena = row.c[0] ? parseInt(row.c[0].v) : 0;
+      const opinia = row.c[1] ? row.c[1].v : '';
+      const zmiana = row.c[2] ? row.c[2].v : '';
+      const imie = row.c[3] && row.c[3].v.trim() !== '' ? row.c[3].v : 'Anonim';
+
+      let stars = '';
+      for(let i=0; i<5; i++) {
+        stars += i < ocena ? '★' : '☆';
+      }
+
+      return `
+        <div style="border-bottom:1px solid #ddd; margin-bottom:15px; padding-bottom:10px;">
+          <strong>${imie}</strong><br>
+          <span style="color:gold; font-size:20px;">${stars}</span><br>
+          <p>${opinia}</p>
+          ${zmiana ? `<p style="font-style: italic; color: gray;">Co byś polecał(a) zmienić: ${zmiana}</p>` : ''}
+        </div>
+      `;
+    }).join('');
+
+    document.getElementById('opinie-lista').innerHTML = opinieHtml;
+  }
+
+  loadOpinie();
+</script>

@@ -55,6 +55,40 @@
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+
+  .animated-background {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  overflow: hidden;
+  z-index: -1; /* z tyłu */
+}
+
+.animated-background::before {
+  content: "";
+  position: absolute;
+  width: 300%;
+  height: 300%;
+  background:
+    radial-gradient(yellow 2px, transparent 3px),
+    radial-gradient(yellow 2px, transparent 3px),
+    radial-gradient(yellow 2px, transparent 3px);
+  background-size: 50px 50px;
+  animation: moveDots 40s linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes moveDots {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-200px, -200px);
+  }
+}
+
 }
 
 .fade-text {
@@ -71,7 +105,7 @@
 </style>
 </head>
 <body>
-
+<div class="animated-background"></div>
   <!-- Główny nagłówek -->
 <header>
   <h1>AVA Warsztat Samochodowy</h1>

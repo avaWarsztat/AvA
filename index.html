@@ -74,14 +74,14 @@ footer {
 }
 
 /* Tło z animowanymi kropkami */
-.animated-background {
+..animated-background {
   position: fixed;
   top: 0; left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;  /* zamiast 100% */
+  height: 100vh; /* zamiast 100% */
   background-color: black;
   overflow: hidden;
-  z-index: -1; /* tło z tyłu */
+  z-index: -1;
 }
 
 .animated-background::before {

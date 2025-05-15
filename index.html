@@ -89,7 +89,26 @@
     Adres: Strachocin 1c<br>
     Telefon: +48601749485<br>
     Email: ava.autosklep@gmail.com
+    <section id="zapis" style="padding: 40px; background-color: #e5e7eb; text-align: center;">
+  <h2 style="font-size: 2rem; margin-bottom: 20px;">Zapisz się na wizytę</h2>
+  <form style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px;">
+    <input type="text" placeholder="Imię i nazwisko" required>
+    <input type="tel" placeholder="Numer telefonu" required>
+    <input type="date" required>
+    <textarea placeholder="Opis problemu lub usługi" rows="4"></textarea>
+    <button type="submit" style="padding: 10px; background-color: #1f2937; color: white; border: none; cursor: pointer;">
+      Zapisz się
+    </button>
+  </form>
+    </section>
   </footer>
+  <section id="misja" style="padding: 40px; background-color: #f3f4f6; text-align: center;">
+  <h2 style="font-size: 2rem; margin-bottom: 20px;">Nasza Misja</h2>
+  <p style="max-width: 700px; margin: 0 auto; font-size: 1.2rem;">
+    Naszą misją jest dostarczanie niezawodnych i uczciwych usług motoryzacyjnych każdemu klientowi.
+    Z pasji do aut i perfekcji – naprawiamy tak, jakby to było nasze własne auto.
+  </p>
+</section>
 </body>
 </html>
 
@@ -98,6 +117,7 @@
   <p>Poniedziałek – Piątek: <strong>9:00 – 17:00</strong></p>
   <p>Sobota: <strong>Nieczynne</strong></p>
   <p>Niedziela: <strong>Nieczynne</strong></p>
+  <p id="statusWarsztatu" style="text-align: center; font-weight: bold; margin-top: 10px;"></p>
 </section>
 
 <section id="szczegoly" style="text-align: center; margin-top: 2rem;">
@@ -253,3 +273,21 @@
     document.getElementById('showFormBtn').style.display = 'inline-block';
   });
 </script>
+
+<script>
+  function sprawdzGodzine() {
+    const teraz = new Date();
+    const godzina = teraz.getHours();
+    const status = document.getElementById('statusWarsztatu');
+    if (godzina >= 9 && godzina < 17) {
+      status.textContent = "🔧 Otwarte – zapraszamy!";
+      status.style.color = "green";
+    } else {
+      status.textContent = "❌ Zamknięte – zapraszamy jutro od 9:00!";
+      status.style.color = "red";
+    }
+  }
+
+  sprawdzGodzine();
+</script>
+</body>

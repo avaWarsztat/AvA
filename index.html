@@ -81,14 +81,15 @@ footer {
   height: 100vh;
   background-color: black;
   overflow: hidden;
-  z-index: -1;
+  z-index: -1; /* tło za całą stroną */
 }
 
 .animated-background::before {
   content: "";
   position: absolute;
-  width: 1000px;  /* duży obszar animacji */
-  height: 1000px;
+  top: 0; left: 0;
+  width: 300%;
+  height: 300%;
   background:
     radial-gradient(yellow 7px, transparent 8px),
     radial-gradient(yellow 7px, transparent 8px),
@@ -96,6 +97,15 @@ footer {
   background-size: 60px 60px;
   animation: moveDots 40s linear infinite, glowDots 2s ease-in-out infinite alternate;
   opacity: 0.6;
+}
+
+@keyframes moveDots {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-200px, -200px);
+  }
 }
 
 @keyframes glowDots {

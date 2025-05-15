@@ -277,13 +277,21 @@
 <script>
   function sprawdzGodzine() {
     const teraz = new Date();
+    const dzien = teraz.getDay(); // 0 = niedziela, 1 = poniedziałek, ..., 6 = sobota
     const godzina = teraz.getHours();
     const status = document.getElementById('statusWarsztatu');
-    if (godzina >= 9 && godzina < 17) {
+
+    const otwarteDni = [1, 2, 3, 4, 5]; // pon-pt
+
+    if (otwarteDni.includes(dzien) && godzina >= 9 && godzina < 17) {
       status.textContent = "🔧 Otwarte – zapraszamy!";
       status.style.color = "green";
     } else {
-      status.textContent = "❌ Zamknięte – zapraszamy jutro od 9:00!";
+      if (dzien === 6 || dzien === 0) {
+        status.textContent = "❌ Zamknięte – zapraszamy w poniedziałek!";
+      } else {
+        status.textContent = "❌ Zamknięte – zapraszamy jutro od 9:00!";
+      }
       status.style.color = "red";
     }
   }

@@ -1,131 +1,102 @@
-<section class="reveal"><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AVA Warsztat Samochodowy</title>
-  <h1 class="fade-text fade-delay-1">Witamy w AVA</h1>
-<p class="subtitle fade-text fade-delay-2">Profesjonalny warsztat samochodowy</p>
   <meta name="description" content="AVA Warsztat – naprawa samochodów, diagnostyka, mechanika. Zapraszamy!">
   <meta name="keywords" content="AVA, warsztat, samochodowy, auto, mechanik, serwis, avawarsztat">
   <meta name="author" content="AVA Warsztat">
- <style>
-  body {
-    margin: 0;
-    font-family: sans-serif;
-    background-color: #1d1d1d; /* ciemne tło */
-    text-align: center;
-    color: #fff; /* jasny tekst */
-    overflow-x: hidden;
-  }
-
-  header {
-    padding: 40px 20px;
-    position: relative;
-    z-index: 1;
-  }
-
-  h1 {
-    font-size: 36px;
-    margin: 0;
-  }
-
-  p.subtitle {
-    font-size: 18px;
-    margin-top: 10px;
-  }
-
-  .buttons {
-    margin: 40px 0;
-    z-index: 1;
-  }
-
-  .buttons a {
-    display: inline-block;
-    margin: 10px;
-    padding: 15px 30px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 18px;
-    transition: background-color 0.3s;
-  }
-
-  .buttons a:hover {
-    background-color: #0056b3;
-  }
-
-  footer {
-    margin-top: 60px;
-    padding: 20px;
-    font-size: 14px;
-    background-color: #222;
-    color: #ccc;
-    z-index: 1;
-  }
-
-  /* Efekt fade-in */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #1d1d1d;
+      text-align: center;
+      color: #fff;
+      overflow-x: hidden;
     }
-    to {
+
+    header {
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin: 0;
+    }
+
+    p.subtitle {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+
+    .buttons {
+      margin: 40px 0;
+      z-index: 1;
+    }
+
+    .buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 15px 30px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 18px;
+      transition: background-color 0.3s;
+    }
+
+    .buttons a:hover {
+      background-color: #0056b3;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 20px;
+      font-size: 14px;
+      background-color: #222;
+      color: #ccc;
+      z-index: 1;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .reveal.active {
       opacity: 1;
       transform: translateY(0);
     }
-  }
-
-  .fade-text {
-    opacity: 0;
-    animation: fadeIn 1.5s ease-in forwards;
-  }
-
-  .fade-delay-1 {
-    animation-delay: 0.5s;
-  }
-
-  .fade-delay-2 {
-    animation-delay: 1.5s;
-  }
-
-  .fade-delay-3 {
-    animation-delay: 2.5s;
-  }
-  .reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-</style>
+  </style>
 </head>
 <body>
-<div class="animated-background"></div>
-  <!-- Główny nagłówek -->
-<header>
-  <h1>AVA Warsztat Samochodowy</h1>
-  <p class="subtitle">Naprawy, Diagnostyka, Serwis — Zapraszamy!</p>
-  <div style="margin-top: 20px;">
-    <h2 style="font-weight: normal; color: #555;"><p><i>Z pasji do aut</h2>
-    <h3 style="font-weight: normal; color: #777;">Łączy nas coś więcej niż naprawa</i></p></h3>
-  </div>
-</header>
 
-  <!-- Przyciski kontaktowe -->
-  <div class="buttons">
-    <a href="tel:+48601749485" style="background-color: #28a745;">📞 Zadzwoń teraz</a>
-    <a href="https://maps.google.com?q=warsztat+AVA" target="_blank">📍 Dojazd</a>
-    <a href="mailto:ava.autosklep@gmail.com" style="background-color: #8bf9ff;">✉️ Napisz do nas</a>
-  </div>
+  <section class="reveal">
+    <header>
+      <h1>AVA Warsztat Samochodowy</h1>
+      <p class="subtitle">Naprawy, Diagnostyka, Serwis — Zapraszamy!</p>
+      <div style="margin-top: 20px;">
+        <h2 style="font-weight: normal; color: #555;"><i>Z pasji do aut</i></h2>
+        <h3 style="font-weight: normal; color: #777;"><i>Łączy nas coś więcej niż naprawa</i></h3>
+      </div>
+    </header>
+  </section>
 
-  <!-- Sekcja z misją -->
-  <section id="misja" style="padding: 40px; background-color: #02060eb9;">
+  <section class="reveal">
+    <div class="buttons">
+      <a href="tel:+48601749485" style="background-color: #28a745;">📞 Zadzwoń teraz</a>
+      <a href="https://maps.google.com?q=warsztat+AVA" target="_blank">📍 Dojazd</a>
+      <a href="mailto:ava.autosklep@gmail.com" style="background-color: #8bf9ff;">✉️ Napisz do nas</a>
+    </div>
+  </section>
+
+  <section class="reveal" id="misja" style="padding: 40px; background-color: #02060eb9;">
     <h2>Nasza Misja</h2>
     <p style="max-width: 700px; margin: 0 auto;">
       Naszą misją jest dostarczanie niezawodnych i uczciwych usług motoryzacyjnych każdemu klientowi.
@@ -133,8 +104,7 @@
     </p>
   </section>
 
-  <!-- Dlaczego warto -->
-  <section style="padding: 40px 20px; background-color: #043529;">
+  <section class="reveal" style="padding: 40px 20px; background-color: #043529;">
     <h2>Dlaczego warto wybrać AVA?</h2>
     <ul style="max-width: 600px; margin: 20px auto; list-style: none; padding: 0;">
       <li>✅ Doświadczona kadra mechaników</li>
@@ -144,34 +114,30 @@
     </ul>
   </section>
 
-  <!-- Zdjęcie warsztatu -->
-  <section>
+  <section class="reveal">
     <h2>Zdjęcie naszego warsztatu</h2>
     <img src="AVA%20STR.jpeg" alt="Warsztat AVA" style="max-width: 90%; height: auto; border-radius: 10px;">
   </section>
 
-  <!-- O nas -->
-  <section id="o-nas" style="max-width: 700px; margin: 2rem auto;">
+  <section class="reveal" id="o-nas" style="max-width: 700px; margin: 2rem auto;">
     <h2>O nas</h2>
     <p>
       W AVA dbamy o Twój samochód tak, jak o własny. Nasza pasja do motoryzacji i doświadczenie pozwalają nam oferować usługi na najwyższym poziomie. Zapraszamy do współpracy każdego, kto ceni sobie profesjonalizm i rzetelność.
     </p>
   </section>
 
-  <!-- Usługi -->
-  <section id="uslugi" style="max-width: 700px; margin: 2rem auto;">
+  <section class="reveal" id="uslugi" style="max-width: 700px; margin: 2rem auto;">
     <h2>Nasze usługi</h2>
     <ul style="list-style: none; padding: 0; text-align: left;">
       <li>🔧 Diagnostyka komputerowa</li>
       <li>🔩 Wymiana oleju i filtrów</li>
       <li>🚗 Naprawy zawieszenia</li>
       <li>❄️ Serwis klimatyzacji</li>
-      <li>🛞 Wulkanizacja</li>
+      <li>🚾 Wulkanizacja</li>
     </ul>
   </section>
 
-  <!-- Godziny otwarcia -->
-  <section id="godziny" style="text-align: center; margin-top: 2rem;">
+  <section class="reveal" id="godziny" style="text-align: center; margin-top: 2rem;">
     <h2>🕒 Godziny otwarcia</h2>
     <p>Poniedziałek – Piątek: <strong>9:00 – 17:00</strong></p>
     <p>Sobota: <strong>Nieczynne</strong></p>
@@ -179,8 +145,7 @@
     <p id="statusWarsztatu" style="font-weight: bold;"></p>
   </section>
 
-  <!-- Opinie -->
-  <section id="opinie" style="text-align: center; margin-top: 2rem;">
+  <section class="reveal" id="opinie" style="text-align: center; margin-top: 2rem;">
     <h2>Opinie naszych klientów</h2>
     <button id="showFormBtn">Dodaj opinię</button>
 
@@ -215,30 +180,26 @@
     </div>
   </section>
 
-  <!-- Kontakt -->
-  <section id="kontakt" style="text-align: center; margin: 2rem;">
+  <section class="reveal" id="kontakt" style="text-align: center; margin: 2rem;">
     <h2>Skontaktuj się z nami</h2>
     <p>Zadzwoń: <a href="tel:+48601749485">+48 601 749 485</a></p>
     <p>Napisz: <a href="mailto:ava.autoserwis@gmail.com">ava.autoserwis@gmail.com</a></p>
     <button onclick="window.location.href='tel:+48601749485'" style="padding: 10px 20px;">Zadzwoń teraz</button>
   </section>
 
-  <!-- Sponsor -->
-  <div style="margin-top: 40px; padding: 30px 20px; background-color: #0c0101;">
+  <section class="reveal" style="margin-top: 40px; padding: 30px 20px; background-color: #0c0101;">
     <img src="VAL.png" alt="Valvoline Logo" style="max-width: 180px;">
     <p style="font-weight: bold;">Sponsorowane przez: Valvoline</p>
     <p style="color: #666;">Dziękujemy firmie Valvoline za wspieranie naszego warsztatu AVA.</p>
-  </div>
+  </section>
 
-  <!-- Stopka -->
-  <footer>
+  <footer class="reveal">
     <p>Adres: Strachocin 1c</p>
     <p>Telefon: +48 601 749 485</p>
     <p>Email: ava.autosklep@gmail.com</p>
     <p>O zapisy prosimy dzwonić i opisać problem – podamy wolny termin.</p>
   </footer>
 
-  <!-- Skrypty -->
   <script>
     document.getElementById('showFormBtn').addEventListener('click', function () {
       document.getElementById('opinionForm').style.display = 'block';
@@ -251,7 +212,7 @@
       const comment = this.comment.value;
       const name = this.name.value || 'Anonim';
       const newReview = document.createElement('div');
-      newReview.innerHTML = `<p>"${comment}"</p><p>${'⭐'.repeat(rating)}</p><p>– ${name}</p><hr>`;
+      newReview.innerHTML = `<p>"${comment}"</p><p>${'\u2b50'.repeat(rating)}</p><p>– ${name}</p><hr>`;
       document.getElementById('reviews').appendChild(newReview);
       this.reset();
       document.getElementById('opinionForm').style.display = 'none';
@@ -271,24 +232,26 @@
         status.style.color = "red";
       }
     }
-    sprawdzGodzine();</selector>
+    sprawdzGodzine();
   </script>
 
-<script>
-  const reveals = document.querySelectorAll('.reveal');
+  <script>
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.reveal');
+      for (const el of reveals) {
+        const windowHeight = window.innerHeight;
+        const elementTop = el.getBoundingClientRect().top;
+        const revealPoint = 100;
 
-  function revealOnScroll() {
-    const windowHeight = window.innerHeight;
-    reveals.forEach(el => {
-      const top = el.getBoundingClientRect().top;
-      if (top < windowHeight - 100) {
-        el.classList.add('active');
+        if (elementTop < windowHeight - revealPoint) {
+          el.classList.add('active');
+        }
       }
-    });
-  }
+    }
 
-  window.addEventListener('scroll', revealOnScroll);
-  window.addEventListener('load', revealOnScroll);
-</script>
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
+
 </body>
 </html>

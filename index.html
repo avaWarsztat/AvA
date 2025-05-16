@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<section class="reveal"><!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
@@ -9,7 +9,7 @@
   <meta name="description" content="AVA Warsztat – naprawa samochodów, diagnostyka, mechanika. Zapraszamy!">
   <meta name="keywords" content="AVA, warsztat, samochodowy, auto, mechanik, serwis, avawarsztat">
   <meta name="author" content="AVA Warsztat">
-  <style>
+ <style>
   body {
     margin: 0;
     font-family: sans-serif;
@@ -93,6 +93,16 @@
   .fade-delay-3 {
     animation-delay: 2.5s;
   }
+  .reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
 <body>
@@ -261,8 +271,24 @@
         status.style.color = "red";
       }
     }
-    sprawdzGodzine();
+    sprawdzGodzine();</selector>
   </script>
 
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+
+  function revealOnScroll() {
+    const windowHeight = window.innerHeight;
+    reveals.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < windowHeight - 100) {
+        el.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener('load', revealOnScroll);
+</script>
 </body>
 </html>

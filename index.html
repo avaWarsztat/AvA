@@ -73,6 +73,9 @@
       opacity: 1;
       transform: translateY(0);
     }
+    #opinie, #godziny, #statusWarsztatu, #opinie-container, #opinionForm {
+  color: #fff !important;
+}
   </style>
 </head>
 <body>
@@ -200,10 +203,9 @@
       container.innerHTML = '';
       // Odwracamy, żeby najnowsze na górze
       data.reverse().forEach(entry => {
-        const comment = entry.comment ? entry.comment[0] : '';
-        const rating = entry.rating ? parseInt(entry.rating[0]) : 0;
-        const name = entry.name ? entry.name[0] : 'Anonimowy klient';
-
+        const comment = entry.comment || '';
+        const rating = entry.rating ? parseInt(entry.rating) : 0;
+        const name = entry.name || 'Anonimowy klient';
         const div = document.createElement('div');
         div.style.marginBottom = '20px';
         div.innerHTML = `

@@ -146,110 +146,44 @@
   </section>
 
   <section class="reveal" id="opinie" style="text-align: center; margin-top: 2rem;">
-    <h2>Opinie naszych klientów</h2>
-    <button id="showFormBtn">Dodaj opinię</button>
+  <h2>Opinie naszych klientów</h2>
+  <button id="showFormBtn">Dodaj opinię</button>
 
-    <div id="opinionForm" style="display: none; margin-top: 20px;">
-      <form id="feedbackForm">
-        <label>Ocena warsztatu:<br>
-          <select name="rating" required>
-            <option value="">Wybierz ocenę</option>
-            <option value="5">⭐⭐⭐⭐⭐</option>
-            <option value="4">⭐⭐⭐⭐</option>
-            <option value="3">⭐⭐⭐</option>
-            <option value="2">⭐⭐</option>
-            <option value="1">⭐</option>
-          </select>
-        </label><br><br>
-        <label>Twoja opinia:<br>
-          <textarea name="comment" rows="4" cols="40" required></textarea>
-        </label><br><br>
-        <label>Imię (opcjonalnie):<br>
-          <input type="text" name="name" placeholder="np. Marek K.">
-        </label><br><br>
-        <button type="submit">Wyślij opinię</button>
-      </form>
-    </div>
+  <div id="opinionForm" style="display: none; margin-top: 20px;">
+    <form id="feedbackForm">
+      <label>Ocena warsztatu:<br>
+        <select name="rating" required>
+          <option value="">Wybierz ocenę</option>
+          <option value="5">⭐⭐⭐⭐⭐</option>
+          <option value="4">⭐⭐⭐⭐</option>
+          <option value="3">⭐⭐⭐</option>
+          <option value="2">⭐⭐</option>
+          <option value="1">⭐</option>
+        </select>
+      </label><br><br>
+      <label>Twoja opinia:<br>
+        <textarea name="comment" rows="4" cols="40" required></textarea>
+      </label><br><br>
+      <label>Imię (opcjonalnie):<br>
+        <input type="text" name="name" placeholder="np. Marek K.">
+      </label><br><br>
+      <button type="submit">Wyślij opinię</button>
+    </form>
+  </div>
 
-   <div id="opinie-container" style="margin-top: 40px;">
-  <!-- Opinie z SheetDB zostaną załadowane tutaj -->
-</div>
-  </section>
-
-  <section class="reveal" id="kontakt" style="text-align: center; margin: 2rem;">
-    <h2>Skontaktuj się z nami</h2>
-    <p>Zadzwoń: <a href="tel:+48601749485">+48 601 749 485</a></p>
-    <p>Napisz: <a href="mailto:ava.autoserwis@gmail.com">ava.autoserwis@gmail.com</a></p>
-    <button onclick="window.location.href='tel:+48601749485'" style="padding: 10px 20px;">Zadzwoń teraz</button>
-  </section>
-
-  <section class="reveal" style="margin-top: 40px; padding: 30px 20px; background-color: #0c0101;">
-    <img src="VAL.png" alt="Valvoline Logo" style="max-width: 180px;">
-    <p style="font-weight: bold;">Sponsorowane przez: Valvoline</p>
-    <p style="color: #666;">Dziękujemy firmie Valvoline za wspieranie naszego warsztatu AVA.</p>
-  </section>
-
-  <footer class="reveal">
-    <p>Adres: Strachocin 1c</p>
-    <p>Telefon: +48 601 749 485</p>
-    <p>Email: ava.autosklep@gmail.com</p>
-    <p>O zapisy prosimy dzwonić i opisać problem – podamy wolny termin.</p>
-  </footer>
-
-  <script>
-    document.getElementById('showFormBtn').addEventListener('click', function () {
-      document.getElementById('opinionForm').style.display = 'block';
-      this.style.display = 'none';
-    });
-
-    document.getElementById('feedbackForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const rating = this.rating.value;
-      const comment = this.comment.value;
-      const name = this.name.value || 'Anonim';
-      const newReview = document.createElement('div');
-      newReview.innerHTML = `<p>"${comment}"</p><p>${'\u2b50'.repeat(rating)}</p><p>– ${name}</p><hr>`;
-      document.getElementById('reviews').appendChild(newReview);
-      this.reset();
-      document.getElementById('opinionForm').style.display = 'none';
-      document.getElementById('showFormBtn').style.display = 'inline-block';
-    });
-
-    function sprawdzGodzine() {
-      const teraz = new Date();
-      const dzien = teraz.getDay();
-      const godzina = teraz.getHours();
-      const status = document.getElementById('statusWarsztatu');
-      if ([1, 2, 3, 4, 5].includes(dzien) && godzina >= 9 && godzina < 17) {
-        status.textContent = "🔧 Otwarte – zapraszamy!";
-        status.style.color = "green";
-      } else {
-        status.textContent = "❌ Zamknięte – zapraszamy w godzinach 9:00–17:00 (pn–pt)";
-        status.style.color = "red";
-      }
-    }
-    sprawdzGodzine();
-  </script>
-
-  <script>
-    function revealOnScroll() {
-      const reveals = document.querySelectorAll('.reveal');
-      for (const el of reveals) {
-        const windowHeight = window.innerHeight;
-        const elementTop = el.getBoundingClientRect().top;
-        const revealPoint = 100;
-
-        if (elementTop < windowHeight - revealPoint) {
-          el.classList.add('active');
-        }
-      }
-    }
-
-    window.addEventListener('scroll', revealOnScroll);
-    window.addEventListener('load', revealOnScroll);
-  </script>
+  <div id="opinie-container" style="margin-top: 40px;">
+    <!-- Opinie z SheetDB zostaną załadowane tutaj -->
+  </div>
+</section>
 
 <script>
+  // Pokazuje formularz po kliknięciu przycisku
+  document.getElementById('showFormBtn').addEventListener('click', function () {
+    document.getElementById('opinionForm').style.display = 'block';
+    this.style.display = 'none';
+  });
+
+  // Ładuje opinie z SheetDB i wyświetla je
   async function loadOpinie() {
     const container = document.getElementById('opinie-container');
     container.innerHTML = 'Ładowanie opinii...';
@@ -264,13 +198,19 @@
       }
 
       container.innerHTML = '';
+      // Odwracamy, żeby najnowsze na górze
       data.reverse().forEach(entry => {
+        const comment = entry.comment ? entry.comment[0] : '';
+        const rating = entry.rating ? parseInt(entry.rating[0]) : 0;
+        const name = entry.name ? entry.name[0] : 'Anonimowy klient';
+
         const div = document.createElement('div');
         div.style.marginBottom = '20px';
         div.innerHTML = `
-          <p>"${entry.comment}"</p>
-          <p>${'⭐'.repeat(parseInt(entry.rating))}</p>
-          <p>– ${entry.name || 'Anonimowy klient'}</p>
+          <p>"${comment}"</p>
+          <p>${'⭐'.repeat(rating)}</p>
+          <p>– ${name}</p>
+          <hr>
         `;
         container.appendChild(div);
       });
@@ -280,7 +220,32 @@
     }
   }
 
+  // Obsługa wysłania nowej opinii - tylko lokalnie (nie zapisuje na SheetDB!)
+  document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const rating = this.rating.value;
+    const comment = this.comment.value;
+    const name = this.name.value.trim() || 'Anonimowy klient';
+
+    const container = document.getElementById('opinie-container');
+
+    // Tworzymy nowy element opinii i dodajemy na początek listy
+    const newReview = document.createElement('div');
+    newReview.style.marginBottom = '20px';
+    newReview.innerHTML = `
+      <p>"${comment}"</p>
+      <p>${'⭐'.repeat(rating)}</p>
+      <p>– ${name}</p>
+      <hr>
+    `;
+    container.insertBefore(newReview, container.firstChild);
+
+    this.reset();
+    document.getElementById('opinionForm').style.display = 'none';
+    document.getElementById('showFormBtn').style.display = 'inline-block';
+  });
+
+  // Załaduj opinie po załadowaniu strony
   window.addEventListener('DOMContentLoaded', loadOpinie);
 </script>
-</body>
-</html>

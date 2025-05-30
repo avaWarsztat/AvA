@@ -17,10 +17,14 @@
     text-align: center;
   }
 
-  * {
-    color: #fff !important;
-    box-sizing: border-box;
-  }
+  body {
+  color: #fff;
+}
+
+input, textarea, select, option {
+  color: #fff;
+  background-color: #333;
+}
 
   header {
     padding: 40px 20px;
@@ -263,7 +267,7 @@
   const name = this.name.value.trim() || 'Anonimowy klient';
 
   try {
-    const response = await fetch('https://sheetdb.io/api/v1/kr749eomw8d09', {
+    const response = await fetch('https://sheetdb.io/app/apis/kr749eomw8d09', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -292,12 +296,6 @@
   }
 });
 
-
-    const rating = this.rating.value;
-    const comment = this.comment.value;
-    const name = this.name.value.trim() || 'Anonimowy klient';
-
-    const container = document.getElementById('opinie-container');
 
     // Tworzymy nowy element opinii i dodajemy na początek listy
     const newReview = document.createElement('div');

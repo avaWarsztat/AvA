@@ -9,103 +9,103 @@
   <meta name="author" content="AVA Warsztat">
 <style>
   body {
-    margin:0;
-    font-family:sans-serif;
-    background-color:#1d1d1d;
-    color:#fff;
-    overflow-x:hidden;
-    text-align:center;
+    margin: 0;
+    font-family: sans-serif;
+    background-color: #1d1d1d;
+    color: #fff;
+    overflow-x: hidden;
+    text-align: center;
   }
 
   * {
-    color:#fff !important;
-    box-sizing:border-box;
+    color: #fff !important;
+    box-sizing: border-box;
   }
 
   header {
-    padding:40px 20px;
-    position:relative;
-    z-index:1;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
   }
 
   h1 {
-    font-size:36px;
-    margin:0;
+    font-size: 36px;
+    margin: 0;
   }
 
   p.subtitle {
-    font-size:18px;
-    margin-top:10px;
+    font-size: 18px;
+    margin-top: 10px;
   }
 
   .buttons {
-    margin:40px 0;
-    z-index:1;
+    margin: 40px 0;
+    z-index: 1;
   }
 
   .buttons a {
-    display:inline-block;
-    margin:10px;
-    padding:15px 30px;
-    background-color:#007bff;
-    color:white !important;
-    text-decoration:none;
-    border-radius:8px;
-    font-size:18px;
-    transition:background-color 0.3s;
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 30px;
+    background-color: #007bff;
+    color: white !important;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    transition: background-color 0.3s;
   }
 
   .buttons a:hover {
-    background-color:#0056b3;
+    background-color: #0056b3;
   }
 
   footer {
-    margin-top:60px;
-    padding:20px;
-    font-size:14px;
-    background-color:#222;
-    color:#ccc;
-    z-index:1;
+    margin-top: 60px;
+    padding: 20px;
+    font-size: 14px;
+    background-color: #222;
+    color: #ccc;
+    z-index: 1;
   }
 
   .reveal {
-    opacity:0;
-    transform:translateY(30px);
-    transition:opacity 1s ease, transform 1s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
   }
 
   .reveal.active {
-    opacity:1;
-    transform:translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 
   input, textarea, select {
-    background-color:#333;
-    color:#fff;
-    border:1px solid #777;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #777;
     padding: 8px;
-    border-radius:5px;
-    width:80%;
-    max-width:400px;
+    border-radius: 5px;
+    width: 80%;
+    max-width: 400px;
   }
 
   button {
     background-color: #007bff;
-    color:white !important;
-    border:none;
-    padding:10px 20px;
-    border-radius:6px;
-    cursor:pointer;
-    margin-top:10px;
+    color: white !important;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
   }
 
   button:hover {
-    background-color:#0056b3;
+    background-color: #0056b3;
   }
 
   #opinie-container div {
-    border-bottom:1px solid #444;
-    margin-bottom:20px;
+    border-bottom: 1px solid #444;
+    margin-bottom: 20px;
     padding-bottom: 10px;
   }
 </style>
@@ -257,6 +257,41 @@
   // Obsługa wysłania nowej opinii - tylko lokalnie (nie zapisuje na SheetDB!)
   document.getElementById('feedbackForm').addEventListener('submit', async function (e) {
   e.preventDefault();
+
+  const rating = this.rating.value;
+  const comment = this.comment.value;
+  const name = this.name.value.trim() || 'Anonimowy klient';
+
+  try {
+    const response = await fetch('https://sheetdb.io/api/v1/kr749eomw8d09', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        data: {
+          rating,
+          comment,
+          name
+        }
+      })
+    });
+
+    if (response.ok) {
+      alert('Dziękujemy za opinię!');
+      this.reset();
+      document.getElementById('opinionForm').style.display = 'none';
+      document.getElementById('showFormBtn').style.display = 'inline-block';
+      loadOpinie(); // odśwież listę opinii
+    } else {
+      alert('Wystąpił błąd przy wysyłaniu opinii.');
+    }
+  } catch (err) {
+    console.error('Błąd:', err);
+    alert('Wystąpił błąd sieci.');
+  }
+});
+
 
     const rating = this.rating.value;
     const comment = this.comment.value;

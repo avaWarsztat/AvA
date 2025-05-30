@@ -162,6 +162,10 @@ input, textarea, select, option {
     <h2>O nas</h2>
     <p>
       W AVA dbamy o Twój samochód tak, jak o własny. Nasza pasja do motoryzacji i doświadczenie pozwalają nam oferować usługi na najwyższym poziomie. Zapraszamy do współpracy każdego, kto ceni sobie profesjonalizm i rzetelność.
+
+      <section class="reveal" style="text-align: center; padding: 40px;">
+  <h2>📅 Działamy już od <span id="years-count"></span> lat!</h2>
+</section>
     </p>
   </section>
 
@@ -210,6 +214,7 @@ input, textarea, select, option {
     </form>
   </div>
 
+<h3 id="srednia-ocena" style="margin-top: 20px;">Średnia ocena: ⏳</h3>
   <div id="opinie-container" style="margin-top: 40px;">
     <!-- Opinie z SheetDB zostaną załadowane tutaj -->
   </div>
@@ -223,77 +228,55 @@ input, textarea, select, option {
   });
 
   // Ładuje opinie z SheetDB i wyświetla je
-  async function loadOpinie() {
-    const container = document.getElementById('opinie-container');
-    container.innerHTML = 'Ładowanie opinii...';
+ async function loadOpinie() {
+  const container = document.getElementById('opinie-container');
+  const sredniaElement = document.getElementById('srednia-ocena');
+  container.innerHTML = 'Ładowanie opinii...';
+  sredniaElement.textContent = 'Średnia ocena: ⏳';
 
-    try {
-      const response = await fetch('https://sheetdb.io/api/v1/kr749eomw8d09');
-      const data = await response.json();
+  try {
+    const response = await fetch('https://sheetdb.io/api/v1/kr749eomw8d09');
+    const data = await response.json();
 
-      if (data.length === 0) {
-        container.innerHTML = 'Brak opinii.';
-        return;
+    if (data.length === 0) {
+      container.innerHTML = 'Brak opinii.';
+      sredniaElement.textContent = 'Brak ocen.';
+      return;
+    }
+
+    let suma = 0;
+    let liczbaOcen = 0;
+
+    container.innerHTML = '';
+    data.reverse().forEach(entry => {
+      const rating = parseInt(entry.rating || 0);
+      const comment = entry.comment || '';
+      const name = entry.name || 'Anonimowy klient';
+
+      if (rating > 0) {
+        suma += rating;
+        liczbaOcen++;
       }
 
-      container.innerHTML = '';
-      data.reverse().forEach(entry => {
-        const comment = entry.comment || '';
-        const rating = entry.rating ? parseInt(entry.rating) : 0;
-        const name = entry.name || 'Anonimowy klient';
-        const div = document.createElement('div');
-        div.style.marginBottom = '20px';
-        div.innerHTML = `
-          <p>"${comment}"</p>
-          <p>${'⭐'.repeat(rating)}</p>
-          <p>– ${name}</p>
-          <hr>
-        `;
-        container.appendChild(div);
-      });
-    } catch (error) {
-      container.innerHTML = 'Błąd ładowania opinii.';
-      console.error('Błąd:', error);
-    }
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <p>"${comment}"</p>
+        <p>${'⭐'.repeat(rating)}</p>
+        <p>– ${name}</p>
+        <hr>
+      `;
+      container.appendChild(div);
+    });
+
+    const srednia = (suma / liczbaOcen).toFixed(1);
+    sredniaElement.textContent = `Średnia ocena: ⭐ ${srednia}/5`;
+
+  } catch (error) {
+    container.innerHTML = 'Błąd ładowania opinii.';
+    sredniaElement.textContent = 'Błąd odczytu średniej oceny.';
+    console.error('Błąd:', error);
   }
-
-  // Obsługa wysyłania nowej opinii
-  document.getElementById('feedbackForm').addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    const rating = this.rating.value;
-    const comment = this.comment.value;
-    const name = this.name.value.trim() || 'Anonimowy klient';
-
-    try {
-      const response = await fetch('https://sheetdb.io/api/v1/kr749eomw8d09', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          data: {
-            rating,
-            comment,
-            name
-          }
-        })
-      });
-
-      if (response.ok) {
-        alert('Dziękujemy za opinię!');
-        this.reset();
-        document.getElementById('opinionForm').style.display = 'none';
-        document.getElementById('showFormBtn').style.display = 'inline-block';
-        loadOpinie(); // odśwież listę
-      } else {
-        alert('Wystąpił błąd przy wysyłaniu opinii.');
-      }
-    } catch (err) {
-      console.error('Błąd:', err);
-      alert('Wystąpił błąd sieci.');
-    }
-  });
+}
 
   // Scroll reveal
   function revealOnScroll() {
@@ -331,5 +314,35 @@ input, textarea, select, option {
       status.style.color = "red";
     }
   }
+</script>
+<section class="reveal" id="faq" style="padding: 40px; max-width: 800px; margin: auto;">
+  <h2>❓ Najczęściej zadawane pytania</h2>
+
+  <details style="margin: 15px 0; background-color: #2a2a2a; padding: 15px; border-radius: 8px;">
+    <summary style="cursor: pointer; font-weight: bold;">Jak mogę umówić się na wizytę?</summary>
+    <p>Możesz zadzwonić do nas, napisać maila lub skorzystać z formularza na stronie.</p>
+  </details>
+
+  <details style="margin: 15px 0; background-color: #2a2a2a; padding: 15px; border-radius: 8px;">
+    <summary style="cursor: pointer; font-weight: bold;">Czy oferujecie samochód zastępczy?</summary>
+    <p>Tak, mamy możliwość udostępnienia auta zastępczego – zapytaj przy umawianiu wizyty.</p>
+  </details>
+
+  <details style="margin: 15px 0; background-color: #2a2a2a; padding: 15px; border-radius: 8px;">
+    <summary style="cursor: pointer; font-weight: bold;">Jakie auta naprawiacie?</summary>
+    <p>Naprawiamy wszystkie marki samochodów osobowych i dostawczych.</p>
+  </details>
+
+  <details style="margin: 15px 0; background-color: #2a2a2a; padding: 15px; border-radius: 8px;">
+    <summary style="cursor: pointer; font-weight: bold;">Czy muszę się wcześniej umawiać?</summary>
+    <p>Tak, najlepiej wcześniej zadzwonić lub napisać, aby umówić dogodny termin.</p>
+  </details>
+</section>
+</footer>
+<script>
+  const startYear = 1996; // <<< Zmień na rzeczywisty rok założenia
+  const currentYear = new Date().getFullYear();
+  const yearsActive = currentYear - startYear;
+  document.getElementById("years-count").textContent = yearsActive;
 </script>
 </body>

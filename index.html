@@ -333,5 +333,21 @@ function revealOnScroll() {
 
 window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("DOMContentLoaded", revealOnScroll);
+
+function sprawdzGodzine() {
+    const teraz = new Date();
+    const dzien = teraz.getDay();
+    const godzina = teraz.getHours();
+    const status = document.getElementById('statusWarsztatu');
+    if ([1, 2, 3, 4, 5].includes(dzien) && godzina >= 9 && godzina < 17) {
+      status.textContent = "🔧 Otwarte – zapraszamy!";
+      status.style.color = "green";
+    } else {
+      status.textContent = "❌ Zamknięte – zapraszamy w godzinach 9:00–17:00 (pn–pt)";
+      status.style.color = "red";
+    }
+  }
+  sprawdzGodzine();
+
 </script>
 </body>

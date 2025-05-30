@@ -117,8 +117,8 @@
       <h1>AVA Warsztat Samochodowy</h1>
       <p class="subtitle">Naprawy, Diagnostyka, Serwis — Zapraszamy!</p>
       <div style="margin-top: 20px;">
-        <h2 style="font-weight: normal; color: #413e3e;"><i>Z pasji do aut</i></h2>
-        <h3 style="font-weight: normal; color: #413e3e;"><i>Łączy nas coś więcej niż naprawa</i></h3>
+        <h2 style="font-weight: normal; color: #ffffff;"><i>Z pasji do aut</i></h2>
+        <h3 style="font-weight: normal; color: #ffffff;"><i>Łączy nas coś więcej niż naprawa</i></h3>
       </div>
     </header>
   </section>
@@ -257,41 +257,6 @@
   // Obsługa wysłania nowej opinii - tylko lokalnie (nie zapisuje na SheetDB!)
   document.getElementById('feedbackForm').addEventListener('submit', async function (e) {
   e.preventDefault();
-
-  const rating = this.rating.value;
-  const comment = this.comment.value;
-  const name = this.name.value.trim() || 'Anonimowy klient';
-
-  try {
-    const response = await fetch('https://sheetdb.io/api/v1/kr749eomw8d09', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        data: {
-          rating,
-          comment,
-          name
-        }
-      })
-    });
-
-    if (response.ok) {
-      alert('Dziękujemy za opinię!');
-      this.reset();
-      document.getElementById('opinionForm').style.display = 'none';
-      document.getElementById('showFormBtn').style.display = 'inline-block';
-      loadOpinie(); // odśwież listę opinii
-    } else {
-      alert('Wystąpił błąd przy wysyłaniu opinii.');
-    }
-  } catch (err) {
-    console.error('Błąd:', err);
-    alert('Wystąpił błąd sieci.');
-  }
-});
-
 
     const rating = this.rating.value;
     const comment = this.comment.value;

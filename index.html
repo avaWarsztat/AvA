@@ -190,7 +190,11 @@ input, textarea, select, option {
   </section>
 
   <section class="reveal" id="opinie" style="text-align: center; margin-top: 2rem;">
-  <h2>Opinie naszych klientów</h2>
+    
+  <h2>Opinie klientów</h2>
+<button id="toggle-opinie" style="margin-bottom: 10px;">Pokaż opinie</button>
+<div id="opinie-lista" style="display: none;"></div>
+
   <button id="showFormBtn">Dodaj opinię</button>
 
   <div id="opinionForm" style="display: none; margin-top: 20px;">
@@ -213,6 +217,14 @@ input, textarea, select, option {
       </label><br><br>
       <button type="submit">Wyślij opinię</button>
     </form>
+    <form id="opinia-form">
+  <!-- Twoje pola formularza -->
+  <input type="text" name="Imię" required placeholder="Twoje imię">
+  <textarea name="Opinia" required placeholder="Twoja opinia"></textarea>
+  <input type="number" name="Ocena" required min="1" max="5" placeholder="Ocena (1-5)">
+  <button type="submit">Dodaj opinię</button>
+  <button type="button" id="anuluj-opinie">Anuluj</button>
+</form>
   </div>
 
 <h3 id="srednia-ocena" style="margin-top: 20px;">Średnia ocena: ⏳</h3>
@@ -321,7 +333,7 @@ input, textarea, select, option {
 
   <details style="margin: 15px 0; background-color: #2a2a2a; padding: 15px; border-radius: 8px;">
     <summary style="cursor: pointer; font-weight: bold;">Jak mogę umówić się na wizytę?</summary>
-    <p>Możesz zadzwonić do nas lub skorzystać z formularza na stronie.</p>
+    <p>Możesz zadzwonić do nas.</p>
   </details>
 
   <details style="margin: 15px 0; background-color: #2a2a2a; padding: 15px; border-radius: 8px;">
@@ -336,7 +348,8 @@ input, textarea, select, option {
 
   <details style="margin: 15px 0; background-color: #2a2a2a; padding: 15px; border-radius: 8px;">
     <summary style="cursor: pointer; font-weight: bold;">Czy muszę się wcześniej umawiać?</summary>
-    <p>Tak, najlepiej wcześniej zadzwonić lub napisać, aby umówić dogodny termin.</p>
+    <p>Tak, najlepiej wcześniej zadzwonić lub napisać, aby umówić dogodny termin, lecz gdy to nagła awaria to zobaczymy
+     co sie da zrobić bez umawiania terminu.</p>
   </details>
 </section>
 </footer>
@@ -345,5 +358,23 @@ input, textarea, select, option {
   const currentYear = new Date().getFullYear();
   const yearsActive = currentYear - startYear;
   document.getElementById("years-count").textContent = yearsActive;
+
+  // Przycisk pokaż/ukryj opinie
+document.getElementById("toggle-opinie").addEventListener("click", function () {
+  const lista = document.getElementById("opinie-lista");
+  const przycisk = document.getElementById("toggle-opinie");
+  if (lista.style.display === "none") {
+    lista.style.display = "block";
+    przycisk.textContent = "Ukryj opinie";
+  } else {
+    lista.style.display = "none";
+    przycisk.textContent = "Pokaż opinie";
+  }
+});
+
+// Przycisk "Anuluj" w formularzu opinii
+document.getElementById("anuluj-opinie").addEventListener("click", function () {
+  document.getElementById("opinia-form").reset();
+});
 </script>
 </body>

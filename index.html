@@ -190,7 +190,7 @@ input, textarea, select, option {
   </section>
 
   <section class="reveal" id="opinie" style="text-align: center; margin-top: 2rem;">
-    
+
   <h2>Opinie klientów</h2>
 <button id="toggle-opinie" style="margin-bottom: 10px;">Pokaż opinie</button>
 <div id="opinie-lista" style="display: none;"></div>
@@ -209,14 +209,6 @@ input, textarea, select, option {
           <option value="1">⭐</option>
         </select>
       </label><br><br>
-      <label>Twoja opinia:<br>
-        <textarea name="comment" rows="4" cols="40" required></textarea>
-      </label><br><br>
-      <label>Imię (opcjonalnie):<br>
-        <input type="text" name="name" placeholder="np. Marek K.">
-      </label><br><br>
-      <button type="submit">Wyślij opinię</button>
-    </form>
     <form id="opinia-form">
   <!-- Twoje pola formularza -->
   <input type="text" name="Imię" required placeholder="Twoje imię">
@@ -309,6 +301,35 @@ input, textarea, select, option {
   window.addEventListener("DOMContentLoaded", () => {
     revealOnScroll();
     loadOpinie();
+    document.getElementById("feedbackForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+  const data = {
+    rating: formData.get("rating"),
+    comment: formData.get("comment"),
+    name: formData.get("name") || "Anonim"
+  };
+
+  try {
+    await fetch("https://sheetdb.io/api/v1/kr749eomw8d09", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ data })
+    });
+
+    alert("Dziękujemy za opinię!");
+    this.reset();
+    document.getElementById("opinionForm").style.display = "none";
+    document.getElementById("showFormBtn").style.display = "inline-block";
+    loadOpinie(); // odśwież opinie
+  } catch (err) {
+    alert("Błąd podczas wysyłania opinii.");
+    console.error(err);
+  }
+});
     sprawdzGodzine();
   });
 
@@ -327,6 +348,7 @@ input, textarea, select, option {
       status.style.color = "red";
     }
   }
+  
 </script>
 <section class="reveal" id="faq" style="padding: 40px; max-width: 800px; margin: auto;">
   <h2>❓ Najczęściej zadawane pytania</h2>
@@ -352,7 +374,6 @@ input, textarea, select, option {
      co sie da zrobić bez umawiania terminu.</p>
   </details>
 </section>
-</footer>
 <script>
   const startYear = 1996; // <<< Zmień na rzeczywisty rok założenia
   const currentYear = new Date().getFullYear();
@@ -373,8 +394,15 @@ document.getElementById("toggle-opinie").addEventListener("click", function () {
 });
 
 // Przycisk "Anuluj" w formularzu opinii
-document.getElementById("anuluj-opinie").addEventListener("click", function () {
-  document.getElementById("opinia-form").reset();
+document.getElementById("toggle-opinie").addEventListener("click", function () {
+  const lista = document.getElementById("opinie-lista");
+  if (lista.style.display === "none") {
+    lista.style.display = "block";
+    this.textContent = "Ukryj opinie";
+  } else {
+    lista.style.display = "none";
+    this.textContent = "Pokaż opinie";
+  }
 });
 </script>
 </body>

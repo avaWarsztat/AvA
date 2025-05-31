@@ -195,6 +195,14 @@ input, textarea, select, option {
 <button id="toggle-opinie" style="margin-bottom: 10px;">Pokaż opinie</button>
 <div id="opinie-lista" style="display: none;"></div>
 
+<script>
+document.getElementById("toggle-opinie").addEventListener("click", () => {
+  const lista = document.getElementById("opinie-lista");
+  lista.style.display = lista.style.display === "none" ? "block" : "none";
+});
+</script>
+
+
   <button id="showFormBtn">Dodaj opinię</button>
 
   <div id="opinionForm" style="display: none; margin-top: 20px;">
@@ -207,16 +215,13 @@ input, textarea, select, option {
           <option value="3">⭐⭐⭐</option>
           <option value="2">⭐⭐</option>
           <option value="1">⭐</option>
-        </select>
-      </label><br><br>
-    <form id="opinia-form">
-  <!-- Twoje pola formularza -->
-  <input type="text" name="Imię" required placeholder="Twoje imię">
+           <input type="text" name="Imię" required placeholder="Twoje imię">
   <textarea name="Opinia" required placeholder="Twoja opinia"></textarea>
   <input type="number" name="Ocena" required min="1" max="5" placeholder="Ocena (1-5)">
   <button type="submit">Dodaj opinię</button>
   <button type="button" id="anuluj-opinie">Anuluj</button>
-</form>
+        </select>
+      </label><br><br>
   </div>
 
 <h3 id="srednia-ocena" style="margin-top: 20px;">Średnia ocena: ⏳</h3>

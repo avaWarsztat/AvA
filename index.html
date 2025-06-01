@@ -190,31 +190,32 @@
     <button id="toggle-opinie">Pokaż opinie</button>
     <div id="opinie-lista" style="display: none;"></div>
 
-    <button id="showFormBtn">Dodaj opinię</button>
-    <div id="opinionForm" style="display: none; margin-top: 20px;">
-      <form id="feedbackForm">
-        <label>Twoje imię:<br>
-          <input type="text" name="name" placeholder="np. Janek" />
-        </label><br><br>
+<button id="showFormBtn">Dodaj opinię</button>
+<div id="opinionForm" style="display: none; margin-top: 20px;">
+  <form id="feedbackForm">
+    <label>Twoje imię:<br>
+      <input type="text" name="name" placeholder="np. Janek" />
+    </label><br><br>
 
-        <label>Ocena warsztatu:<br>
-          <select name="rating" required>
-            <option value="">Wybierz ocenę</option>
-            <option value="5">⭐⭐⭐⭐⭐</option>
-            <option value="4">⭐⭐⭐⭐</option>
-            <option value="3">⭐⭐⭐</option>
-            <option value="2">⭐⭐</option>
-            <option value="1">⭐</option>
-          </select>
-        </label><br><br>
+    <label>Ocena warsztatu:<br>
+      <select name="rating" required>
+        <option value="">Wybierz ocenę</option>
+        <option value="5">⭐⭐⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="1">⭐</option>
+      </select>
+    </label><br><br>
 
-        <label>Komentarz:<br>
-          <textarea name="comment" rows="4" placeholder="Opisz swoją wizytę..."></textarea>
-        </label><br><br>
+    <label>Komentarz:<br>
+      <textarea name="comment" rows="4" placeholder="Opisz swoją wizytę..."></textarea>
+    </label><br><br>
 
-        <button type="submit">Wyślij opinię</button>
-      </form>
-    </div>
+    <button type="submit">Wyślij opinię</button>
+    <button type="button" id="cancelFormBtn" style="background-color: #dc3545; margin-left: 10px;">Anuluj</button>
+  </form>
+</div>
 
     <h3 id="srednia-ocena" style="margin-top: 20px;">Średnia ocena: ⏳</h3>
     <div id="opinie-container" style="margin-top: 40px;"></div>
@@ -349,6 +350,11 @@
     revealOnScroll();
     sprawdzGodzine();
   });
+  document.getElementById('cancelFormBtn').addEventListener('click', function () {
+  document.getElementById('opinionForm').style.display = 'none';
+  document.getElementById('showFormBtn').style.display = 'inline-block';
+  document.getElementById('feedbackForm').reset();
+});
 </script>
 </body>
 </html>

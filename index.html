@@ -394,15 +394,14 @@ input, textarea, select, option {
   // Przycisk pokaż/ukryj opinie
 document.getElementById("toggle-opinie").addEventListener("click", function () {
   const lista = document.getElementById("opinie-lista");
-  const przycisk = document.getElementById("toggle-opinie");
   if (lista.style.display === "none") {
     lista.style.display = "block";
-    przycisk.textContent = "Ukryj opinie";
+    this.textContent = "Ukryj opinie";
+    loadOpinie(); // ← TU MA ZOSTAĆ
   } else {
     lista.style.display = "none";
-    przycisk.textContent = "Pokaż opinie";
+    this.textContent = "Pokaż opinie";
   }
 });
-
 </script>
 </body>

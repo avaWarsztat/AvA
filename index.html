@@ -7,112 +7,108 @@
   <meta name="description" content="AVA Warsztat – naprawa samochodów, diagnostyka, mechanika. Zapraszamy!">
   <meta name="keywords" content="AVA, warsztat, samochodowy, auto, mechanik, serwis, avawarsztat">
   <meta name="author" content="AVA Warsztat">
-<style>
-  body {
-    margin: 0;
-    font-family: sans-serif;
-    background-color: #1d1d1d;
-    color: #fff;
-    overflow-x: hidden;
-    text-align: center;
-  }
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #1d1d1d;
+      color: #fff;
+      overflow-x: hidden;
+      text-align: center;
+    }
 
-  body {
-  color: #fff;
-}
+    input, textarea, select, option {
+      color: #fff;
+      background-color: #333;
+    }
 
-input, textarea, select, option {
-  color: #fff;
-  background-color: #333;
-}
+    header {
+      padding: 40px 20px;
+      position: relative;
+      z-index: 1;
+    }
 
-  header {
-    padding: 40px 20px;
-    position: relative;
-    z-index: 1;
-  }
+    h1 {
+      font-size: 36px;
+      margin: 0;
+    }
 
-  h1 {
-    font-size: 36px;
-    margin: 0;
-  }
+    p.subtitle {
+      font-size: 18px;
+      margin-top: 10px;
+    }
 
-  p.subtitle {
-    font-size: 18px;
-    margin-top: 10px;
-  }
+    .buttons {
+      margin: 40px 0;
+      z-index: 1;
+    }
 
-  .buttons {
-    margin: 40px 0;
-    z-index: 1;
-  }
+    .buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 15px 30px;
+      background-color: #007bff;
+      color: white !important;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 18px;
+      transition: background-color 0.3s;
+    }
 
-  .buttons a {
-    display: inline-block;
-    margin: 10px;
-    padding: 15px 30px;
-    background-color: #007bff;
-    color: white !important;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 18px;
-    transition: background-color 0.3s;
-  }
+    .buttons a:hover {
+      background-color: #0056b3;
+    }
 
-  .buttons a:hover {
-    background-color: #0056b3;
-  }
+    footer {
+      margin-top: 60px;
+      padding: 20px;
+      font-size: 14px;
+      background-color: #222;
+      color: #ccc;
+      z-index: 1;
+    }
 
-  footer {
-    margin-top: 60px;
-    padding: 20px;
-    font-size: 14px;
-    background-color: #222;
-    color: #ccc;
-    z-index: 1;
-  }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1s ease, transform 1s ease;
-  }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-  .reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    input, textarea, select {
+      background-color: #333;
+      color: #fff;
+      border: 1px solid #777;
+      padding: 8px;
+      border-radius: 5px;
+      width: 80%;
+      max-width: 400px;
+    }
 
-  input, textarea, select {
-    background-color: #333;
-    color: #fff;
-    border: 1px solid #777;
-    padding: 8px;
-    border-radius: 5px;
-    width: 80%;
-    max-width: 400px;
-  }
+    button {
+      background-color: #007bff;
+      color: white !important;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
 
-  button {
-    background-color: #007bff;
-    color: white !important;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
+    button:hover {
+      background-color: #0056b3;
+    }
 
-  button:hover {
-    background-color: #0056b3;
-  }
-
-  #opinie-container div {
-    border-bottom: 1px solid #444;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-  }
-</style>
+    #opinie-container div {
+      border-bottom: 1px solid #444;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
 
@@ -121,8 +117,8 @@ input, textarea, select, option {
       <h1>AVA Warsztat Samochodowy</h1>
       <p class="subtitle">Naprawy, Diagnostyka, Serwis — Zapraszamy!</p>
       <div style="margin-top: 20px;">
-        <h2 style="font-weight: normal; color: #ffffff;"><i>Z pasji do aut</i></h2>
-        <h3 style="font-weight: normal; color: #ffffff;"><i>Łączy nas coś więcej niż naprawa</i></h3>
+        <h2><i>Z pasji do aut</i></h2>
+        <h3><i>Łączy nas coś więcej niż naprawa</i></h3>
       </div>
     </header>
   </section>
@@ -163,11 +159,11 @@ input, textarea, select, option {
     <h2>O nas</h2>
     <p>
       W AVA dbamy o Twój samochód tak, jak o własny. Nasza pasja do motoryzacji i doświadczenie pozwalają nam oferować usługi na najwyższym poziomie. Zapraszamy do współpracy każdego, kto ceni sobie profesjonalizm i rzetelność.
-
-      <section class="reveal" style="text-align: center; padding: 40px;">
-  <h2>📅 Działamy już od <span id="years-count"></span> lat!</h2>
-</section>
     </p>
+  </section>
+
+  <section class="reveal" style="text-align: center; padding: 40px;">
+    <h2>📅 Działamy już od <span id="years-count"></span> lat!</h2>
   </section>
 
   <section class="reveal" id="uslugi" style="max-width: 700px; margin: 2rem auto;">
@@ -190,129 +186,133 @@ input, textarea, select, option {
   </section>
 
   <section class="reveal" id="opinie" style="text-align: center; margin-top: 2rem;">
+    <h2>Opinie klientów</h2>
+    <button id="toggle-opinie">Pokaż opinie</button>
+    <div id="opinie-lista" style="display: none;"></div>
 
-  <h2>Opinie klientów</h2>
-<button id="toggle-opinie" style="margin-bottom: 10px;">Pokaż opinie</button>
-<div id="opinie-lista" style="display: none;"></div>
+    <button id="showFormBtn">Dodaj opinię</button>
+    <div id="opinionForm" style="display: none; margin-top: 20px;">
+      <form id="feedbackForm">
+        <label>Twoje imię:<br>
+          <input type="text" name="name" placeholder="np. Janek" />
+        </label><br><br>
 
-  <button id="showFormBtn">Dodaj opinię</button>
+        <label>Ocena warsztatu:<br>
+          <select name="rating" required>
+            <option value="">Wybierz ocenę</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="1">⭐</option>
+          </select>
+        </label><br><br>
 
-  <div id="opinionForm" style="display: none; margin-top: 20px;">
-  <form id="feedbackForm">
-    <label>Twoje imię:<br>
-      <input type="text" name="name" placeholder="np. Janek" />
-    </label><br><br>
+        <label>Komentarz:<br>
+          <textarea name="comment" rows="4" placeholder="Opisz swoją wizytę..."></textarea>
+        </label><br><br>
 
-    <label>Ocena warsztatu:<br>
-      <select name="rating" required>
-        <option value="">Wybierz ocenę</option>
-        <option value="5">⭐⭐⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="2">⭐⭐</option>
-        <option value="1">⭐</option>
-      </select>
-    </label><br><br>
+        <button type="submit">Wyślij opinię</button>
+      </form>
+    </div>
 
-    <label>Komentarz:<br>
-      <textarea name="comment" rows="4" placeholder="Opisz swoją wizytę..."></textarea>
-    </label><br><br>
+    <h3 id="srednia-ocena" style="margin-top: 20px;">Średnia ocena: ⏳</h3>
+    <div id="opinie-container" style="margin-top: 40px;"></div>
+  </section>
 
-    <button type="submit">Wyślij opinię</button>
-  </form>
-</div>
-
-<h3 id="srednia-ocena" style="margin-top: 20px;">Średnia ocena: ⏳</h3>
-  <div id="opinie-container" style="margin-top: 40px;">
-    <!-- Opinie z SheetDB zostaną załadowane tutaj -->
-  </div>
-</section>
+  <section class="reveal" id="faq" style="padding: 40px; max-width: 800px; margin: auto;">
+    <h2>❓ Najczęściej zadawane pytania</h2>
+    <details><summary>Jak mogę umówić się na wizytę?</summary><p>Możesz zadzwonić do nas.</p></details>
+    <details><summary>Czy oferujecie samochód zastępczy?</summary><p>Nie, nie mamy możliwość udostępnienia auta zastępczego.</p></details>
+    <details><summary>Jakie auta naprawiacie?</summary><p>Naprawiamy wszystkie marki samochodów osobowych i dostawczych oprócz elektrycznych.</p></details>
+    <details><summary>Czy muszę się wcześniej umawiać?</summary><p>Tak, najlepiej zadzwonić lub napisać. W nagłych przypadkach spróbujemy pomóc od ręki.</p></details>
+  </section>
 
 <script>
-  // Pokazuje formularz po kliknięciu przycisku
+  const startYear = 1996;
+  document.getElementById("years-count").textContent = new Date().getFullYear() - startYear;
+
   document.getElementById('showFormBtn').addEventListener('click', function () {
     document.getElementById('opinionForm').style.display = 'block';
     this.style.display = 'none';
   });
 
-  // Ładuje opinie z SheetDB i wyświetla je
- async function loadOpinie() {
-  const container = document.getElementById('opinie-container');
-  const sredniaElement = document.getElementById('srednia-ocena');
-  container.innerHTML = 'Ładowanie opinii...';
-  sredniaElement.textContent = 'Średnia ocena: ⏳';
+  async function loadOpinie() {
+    const container = document.getElementById('opinie-container');
+    const sredniaElement = document.getElementById('srednia-ocena');
+    container.innerHTML = 'Ładowanie opinii...';
+    sredniaElement.textContent = 'Średnia ocena: ⏳';
 
-  try {
-    const response = await fetch('https://sheetdb.io/api/v1/kr749eomw8d09');
-    const data = await response.json();
+    try {
+      const res = await fetch('https://sheetdb.io/api/v1/kr749eomw8d09');
+      const data = await res.json();
 
-    if (data.length === 0) {
-      container.innerHTML = 'Brak opinii.';
-      sredniaElement.textContent = 'Brak ocen.';
-      return;
-    }
-
-    let suma = 0;
-    let liczbaOcen = 0;
-
-    container.innerHTML = '';
-    data.reverse().forEach(entry => {
-      const rating = parseInt(entry.rating || 0);
-      const comment = entry.comment || '';
-      const name = entry.name || 'Anonimowy klient';
-
-      if (rating > 0) {
-        suma += rating;
-        liczbaOcen++;
+      if (data.length === 0) {
+        container.innerHTML = 'Brak opinii.';
+        sredniaElement.textContent = 'Brak ocen.';
+        return;
       }
 
-      const div = document.createElement('div');
-      div.innerHTML = `
-        <p>"${comment}"</p>
-        <p>${'⭐'.repeat(rating)}</p>
-        <p>– ${name}</p>
-        <hr>
-      `;
-      container.appendChild(div);
-    });
+      let suma = 0, liczbaOcen = 0;
+      container.innerHTML = '';
+      data.reverse().forEach(entry => {
+        const rating = parseInt(entry.rating || 0);
+        const comment = entry.comment || '';
+        const name = entry.name || 'Anonimowy klient';
 
-    const srednia = (suma / liczbaOcen).toFixed(1);
-    sredniaElement.textContent = `Średnia ocena: ⭐ ${srednia}/5`;
+        if (rating > 0) {
+          suma += rating;
+          liczbaOcen++;
+        }
 
-  } catch (error) {
-    container.innerHTML = 'Błąd ładowania opinii.';
-    sredniaElement.textContent = 'Błąd odczytu średniej oceny.';
-    console.error('Błąd:', error);
-  }
-}
+        const div = document.createElement('div');
+        div.innerHTML = `<p>"${comment}"</p><p>${'⭐'.repeat(rating)}</p><p>– ${name}</p><hr>`;
+        container.appendChild(div);
+      });
 
-  // Scroll reveal
-  function revealOnScroll() {
-    const reveals = document.querySelectorAll('.reveal');
-    for (let i = 0; i < reveals.length; i++) {
-      const windowHeight = window.innerHeight;
-      const elementTop = reveals[i].getBoundingClientRect().top;
-      const elementVisible = 100;
-
-      if (elementTop < windowHeight - elementVisible) {
-        reveals[i].classList.add("active");
-      }
+      const srednia = (suma / liczbaOcen).toFixed(1);
+      sredniaElement.textContent = `Średnia ocena: ⭐ ${srednia}/5`;
+    } catch (err) {
+      container.innerHTML = 'Błąd ładowania opinii.';
+      sredniaElement.textContent = 'Błąd odczytu średniej oceny.';
     }
   }
 
-  window.addEventListener("scroll", revealOnScroll);
-  window.addEventListener("DOMContentLoaded", () => {
-    revealOnScroll();
-    sprawdzGodzine();
+  document.getElementById('feedbackForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const formData = new FormData(this);
+    const name = formData.get('name') || 'Anonimowy klient';
+    const rating = formData.get('rating');
+    const comment = formData.get('comment') || '';
+
+    const payload = { data: { name, rating, comment } };
+
+    try {
+      const res = await fetch('https://sheetdb.io/api/v1/kr749eomw8d09', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        alert('Dziękujemy za opinię!');
+        this.reset();
+        document.getElementById('opinionForm').style.display = 'none';
+        document.getElementById('showFormBtn').style.display = 'inline-block';
+        loadOpinie();
+      } else {
+        alert('Wystąpił błąd. Spróbuj ponownie później.');
+      }
+    } catch (err) {
+      alert('Błąd sieci. Sprawdź połączenie z internetem.');
+    }
   });
 
-  // Status otwarcia warsztatu
   function sprawdzGodzine() {
     const teraz = new Date();
     const dzien = teraz.getDay();
     const godzina = teraz.getHours();
     const status = document.getElementById('statusWarsztatu');
-
     if ([1, 2, 3, 4, 5].includes(dzien) && godzina >= 9 && godzina < 17) {
       status.textContent = "🔧 Otwarte – zapraszamy!";
       status.style.color = "green";
@@ -321,93 +321,34 @@ input, textarea, select, option {
       status.style.color = "red";
     }
   }
-  document.getElementById('feedbackForm').addEventListener('submit', async function (e) {
-  e.preventDefault();
 
-  const formData = new FormData(this);
-  const name = formData.get('name') || 'Anonimowy klient';
-  const rating = formData.get('rating');
-  const comment = formData.get('comment') || '';
-
-  const payload = {
-    data: {
-      name,
-      rating,
-      comment
-    }
-  };
-
-  try {
-    const res = await fetch('https://sheetdb.io/api/v1/kr749eomw8d09', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (res.ok) {
-      alert('Dziękujemy za opinię!');
-      document.getElementById('feedbackForm').reset();
-      document.getElementById('opinionForm').style.display = 'none';
-      document.getElementById('showFormBtn').style.display = 'inline-block';
-      loadOpinie(); // przeładuj listę opinii
+  document.getElementById("toggle-opinie").addEventListener("click", function () {
+    const lista = document.getElementById("opinie-container");
+    if (lista.style.display === "none") {
+      lista.style.display = "block";
+      this.textContent = "Ukryj opinie";
+      loadOpinie();
     } else {
-      alert('Wystąpił błąd. Spróbuj ponownie później.');
+      lista.style.display = "none";
+      this.textContent = "Pokaż opinie";
     }
-  } catch (err) {
-    alert('Błąd sieci. Sprawdź połączenie z internetem.');
-    console.error(err);
+  });
+
+  function revealOnScroll() {
+    document.querySelectorAll('.reveal').forEach(elem => {
+      const top = elem.getBoundingClientRect().top;
+      const visible = 100;
+      if (top < window.innerHeight - visible) {
+        elem.classList.add("active");
+      }
+    });
   }
-});
-</script>
-<section class="reveal" id="faq" style="padding: 40px; max-width: 800px; margin: auto;">
-  <h2>❓ Najczęściej zadawane pytania</h2>
 
-  <details style="margin: 15px 0; background-color: #2a2a2a; padding: 15px; border-radius: 8px;">
-    <summary style="cursor: pointer; font-weight: bold;">Jak mogę umówić się na wizytę?</summary>
-    <p>Możesz zadzwonić do nas.</p>
-  </details>
-
-  <details style="margin: 15px 0; background-color: #2a2a2a; padding: 15px; border-radius: 8px;">
-    <summary style="cursor: pointer; font-weight: bold;">Czy oferujecie samochód zastępczy?</summary>
-    <p>Nie, nie mamy możliwość udostępnienia auta zastępczego.</p>
-  </details>
-
-  <details style="margin: 15px 0; background-color: #2a2a2a; padding: 15px; border-radius: 8px;">
-    <summary style="cursor: pointer; font-weight: bold;">Jakie auta naprawiacie?</summary>
-    <p>Naprawiamy wszystkie marki samochodów osobowych i dostawczych oprócz samochodów elektrycznych.</p>
-  </details>
-
-  <details style="margin: 15px 0; background-color: #2a2a2a; padding: 15px; border-radius: 8px;">
-    <summary style="cursor: pointer; font-weight: bold;">Czy muszę się wcześniej umawiać?</summary>
-    <p>Tak, najlepiej wcześniej zadzwonić lub napisać, aby umówić dogodny termin, lecz gdy to nagła awaria to zobaczymy
-     co sie da zrobić bez umawiania terminu.</p>
-  </details>
-</section>
-<script>
-  const startYear = 1996; // <<< Zmień na rzeczywisty rok założenia
-  const currentYear = new Date().getFullYear();
-  const yearsActive = currentYear - startYear;
-  document.getElementById("years-count").textContent = yearsActive;
-
-  // Przycisk pokaż/ukryj opinie
-const pokazOpinieBtn = document.getElementById('pokaz-opinie-btn');
-let opinieWidoczne = false;
-
-pokazOpinieBtn.addEventListener('click', () => {
-  const container = document.getElementById('opinie-container');
-
-  if (!opinieWidoczne) {
-    loadOpinie();
-    container.style.display = 'block';
-    pokazOpinieBtn.textContent = 'Ukryj opinie';
-    opinieWidoczne = true;
-  } else {
-    container.style.display = 'none';
-    pokazOpinieBtn.textContent = 'Pokaż opinie';
-    opinieWidoczne = false;
-  }
-});
+  window.addEventListener("scroll", revealOnScroll);
+  window.addEventListener("DOMContentLoaded", () => {
+    revealOnScroll();
+    sprawdzGodzine();
+  });
 </script>
 </body>
+</html>

@@ -392,15 +392,21 @@ input, textarea, select, option {
   document.getElementById("years-count").textContent = yearsActive;
 
   // Przycisk pokaż/ukryj opinie
-document.getElementById("toggle-opinie").addEventListener("click", function () {
-  const lista = document.getElementById("opinie-lista");
-  if (lista.style.display === "none") {
-    lista.style.display = "block";
-    this.textContent = "Ukryj opinie";
-    loadOpinie(); // ← TU MA ZOSTAĆ
+const pokazOpinieBtn = document.getElementById('pokaz-opinie-btn');
+let opinieWidoczne = false;
+
+pokazOpinieBtn.addEventListener('click', () => {
+  const container = document.getElementById('opinie-container');
+
+  if (!opinieWidoczne) {
+    loadOpinie();
+    container.style.display = 'block';
+    pokazOpinieBtn.textContent = 'Ukryj opinie';
+    opinieWidoczne = true;
   } else {
-    lista.style.display = "none";
-    this.textContent = "Pokaż opinie";
+    container.style.display = 'none';
+    pokazOpinieBtn.textContent = 'Pokaż opinie';
+    opinieWidoczne = false;
   }
 });
 </script>

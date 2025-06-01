@@ -195,26 +195,32 @@ input, textarea, select, option {
 <button id="toggle-opinie" style="margin-bottom: 10px;">Pokaż opinie</button>
 <div id="opinie-lista" style="display: none;"></div>
 
-<script>
-document.getElementById("toggle-opinie").addEventListener("click", () => {
-  const lista = document.getElementById("opinie-lista");
-  lista.style.display = lista.style.display === "none" ? "block" : "none";
-});
-</script>
-
-
   <button id="showFormBtn">Dodaj opinię</button>
 
   <div id="opinionForm" style="display: none; margin-top: 20px;">
-    <form id="feedbackForm">
-           <input type="text" name="Imię" required placeholder="Twoje imię">
-  <textarea name="Opinia" required placeholder="Twoja opinia"></textarea>
-  <input type="number" name="Ocena" required min="1" max="5" placeholder="Ocena (1-5)">
-  <button type="submit">Dodaj opinię</button>
-  <button type="button" id="anuluj-opinie">Anuluj</button>
-        </select>
-      </label><br><br>
-  </div>
+  <form id="feedbackForm">
+    <label>Twoje imię:<br>
+      <input type="text" name="name" placeholder="np. Janek" />
+    </label><br><br>
+
+    <label>Ocena warsztatu:<br>
+      <select name="rating" required>
+        <option value="">Wybierz ocenę</option>
+        <option value="5">⭐⭐⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="1">⭐</option>
+      </select>
+    </label><br><br>
+
+    <label>Komentarz:<br>
+      <textarea name="comment" rows="4" placeholder="Opisz swoją wizytę..."></textarea>
+    </label><br><br>
+
+    <button type="submit">Wyślij opinię</button>
+  </form>
+</div>
 
 <h3 id="srednia-ocena" style="margin-top: 20px;">Średnia ocena: ⏳</h3>
   <div id="opinie-container" style="margin-top: 40px;">
@@ -298,35 +304,6 @@ document.getElementById("toggle-opinie").addEventListener("click", () => {
   window.addEventListener("DOMContentLoaded", () => {
     revealOnScroll();
     loadOpinie();
-    document.getElementById("feedbackForm").addEventListener("submit", async function (e) {
-  e.preventDefault();
-
-  const formData = new FormData(this);
-  const data = {
-    rating: formData.get("rating"),
-    comment: formData.get("comment"),
-    name: formData.get("name") || "Anonim"
-  };
-
-  try {
-    await fetch("https://sheetdb.io/api/v1/kr749eomw8d09", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ data })
-    });
-
-    alert("Dziękujemy za opinię!");
-    this.reset();
-    document.getElementById("opinionForm").style.display = "none";
-    document.getElementById("showFormBtn").style.display = "inline-block";
-    loadOpinie(); // odśwież opinie
-  } catch (err) {
-    alert("Błąd podczas wysyłania opinii.");
-    console.error(err);
-  }
-});
     sprawdzGodzine();
   });
 
@@ -345,7 +322,45 @@ document.getElementById("toggle-opinie").addEventListener("click", () => {
       status.style.color = "red";
     }
   }
-  
+  document.getElementById('feedbackForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+  const name = formData.get('name') || 'Anonimowy klient';
+  const rating = formData.get('rating');
+  const comment = formData.get('comment') || '';
+
+  const payload = {
+    data: {
+      name,
+      rating,
+      comment
+    }
+  };
+
+  try {
+    const res = await fetch('https://sheetdb.io/api/v1/kr749eomw8d09', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (res.ok) {
+      alert('Dziękujemy za opinię!');
+      document.getElementById('feedbackForm').reset();
+      document.getElementById('opinionForm').style.display = 'none';
+      document.getElementById('showFormBtn').style.display = 'inline-block';
+      loadOpinie(); // przeładuj listę opinii
+    } else {
+      alert('Wystąpił błąd. Spróbuj ponownie później.');
+    }
+  } catch (err) {
+    alert('Błąd sieci. Sprawdź połączenie z internetem.');
+    console.error(err);
+  }
+});
 </script>
 <section class="reveal" id="faq" style="padding: 40px; max-width: 800px; margin: auto;">
   <h2>❓ Najczęściej zadawane pytania</h2>
@@ -390,16 +405,5 @@ document.getElementById("toggle-opinie").addEventListener("click", function () {
   }
 });
 
-// Przycisk "Anuluj" w formularzu opinii
-document.getElementById("toggle-opinie").addEventListener("click", function () {
-  const lista = document.getElementById("opinie-lista");
-  if (lista.style.display === "none") {
-    lista.style.display = "block";
-    this.textContent = "Ukryj opinie";
-  } else {
-    lista.style.display = "none";
-    this.textContent = "Pokaż opinie";
-  }
-});
 </script>
 </body>

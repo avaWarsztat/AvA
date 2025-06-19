@@ -182,6 +182,7 @@
     <p>Poniedziałek – Piątek: <strong>9:00 – 17:00</strong></p>
     <p>Sobota: <strong>Nieczynne</strong></p>
     <p>Niedziela: <strong>Nieczynne</strong></p>
+     <p>Święta: <strong>Nieczynne</strong></p>
     <p id="statusWarsztatu" style="font-weight: bold;"></p>
   </section>
 
@@ -310,18 +311,37 @@
   });
 
   function sprawdzGodzine() {
-    const teraz = new Date();
-    const dzien = teraz.getDay();
-    const godzina = teraz.getHours();
-    const status = document.getElementById('statusWarsztatu');
-    if ([1, 2, 3, 4, 5].includes(dzien) && godzina >= 9 && godzina < 17) {
-      status.textContent = "🔧 Otwarte – zapraszamy!";
-      status.style.color = "green";
-    } else {
-      status.textContent = "❌ Zamknięte – zapraszamy w godzinach 9:00–17:00 (pn–pt)";
-      status.style.color = "red";
-    }
+  const teraz = new Date();
+  const dzienTygodnia = teraz.getDay();
+  const godzina = teraz.getHours();
+  const miesiac = teraz.getMonth() + 1;
+  const dzien = teraz.getDate();
+  const data = `${miesiac.toString().padStart(2, '0')}-${dzien.toString().padStart(2, '0')}`;
+  const status = document.getElementById('statusWarsztatu');
+
+  const swieta = [
+    '01-01', // Nowy Rok
+    '01-06', // Trzech Króli
+    '05-01', // Święto Pracy
+    '05-03', // Święto Konstytucji
+    '08-15', // Wniebowzięcie NMP
+    '11-01', // Wszystkich Świętych
+    '11-11', // Święto Niepodległości
+    '12-25', // Boże Narodzenie
+    '12-26'  // Drugi dzień świąt
+  ];
+
+  if (swieta.includes(data)) {
+    status.textContent = "🎉 Dziś święto – warsztat nieczynny.";
+    status.style.color = "orange";
+  } else if ([1, 2, 3, 4, 5].includes(dzienTygodnia) && godzina >= 9 && godzina < 17) {
+    status.textContent = "🔧 Otwarte – zapraszamy!";
+    status.style.color = "green";
+  } else {
+    status.textContent = "❌ Zamknięte – zapraszamy w godzinach 9:00–17:00 (pn–pt)";
+    status.style.color = "red";
   }
+}
 
   document.getElementById("toggle-opinie").addEventListener("click", function () {
     const lista = document.getElementById("opinie-container");

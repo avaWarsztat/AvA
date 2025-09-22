@@ -179,7 +179,7 @@
 
   <section class="reveal" id="godziny" style="text-align: center; margin-top: 2rem;">
     <h2>🕒 Godziny otwarcia</h2>
-    <p>Poniedziałek – Piątek: <strong>9:00 – 17:00</strong></p>
+    <p>Poniedziałek – Piątek: <strong>8:00 – 16:00</strong></p>
     <p>Sobota: <strong>Nieczynne</strong></p>
     <p>Niedziela: <strong>Nieczynne</strong></p>
      <p>Święta: <strong>Nieczynne</strong></p>
@@ -334,11 +334,11 @@
   if (swieta.includes(data)) {
     status.textContent = "🎉 Dziś święto – warsztat nieczynny.";
     status.style.color = "orange";
-  } else if ([1, 2, 3, 4, 5].includes(dzienTygodnia) && godzina >= 9 && godzina < 17) {
+  } else if ([1, 2, 3, 4, 5].includes(dzienTygodnia) && godzina >= 8 && godzina < 16) {
     status.textContent = "🔧 Otwarte – zapraszamy!";
     status.style.color = "green";
   } else {
-    status.textContent = "❌ Zamknięte – zapraszamy w godzinach 9:00–17:00 (pn–pt)";
+    status.textContent = "❌ Zamknięte – zapraszamy w godzinach 8:00–16:00 (pn–pt)";
     status.style.color = "red";
   }
 }

@@ -234,11 +234,13 @@
   const startYear = 1996;
   document.getElementById("years-count").textContent = new Date().getFullYear() - startYear;
 
+  // Pokazywanie formularza
   document.getElementById('showFormBtn').addEventListener('click', function () {
     document.getElementById('opinionForm').style.display = 'block';
     this.style.display = 'none';
   });
 
+  // Załadowanie opinii
   async function loadOpinie() {
     const container = document.getElementById('opinie-container');
     const sredniaElement = document.getElementById('srednia-ocena');
@@ -261,11 +263,7 @@
         const rating = parseInt(entry.rating || 0);
         const comment = entry.comment || '';
         const name = entry.name || 'Anonimowy klient';
-
-        if (rating > 0) {
-          suma += rating;
-          liczbaOcen++;
-        }
+        if (rating > 0) { suma += rating; liczbaOcen++; }
 
         const div = document.createElement('div');
         div.innerHTML = `<p>"${comment}"</p><p>${'⭐'.repeat(rating)}</p><p>– ${name}</p><hr>`;
@@ -274,20 +272,45 @@
 
       const srednia = (suma / liczbaOcen).toFixed(1);
       sredniaElement.textContent = `Średnia ocena: ⭐ ${srednia}/5`;
-    } catch (err) {
+    } catch {
       container.innerHTML = 'Błąd ładowania opinii.';
       sredniaElement.textContent = 'Błąd odczytu średniej oceny.';
     }
   }
 
+  // Weryfikacja e-mail + blokada 24h
   document.getElementById('feedbackForm').addEventListener('submit', async function (e) {
     e.preventDefault();
+
+    // Sprawdź 24h blokadę
+    const ostatnia = localStorage.getItem('ostatniaOpinia');
+    if (ostatnia && (Date.now() - parseInt(ostatnia)) < 24 * 60 * 60 * 1000) {
+      alert('Możesz dodać nową opinię dopiero po 24 godzinach.');
+      return;
+    }
+
+    // Prosta weryfikacja e-mail
+    const email = prompt('Podaj swój adres e-mail:');
+    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      alert('Niepoprawny adres e-mail!');
+      return;
+    }
+
+    // Generowanie kodu
+    const kod = Math.floor(100000 + Math.random() * 900000);
+    alert(`Kod weryfikacyjny: ${kod}\n(Udawana wysyłka – w przyszłości można dodać prawdziwą)`);
+    const wpisanyKod = prompt('Wpisz otrzymany kod:');
+    if (parseInt(wpisanyKod) !== kod) {
+      alert('Błędny kod weryfikacyjny!');
+      return;
+    }
+
     const formData = new FormData(this);
     const name = formData.get('name') || 'Anonimowy klient';
     const rating = formData.get('rating');
     const comment = formData.get('comment') || '';
 
-    const payload = { data: { name, rating, comment } };
+    const payload = { data: { name, rating, comment, email } };
 
     try {
       const res = await fetch('https://sheetdb.io/api/v1/kr749eomw8d09', {
@@ -297,51 +320,41 @@
       });
 
       if (res.ok) {
-        alert('Dziękujemy za opinię!');
+        alert('✅ Dziękujemy za opinię!');
+        localStorage.setItem('ostatniaOpinia', Date.now());
         this.reset();
         document.getElementById('opinionForm').style.display = 'none';
         document.getElementById('showFormBtn').style.display = 'inline-block';
         loadOpinie();
       } else {
-        alert('Wystąpił błąd. Spróbuj ponownie później.');
+        alert('❌ Wystąpił błąd. Spróbuj ponownie później.');
       }
-    } catch (err) {
+    } catch {
       alert('Błąd sieci. Sprawdź połączenie z internetem.');
     }
   });
 
+  // Godziny otwarcia
   function sprawdzGodzine() {
-  const teraz = new Date();
-  const dzienTygodnia = teraz.getDay();
-  const godzina = teraz.getHours();
-  const miesiac = teraz.getMonth() + 1;
-  const dzien = teraz.getDate();
-  const data = `${miesiac.toString().padStart(2, '0')}-${dzien.toString().padStart(2, '0')}`;
-  const status = document.getElementById('statusWarsztatu');
+    const teraz = new Date();
+    const dzienTygodnia = teraz.getDay();
+    const godzina = teraz.getHours();
+    const data = `${(teraz.getMonth() + 1).toString().padStart(2, '0')}-${teraz.getDate().toString().padStart(2, '0')}`;
+    const status = document.getElementById('statusWarsztatu');
 
-  const swieta = [
-    '01-01', // Nowy Rok
-    '01-06', // Trzech Króli
-    '05-01', // Święto Pracy
-    '05-03', // Święto Konstytucji
-    '08-15', // Wniebowzięcie NMP
-    '11-01', // Wszystkich Świętych
-    '11-11', // Święto Niepodległości
-    '12-25', // Boże Narodzenie
-    '12-26'  // Drugi dzień świąt
-  ];
+    const swieta = ['01-01','01-06','05-01','05-03','08-15','11-01','11-11','12-25','12-26'];
 
-  if (swieta.includes(data)) {
-    status.textContent = "🎉 Dziś święto – warsztat nieczynny.";
-    status.style.color = "orange";
-  } else if ([1, 2, 3, 4, 5].includes(dzienTygodnia) && godzina >= 8 && godzina < 16) {
-    status.textContent = "🔧 Otwarte – zapraszamy!";
-    status.style.color = "green";
-  } else {
-    status.textContent = "❌ Zamknięte – zapraszamy w godzinach 8:00–16:00 (pn–pt)";
-    status.style.color = "red";
+    if (swieta.includes(data)) {
+      status.textContent = "🎉 Dziś święto – warsztat nieczynny.";
+      status.style.color = "orange";
+    } else if ([1,2,3,4,5].includes(dzienTygodnia) && godzina >= 8 && godzina < 16) {
+      status.textContent = "🔧 Otwarte – zapraszamy!";
+      status.style.color = "green";
+    } else {
+      status.textContent = "❌ Zamknięte – zapraszamy w godzinach 8:00–16:00 (pn–pt)";
+      status.style.color = "red";
+    }
   }
-}
 
   document.getElementById("toggle-opinie").addEventListener("click", function () {
     const lista = document.getElementById("opinie-container");
@@ -358,10 +371,7 @@
   function revealOnScroll() {
     document.querySelectorAll('.reveal').forEach(elem => {
       const top = elem.getBoundingClientRect().top;
-      const visible = 100;
-      if (top < window.innerHeight - visible) {
-        elem.classList.add("active");
-      }
+      if (top < window.innerHeight - 100) elem.classList.add("active");
     });
   }
 
@@ -370,11 +380,12 @@
     revealOnScroll();
     sprawdzGodzine();
   });
+
   document.getElementById('cancelFormBtn').addEventListener('click', function () {
-  document.getElementById('opinionForm').style.display = 'none';
-  document.getElementById('showFormBtn').style.display = 'inline-block';
-  document.getElementById('feedbackForm').reset();
-});
+    document.getElementById('opinionForm').style.display = 'none';
+    document.getElementById('showFormBtn').style.display = 'inline-block';
+    document.getElementById('feedbackForm').reset();
+  });
 </script>
 </body>
 </html>

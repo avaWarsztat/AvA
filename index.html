@@ -4,340 +4,386 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AVA Warsztat Samochodowy</title>
-  <meta name="description" content="AVA Warsztat – naprawa samochodów, diagnostyka, mechanika. Zapraszamy!">
-  <meta name="keywords" content="AVA, warsztat, samochodowy, auto, mechanik, serwis, avawarsztat">
-  <meta name="author" content="AVA Warsztat">
+  <meta name="description" content="AVA Warsztat – naprawa samochodów, diagnostyka, mechanika. Zapraszamy!" />
+  <meta name="keywords" content="AVA, warsztat, samochodowy, auto, mechanik, serwis, avawarsztat" />
+  <meta name="author" content="AVA Warsztat" />
+
+  <!-- Open Graph (dla udostępnień) -->
+  <meta property="og:title" content="AVA Warsztat Samochodowy" />
+  <meta property="og:description" content="Z pasji do aut – profesjonalny serwis i naprawy." />
+  <meta property="og:image" content="ava-logo.jpg" />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon (podmień plik jeśli potrzeba) -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome (ikony) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-wx6o2f..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
+    :root{
+      --bg: #1d1d1d;
+      --card: #111;
+      --muted: #9aa0a6;
+      --accent: #007bff;
+      --accent-2: #28a745;
+      --glass: rgba(255,255,255,0.03);
+      --radius: 10px;
+      --max-width: 1100px;
+    }
+
+    *{box-sizing: border-box;}
+    html,body{height:100%;}
     body {
       margin: 0;
-      font-family: sans-serif;
-      background-color: #1d1d1d;
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background-color: var(--bg);
       color: #fff;
       overflow-x: hidden;
-      text-align: center;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
     }
 
-    input, textarea, select, option {
-      color: #fff;
-      background-color: #333;
+    a { color: inherit; text-decoration: none; }
+    img { max-width:100%; height:auto; display:block; }
+
+    header.site-header {
+      padding: 28px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(4px);
     }
 
-    header {
-      padding: 40px 20px;
-      position: relative;
-      z-index: 1;
+    .wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 16px; }
+
+    .nav {
+      display:flex; align-items:center; justify-content:space-between; gap: 16px;
     }
 
-    h1 {
-      font-size: 36px;
-      margin: 0;
+    .brand {
+      display:flex; align-items:center; gap:12px;
+    }
+    .brand img { width:48px; height:48px; border-radius:8px; object-fit:cover; }
+    .brand h1 { font-size:20px; margin:0; font-weight:700; letter-spacing:0.3px; }
+
+    nav a.nav-link {
+      color: var(--muted);
+      margin-left: 12px;
+      font-weight:500;
+      font-size:14px;
+    }
+    nav a.nav-link:hover { color: #fff; }
+
+    main { padding: 28px 0 80px; }
+
+    .hero {
+      text-align:center;
+      padding: 48px 16px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(255,255,255,0.01));
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      margin-bottom: 28px;
     }
 
-    p.subtitle {
-      font-size: 18px;
-      margin-top: 10px;
+    .hero h2 { margin: 0 0 8px; font-size:28px; }
+    .hero p.subtitle { margin: 8px 0 18px; color:var(--muted); }
+
+    .cta-row { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:10px; }
+
+    .btn {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:12px 20px; border-radius:12px; font-weight:600;
+      background:var(--accent); color:#fff; border:none; cursor:pointer; transition: transform .14s ease, box-shadow .14s ease;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+    }
+    .btn.alt { background:var(--accent-2); }
+    .btn.ghost { background: transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); }
+
+    .btn:hover { transform: translateY(-3px); }
+
+    .section {
+      background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+      margin: 18px 0;
+      padding: 28px;
+      border-radius: var(--radius);
     }
 
-    .buttons {
-      margin: 40px 0;
-      z-index: 1;
+    .two-col { display:grid; grid-template-columns: 1fr 340px; gap:20px; align-items:start; }
+    .card { background: var(--card); padding:16px; border-radius:10px; border:1px solid rgba(255,255,255,0.02); }
+
+    h2.section-title { margin-top:0; font-size:20px; }
+
+    ul.clean { padding:0; list-style:none; margin:0; display:flex; flex-direction:column; gap:8px; }
+    ul.clean li { padding-left:8px; color:var(--muted); }
+
+    /* opinie */
+    #opinie-container div.opinia {
+      border-bottom: 1px solid rgba(255,255,255,0.03); padding:12px 0;
+    }
+    #opinie-container p.meta { color:var(--muted); margin:6px 0 0; font-size:13px; }
+
+    /* form inputs */
+    input[type="text"], input[type="email"], textarea, select {
+      background: var(--glass); color:#fff; border:1px solid rgba(255,255,255,0.06);
+      padding:10px; border-radius:8px; width:100%; font-size:14px;
+    }
+    label { display:block; margin-bottom:6px; color:var(--muted); font-size:14px; }
+
+    .small { font-size:13px; color:var(--muted); }
+
+    footer.site-footer {
+      padding: 18px 0; margin-top:40px; border-top: 1px solid rgba(255,255,255,0.03);
     }
 
-    .buttons a {
-      display: inline-block;
-      margin: 10px;
-      padding: 15px 30px;
-      background-color: #007bff;
-      color: white !important;
-      text-decoration: none;
-      border-radius: 8px;
-      font-size: 18px;
-      transition: background-color 0.3s;
-    }
+    /* reveal effect */
+    .reveal { opacity:0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.active { opacity:1; transform: translateY(0); }
 
-    .buttons a:hover {
-      background-color: #0056b3;
+    /* modal */
+    .modal-backdrop {
+      position:fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:200;
+      background: rgba(0,0,0,0.6);
     }
-
-    footer {
-      margin-top: 60px;
-      padding: 20px;
-      font-size: 14px;
-      background-color: #222;
-      color: #ccc;
-      z-index: 1;
+    .modal {
+      width: 360px; max-width:calc(100% - 32px); background: var(--card); padding:18px; border-radius:12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
     }
+    .modal h3 { margin:0 0 8px; }
+    .modal .actions { display:flex; gap:8px; justify-content:flex-end; margin-top:12px; }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1s ease, transform 1s ease;
+    /* responsive */
+    @media (max-width: 900px) {
+      .two-col { grid-template-columns: 1fr; }
+      .brand h1 { font-size:18px; }
     }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    input, textarea, select {
-      background-color: #333;
-      color: #fff;
-      border: 1px solid #777;
-      padding: 8px;
-      border-radius: 5px;
-      width: 80%;
-      max-width: 400px;
-    }
-
-    button {
-      background-color: #007bff;
-      color: white !important;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    #opinie-container div {
-      border-bottom: 1px solid #444;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
+    @media (max-width: 600px) {
+      .hero h2 { font-size:22px; }
+      .cta-row { flex-direction:column; }
+      .brand img { width:40px; height:40px; }
     }
   </style>
 </head>
 <body>
-
-  <section class="reveal">
-    <header>
-      <h1>AVA Warsztat Samochodowy</h1>
-      <p class="subtitle">Naprawy, Diagnostyka, Serwis — Zapraszamy!</p>
-      <div style="margin-top: 20px;">
-        <h2><i>Z pasji do aut</i></h2>
-        <h3><i>Łączy nas coś więcej niż naprawa</i></h3>
+  <header class="site-header">
+    <div class="wrap nav" role="navigation" aria-label="Główna nawigacja">
+      <div class="brand">
+        <img src="ava-logo.jpg" alt="Logo AVA Warsztat">
+        <div>
+          <h1>AVA Warsztat</h1>
+          <div class="small">Naprawy | Diagnostyka | Serwis</div>
+        </div>
       </div>
-    </header>
-  </section>
 
-  <section class="reveal">
-    <div class="buttons">
-      <a href="tel:+48601749485" style="background-color: #28a745;">📞 Zadzwoń teraz</a>
-      <a href="https://maps.google.com?q=warsztat+AVA" target="_blank">📍 Dojazd</a>
-      <a href="mailto:ava.autosklep@gmail.com" style="background-color: #8bf9ff;">✉️ Napisz do nas</a>
-      <a href="https://www.facebook.com/profile.php?id=100075824936537" target="_blank" style="background-color: #3b5998;">📘 Facebook</a>
+      <nav>
+        <a class="nav-link" href="#misja">Misja</a>
+        <a class="nav-link" href="#uslugi">Usługi</a>
+        <a class="nav-link" href="#godziny">Godziny</a>
+        <a class="nav-link" href="#opinie">Opinie</a>
+        <a class="nav-link" href="#faq">FAQ</a>
+      </nav>
     </div>
-  </section>
+  </header>
 
-  <section class="reveal" id="misja" style="padding: 40px; background-color: #02060eb9;">
-    <h2>Nasza Misja</h2>
-    <p style="max-width: 700px; margin: 0 auto;">
-      Naszą misją jest dostarczanie niezawodnych i uczciwych usług motoryzacyjnych każdemu klientowi.
-      Z pasji do aut i perfekcji – naprawiamy tak, jakby to było nasze własne auto.
-    </p>
-  </section>
+  <main class="wrap" id="main">
+    <section class="hero reveal" aria-labelledby="hero-title">
+      <h2 id="hero-title">AVA Warsztat Samochodowy</h2>
+      <p class="subtitle">Z pasji do aut — naprawiamy, serwisujemy i diagnostykujemy z rzetelnością.</p>
 
-  <section class="reveal" style="padding: 40px 20px; background-color: #043529;">
-    <h2>Dlaczego warto wybrać AVA?</h2>
-    <ul style="max-width: 600px; margin: 20px auto; list-style: none; padding: 0;">
-      <li>✅ Doświadczona kadra mechaników</li>
-      <li>✅ Szybkie terminy realizacji</li>
-      <li>✅ Uczciwe i przejrzyste ceny</li>
-      <li>✅ Gwarancja na wykonane usługi</li>
-    </ul>
-  </section>
+      <div class="cta-row" role="group" aria-label="Akcje">
+        <a class="btn alt" href="tel:+48601749485" aria-label="Zadzwoń do AVA"><i class="fa-solid fa-phone"></i> Zadzwoń</a>
+        <a class="btn" href="#map" aria-label="Zobacz lokalizację"><i class="fa-solid fa-map-location-dot"></i> Lokalizacja</a>
+        <button id="openEmailModal" class="btn ghost" aria-haspopup="dialog"><i class="fa-solid fa-envelope"></i> Napisz do nas</button>
+        <a class="btn" href="https://www.facebook.com/profile.php?id=100075824936537" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i> Facebook</a>
+      </div>
+    </section>
 
-  <section class="reveal">
-    <h2>Logo naszego warsztatu</h2>
-    <img src="AVA%20STR.jpeg" alt="Warsztat AVA" style="max-width: 90%; height: auto; border-radius: 10px;">
-  </section>
+    <section id="misja" class="section reveal" aria-labelledby="misja-title">
+      <h2 id="misja-title" class="section-title">Nasza misja</h2>
+      <p style="color:var(--muted); max-width:900px;">
+        Naszą misją jest dostarczanie niezawodnych i uczciwych usług motoryzacyjnych każdemu klientowi.
+        Z pasji do aut i perfekcji – naprawiamy tak, jakby to było nasze własne auto.
+      </p>
+    </section>
 
-  <section class="reveal" id="o-nas" style="max-width: 700px; margin: 2rem auto;">
-    <h2>O nas</h2>
-    <p>
-      W AVA dbamy o Twój samochód tak, jak o własny. Nasza pasja do motoryzacji i doświadczenie pozwalają nam oferować usługi na najwyższym poziomie. Zapraszamy do współpracy każdego, kto ceni sobie profesjonalizm i rzetelność.
-    </p>
-  </section>
+    <section class="section two-col reveal" aria-labelledby="about-title">
+      <div>
+        <h2 id="about-title" class="section-title">O nas</h2>
+        <p class="small">
+          W AVA dbamy o Twój samochód jak o własny. Nasza pasja do motoryzacji i wieloletnie doświadczenie
+          pozwalają nam oferować usługi na najwyższym poziomie. Zapraszamy klientów indywidualnych i firmy.
+        </p>
 
-  <section class="reveal" style="text-align: center; padding: 40px;">
-    <h2>📅 Działamy już od <span id="years-count"></span> lat!</h2>
-  </section>
+        <div class="section" style="margin-top:16px;">
+          <h3 class="section-title">Dlaczego warto nas wybrać?</h3>
+          <ul class="clean">
+            <li>✅ Doświadczona kadra mechaników</li>
+            <li>✅ Szybkie terminy realizacji</li>
+            <li>✅ Uczciwe i przejrzyste ceny</li>
+            <li>✅ Gwarancja na wykonane usługi</li>
+          </ul>
+        </div>
 
-  <section class="reveal" id="uslugi" style="max-width: 700px; margin: 2rem auto;">
-    <h2>Nasze usługi</h2>
-    <ul style="list-style: none; padding: 0; text-align: left;">
-      <li>🔧 Diagnostyka komputerowa</li>
-      <li>🔩 Wymiana oleju i filtrów</li>
-      <li>🚗 Naprawy zawieszenia</li>
-      <li>❄️ Serwis klimatyzacji</li>
-      <li>🚾 Wulkanizacja</li>
-    </ul>
-  </section>
+        <div class="section" style="margin-top:16px;">
+          <h3 class="section-title">Nasze usługi</h3>
+          <ul class="clean">
+            <li>🔧 Diagnostyka komputerowa</li>
+            <li>🔩 Wymiana oleju i filtrów</li>
+            <li>🚗 Naprawy zawieszenia</li>
+            <li>❄️ Serwis klimatyzacji</li>
+            <li>🔧 Wulkanizacja i wymiana opon</li>
+          </ul>
+        </div>
+      </div>
 
-  <section class="reveal" id="godziny" style="text-align: center; margin-top: 2rem;">
-    <h2>🕒 Godziny otwarcia</h2>
-    <p>Poniedziałek – Piątek: <strong>8:00 – 16:00</strong></p>
-    <p>Sobota: <strong>Nieczynne</strong></p>
-    <p>Niedziela: <strong>Nieczynne</strong></p>
-     <p>Święta: <strong>Nieczynne</strong></p>
-    <p id="statusWarsztatu" style="font-weight: bold;"></p>
-  </section>
+      <aside class="card" aria-label="Informacje boczne">
+        <h3 style="margin-top:0;">Kontakt & godziny</h3>
+        <p class="small">Tel: <a href="tel:+48601749485">+48 601 749 485</a></p>
+        <p class="small">E-mail: <a href="mailto:ava.autosklep@gmail.com">ava.autosklep@gmail.com</a></p>
 
-  <section class="reveal" id="opinie" style="text-align: center; margin-top: 2rem;">
-    <h2>Opinie klientów</h2>
-    <button id="toggle-opinie">Pokaż opinie</button>
-    <div id="opinie-lista" style="display: none;"></div>
+        <div style="margin-top:12px;">
+          <h4 style="margin:0 0 6px;">Godziny otwarcia</h4>
+          <p class="small">Pon–Pt: <strong>8:00–16:00</strong></p>
+          <p class="small">Sob–Nd: <strong>Nieczynne</strong></p>
+          <p id="statusWarsztatu" style="font-weight:700; margin-top:8px;"></p>
+        </div>
 
-<button id="showFormBtn">Dodaj opinię</button>
-<div id="opinionForm" style="display: none; margin-top: 20px;">
-  <form id="feedbackForm">
-    <label>Twoje imię:<br>
-      <input type="text" name="name" placeholder="np. Janek" />
-    </label><br><br>
+        <div style="margin-top:14px;">
+          <h4 style="margin:0 0 6px;">Działamy od</h4>
+          <p class="small">📅 <strong id="years-count"></strong> lat</p>
+        </div>
+      </aside>
+    </section>
 
-    <label>Ocena warsztatu:<br>
-      <select name="rating" required>
-        <option value="">Wybierz ocenę</option>
-        <option value="5">⭐⭐⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="2">⭐⭐</option>
-        <option value="1">⭐</option>
-      </select>
-    </label><br><br>
+    <section id="map" class="section reveal" aria-labelledby="map-title">
+      <h2 id="map-title" class="section-title">Gdzie nas znaleźć</h2>
+      <div style="display:grid; grid-template-columns: 1fr 320px; gap:16px;">
+        <div class="card" style="padding:0;">
+          <!-- Podmień src jeśli potrzebujesz dokładnego embed z Google Maps -->
+          <iframe
+            title="Mapa AVA Warsztat"
+            src="https://www.google.com/maps?q=warsztat+AVA&output=embed"
+            width="100%" height="360" style="border:0; border-radius:10px;"></iframe>
+        </div>
+        <div class="card">
+          <h4 style="margin-top:0;">Adres</h4>
+          <p class="small">Podaj tu dokładny adres warsztatu aby mapa była precyzyjna.</p>
+          <p style="margin-top:10px;"><a href="https://maps.google.com?q=warsztat+AVA" target="_blank" rel="noopener">Otwórz w Google Maps</a></p>
+        </div>
+      </div>
+    </section>
 
-    <label>Komentarz:<br>
-      <textarea name="comment" rows="4" placeholder="Opisz swoją wizytę..."></textarea>
-    </label><br><br>
+    <section id="opinie" class="section reveal" aria-labelledby="opinie-title">
+      <h2 id="opinie-title" class="section-title">Opinie klientów</h2>
 
-    <button type="submit">Wyślij opinię</button>
-    <button type="button" id="cancelFormBtn" style="background-color: #dc3545; margin-left: 10px;">Anuluj</button>
-  </form>
-</div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+        <button id="toggle-opinie" class="btn ghost" aria-expanded="false">Pokaż opinie</button>
+        <button id="showFormBtn" class="btn alt">Dodaj opinię</button>
+      </div>
 
-    <h3 id="srednia-ocena" style="margin-top: 20px;">Średnia ocena: ⏳</h3>
-    <div id="opinie-container" style="margin-top: 40px;"></div>
-  </section>
+      <div id="opinionForm" class="card" style="display:none; margin-top:14px;">
+        <form id="feedbackForm" novalidate>
+          <label for="name">Twoje imię</label>
+          <input id="name" name="name" type="text" placeholder="np. Janek" />
 
-  <section class="reveal" id="faq" style="padding: 40px; max-width: 800px; margin: auto;">
-    <h2>❓ Najczęściej zadawane pytania</h2>
-    <details><summary>Jak mogę umówić się na wizytę?</summary><p>Możesz zadzwonić do nas.</p></details>
-    <details><summary>Czy oferujecie samochód zastępczy?</summary><p>Nie, nie mamy możliwość udostępnienia auta zastępczego.</p></details>
-    <details><summary>Jakie auta naprawiacie?</summary><p>Naprawiamy wszystkie marki samochodów osobowych i dostawczych oprócz elektrycznych.</p></details>
-    <details><summary>Czy muszę się wcześniej umawiać?</summary><p>Tak, najlepiej zadzwonić lub napisać. W nagłych przypadkach spróbujemy pomóc od ręki.</p></details>
-  </section>
+          <label for="rating" style="margin-top:8px;">Ocena warsztatu</label>
+          <select id="rating" name="rating" required>
+            <option value="">Wybierz ocenę</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="1">⭐</option>
+          </select>
+
+          <label for="comment" style="margin-top:8px;">Komentarz</label>
+          <textarea id="comment" name="comment" rows="4" placeholder="Opisz swoją wizytę..."></textarea>
+
+          <div style="display:flex; gap:8px; margin-top:12px; justify-content:flex-end;">
+            <button type="submit" class="btn">Wyślij opinię</button>
+            <button type="button" id="cancelFormBtn" class="btn ghost">Anuluj</button>
+          </div>
+
+          <p id="formMsg" class="small" style="margin-top:10px;"></p>
+        </form>
+      </div>
+
+      <h3 id="srednia-ocena" style="margin-top:16px;">Średnia ocena: ⏳</h3>
+      <div id="opinie-container" style="margin-top:14px;"></div>
+    </section>
+
+    <section id="faq" class="section reveal" aria-labelledby="faq-title">
+      <h2 id="faq-title" class="section-title">❓ Najczęściej zadawane pytania</h2>
+      <details><summary>Jak mogę umówić się na wizytę?</summary><p>Możesz zadzwonić, napisać e-mail lub użyć formularza kontaktowego.</p></details>
+      <details><summary>Czy oferujecie samochód zastępczy?</summary><p>Nie, aktualnie nie posiadamy samochodu zastępczego.</p></details>
+      <details><summary>Jakie auta naprawiacie?</summary><p>Naprawiamy wszystkie marki osobowe i dostawcze (oprócz aut elektrycznych).</p></details>
+      <details><summary>Czy muszę się wcześniej umawiać?</summary><p>Tak — najlepiej zadzwonić lub napisać. W nagłych przypadkach spróbujemy pomóc od ręki.</p></details>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap" style="display:flex; justify-content:space-between; gap:12px; align-items:center;">
+      <div class="small">© <span id="year"></span> AVA Warsztat Samochodowy. Wszystkie prawa zastrzeżone.</div>
+      <div class="small">E-mail: <a href="mailto:ava.autosklep@gmail.com">ava.autosklep@gmail.com</a></div>
+    </div>
+  </footer>
+
+  <!-- Modal: Weryfikacja e-mail -->
+  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document" aria-labelledby="modalTitle">
+      <h3 id="modalTitle">Weryfikacja e-mail</h3>
+      <p class="small" id="modalDesc">Aby dodać opinię, podaj e-mail — wyślemy kod weryfikacyjny (symulacja).</p>
+
+      <div id="stepEmail">
+        <label for="modalEmail">Adres e-mail</label>
+        <input id="modalEmail" type="email" placeholder="twoj@email.pl" />
+        <div class="actions">
+          <button id="modalCancel" class="btn ghost">Anuluj</button>
+          <button id="modalSendCode" class="btn">Wyślij kod</button>
+        </div>
+      </div>
+
+      <div id="stepCode" style="display:none; margin-top:8px;">
+        <label for="modalCode">Kod weryfikacyjny</label>
+        <input id="modalCode" type="text" placeholder="Wpisz kod" />
+        <div class="small" id="simCodeHint" style="margin-top:6px;"></div>
+        <div class="actions">
+          <button id="modalBack" class="btn ghost">Wróć</button>
+          <button id="modalVerify" class="btn">Zweryfikuj</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <script>
+  // --- Dane startowe ---
   const startYear = 1996;
   document.getElementById("years-count").textContent = new Date().getFullYear() - startYear;
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-  // Pokazywanie formularza
-  document.getElementById('showFormBtn').addEventListener('click', function () {
-    document.getElementById('opinionForm').style.display = 'block';
-    this.style.display = 'none';
-  });
-
-  // Załadowanie opinii
-  async function loadOpinie() {
-    const container = document.getElementById('opinie-container');
-    const sredniaElement = document.getElementById('srednia-ocena');
-    container.innerHTML = 'Ładowanie opinii...';
-    sredniaElement.textContent = 'Średnia ocena: ⏳';
-
-    try {
-      const res = await fetch('https://sheetdb.io/api/v1/kr749eomw8d09');
-      const data = await res.json();
-
-      if (data.length === 0) {
-        container.innerHTML = 'Brak opinii.';
-        sredniaElement.textContent = 'Brak ocen.';
-        return;
-      }
-
-      let suma = 0, liczbaOcen = 0;
-      container.innerHTML = '';
-      data.reverse().forEach(entry => {
-        const rating = parseInt(entry.rating || 0);
-        const comment = entry.comment || '';
-        const name = entry.name || 'Anonimowy klient';
-        if (rating > 0) { suma += rating; liczbaOcen++; }
-
-        const div = document.createElement('div');
-        div.innerHTML = `<p>"${comment}"</p><p>${'⭐'.repeat(rating)}</p><p>– ${name}</p><hr>`;
-        container.appendChild(div);
-      });
-
-      const srednia = (suma / liczbaOcen).toFixed(1);
-      sredniaElement.textContent = `Średnia ocena: ⭐ ${srednia}/5`;
-    } catch {
-      container.innerHTML = 'Błąd ładowania opinii.';
-      sredniaElement.textContent = 'Błąd odczytu średniej oceny.';
-    }
+  // --- Reveal on scroll ---
+  function revealOnScroll() {
+    document.querySelectorAll('.reveal').forEach(elem => {
+      const top = elem.getBoundingClientRect().top;
+      if (top < window.innerHeight - 100) elem.classList.add("active");
+    });
   }
-
-  // Weryfikacja e-mail + blokada 24h
-  document.getElementById('feedbackForm').addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    // Sprawdź 24h blokadę
-    const ostatnia = localStorage.getItem('ostatniaOpinia');
-    if (ostatnia && (Date.now() - parseInt(ostatnia)) < 24 * 60 * 60 * 1000) {
-      alert('Możesz dodać nową opinię dopiero po 24 godzinach.');
-      return;
-    }
-
-    // Prosta weryfikacja e-mail
-    const email = prompt('Podaj swój adres e-mail:');
-    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-      alert('Niepoprawny adres e-mail!');
-      return;
-    }
-
-    // Generowanie kodu
-    const kod = Math.floor(100000 + Math.random() * 900000);
-    alert(`Kod weryfikacyjny: ${kod}\n(Udawana wysyłka – w przyszłości można dodać prawdziwą)`);
-    const wpisanyKod = prompt('Wpisz otrzymany kod:');
-    if (parseInt(wpisanyKod) !== kod) {
-      alert('Błędny kod weryfikacyjny!');
-      return;
-    }
-
-    const formData = new FormData(this);
-    const name = formData.get('name') || 'Anonimowy klient';
-    const rating = formData.get('rating');
-    const comment = formData.get('comment') || '';
-
-    const payload = { data: { name, rating, comment, email } };
-
-    try {
-      const res = await fetch('https://sheetdb.io/api/v1/kr749eomw8d09', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      if (res.ok) {
-        alert('✅ Dziękujemy za opinię!');
-        localStorage.setItem('ostatniaOpinia', Date.now());
-        this.reset();
-        document.getElementById('opinionForm').style.display = 'none';
-        document.getElementById('showFormBtn').style.display = 'inline-block';
-        loadOpinie();
-      } else {
-        alert('❌ Wystąpił błąd. Spróbuj ponownie później.');
-      }
-    } catch {
-      alert('Błąd sieci. Sprawdź połączenie z internetem.');
-    }
+  window.addEventListener("scroll", revealOnScroll);
+  window.addEventListener("DOMContentLoaded", () => {
+    revealOnScroll();
+    sprawdzGodzine();
   });
 
-  // Godziny otwarcia
+  // --- Godziny otwarcia (z obsługą świąt) ---
   function sprawdzGodzine() {
     const teraz = new Date();
-    const dzienTygodnia = teraz.getDay();
+    const dzienTygodnia = teraz.getDay(); // 0 niedziela
     const godzina = teraz.getHours();
     const data = `${(teraz.getMonth() + 1).toString().padStart(2, '0')}-${teraz.getDate().toString().padStart(2, '0')}`;
     const status = document.getElementById('statusWarsztatu');
@@ -349,43 +395,245 @@
       status.style.color = "orange";
     } else if ([1,2,3,4,5].includes(dzienTygodnia) && godzina >= 8 && godzina < 16) {
       status.textContent = "🔧 Otwarte – zapraszamy!";
-      status.style.color = "green";
+      status.style.color = "lime";
     } else {
       status.textContent = "❌ Zamknięte – zapraszamy w godzinach 8:00–16:00 (pn–pt)";
-      status.style.color = "red";
+      status.style.color = "tomato";
     }
   }
 
+  // --- Opinie (SheetDB) ---
+  const SHEETDB_URL = 'https://sheetdb.io/api/v1/kr749eomw8d09';
+
+  async function loadOpinie() {
+    const container = document.getElementById('opinie-container');
+    const sredniaElement = document.getElementById('srednia-ocena');
+    container.innerHTML = '<div class="small">Ładowanie opinii...</div>';
+    sredniaElement.textContent = 'Średnia ocena: ⏳';
+
+    try {
+      const res = await fetch(SHEETDB_URL);
+      if (!res.ok) throw new Error('Błąd sieci przy pobieraniu danych.');
+      const data = await res.json();
+
+      if (!Array.isArray(data) || data.length === 0) {
+        container.innerHTML = '<div class="small">Brak opinii.</div>';
+        sredniaElement.textContent = 'Brak ocen.';
+        return;
+      }
+
+      let suma = 0, liczbaOcen = 0;
+      container.innerHTML = '';
+      // pokaż od najnowszych
+      data.slice().reverse().forEach(entry => {
+        const rating = parseInt(entry.rating || 0, 10);
+        const comment = (entry.comment || '').trim();
+        const name = (entry.name || 'Anonimowy klient').trim();
+
+        if (rating > 0) { suma += rating; liczbaOcen++; }
+
+        const div = document.createElement('div');
+        div.className = 'opinia';
+        div.innerHTML = `
+          <p style="margin:0 0 6px;">${comment ? `"${escapeHtml(comment)}"` : '<span class="small">Bez komentarza</span>'}</p>
+          <p class="meta">${'⭐'.repeat(Math.max(0, Math.min(5, rating)))} <span style="margin-left:8px;">– ${escapeHtml(name)}</span></p>
+        `;
+        container.appendChild(div);
+      });
+
+      const srednia = liczbaOcen ? (suma / liczbaOcen).toFixed(1) : null;
+      sredniaElement.textContent = srednia ? `Średnia ocena: ⭐ ${srednia}/5 (${liczbaOcen} ocen)` : 'Brak ocen.';
+    } catch (err) {
+      container.innerHTML = '<div class="small">Błąd ładowania opinii.</div>';
+      sredniaElement.textContent = 'Błąd odczytu średniej oceny.';
+      console.error(err);
+    }
+  }
+
+  // Escape pomocniczy
+  function escapeHtml(unsafe) {
+    return unsafe
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
+  }
+
+  // Toggle opinie
   document.getElementById("toggle-opinie").addEventListener("click", function () {
+    const btn = this;
     const lista = document.getElementById("opinie-container");
-    if (lista.style.display === "none") {
+    const visible = lista.offsetParent !== null; // sprawdź widoczność
+    if (!visible) {
       lista.style.display = "block";
-      this.textContent = "Ukryj opinie";
+      btn.textContent = "Ukryj opinie";
+      btn.setAttribute('aria-expanded', 'true');
       loadOpinie();
     } else {
       lista.style.display = "none";
-      this.textContent = "Pokaż opinie";
+      btn.textContent = "Pokaż opinie";
+      btn.setAttribute('aria-expanded', 'false');
     }
   });
 
-  function revealOnScroll() {
-    document.querySelectorAll('.reveal').forEach(elem => {
-      const top = elem.getBoundingClientRect().top;
-      if (top < window.innerHeight - 100) elem.classList.add("active");
-    });
-  }
-
-  window.addEventListener("scroll", revealOnScroll);
-  window.addEventListener("DOMContentLoaded", () => {
-    revealOnScroll();
-    sprawdzGodzine();
+  // Pokaż / ukryj formularz opinii
+  document.getElementById('showFormBtn').addEventListener('click', () => {
+    document.getElementById('opinionForm').style.display = 'block';
+    document.getElementById('showFormBtn').style.display = 'none';
+    window.scrollTo({ top: document.getElementById('opinionForm').offsetTop - 20, behavior: 'smooth' });
   });
-
-  document.getElementById('cancelFormBtn').addEventListener('click', function () {
+  document.getElementById('cancelFormBtn').addEventListener('click', () => {
     document.getElementById('opinionForm').style.display = 'none';
     document.getElementById('showFormBtn').style.display = 'inline-block';
     document.getElementById('feedbackForm').reset();
+    document.getElementById('formMsg').textContent = '';
   });
+
+  // --- Modal e-mail (zastępuje prompt) ---
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  const openEmailModalBtn = document.getElementById('openEmailModal');
+  const modalCancel = document.getElementById('modalCancel');
+  const modalSendCode = document.getElementById('modalSendCode');
+  const modalBack = document.getElementById('modalBack');
+  const modalVerify = document.getElementById('modalVerify');
+  const stepEmail = document.getElementById('stepEmail');
+  const stepCode = document.getElementById('stepCode');
+  const modalEmailInput = document.getElementById('modalEmail');
+  const modalCodeInput = document.getElementById('modalCode');
+  const simCodeHint = document.getElementById('simCodeHint');
+
+  let currentVerification = { email: null, code: null };
+
+  openEmailModalBtn.addEventListener('click', () => {
+    modalBackdrop.style.display = 'flex';
+    modalBackdrop.setAttribute('aria-hidden', 'false');
+    stepEmail.style.display = 'block';
+    stepCode.style.display = 'none';
+    modalEmailInput.value = '';
+    modalCodeInput.value = '';
+    simCodeHint.textContent = '';
+    modalEmailInput.focus();
+  });
+
+  modalCancel.addEventListener('click', closeModal);
+  modalBack.addEventListener('click', () => {
+    stepEmail.style.display = 'block';
+    stepCode.style.display = 'none';
+    simCodeHint.textContent = '';
+  });
+
+  function closeModal() {
+    modalBackdrop.style.display = 'none';
+    modalBackdrop.setAttribute('aria-hidden', 'true');
+  }
+
+  // Send (simulate) code
+  modalSendCode.addEventListener('click', () => {
+    const email = modalEmailInput.value.trim();
+    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      alert('Podaj poprawny adres e-mail.');
+      modalEmailInput.focus();
+      return;
+    }
+
+    // wygeneruj kod
+    const code = Math.floor(100000 + Math.random() * 900000).toString();
+    currentVerification = { email, code };
+
+    // W realnym wdrożeniu: wyślij e-mail. Tutaj: symulacja — pokaż wskazówkę do testów.
+    simCodeHint.textContent = `Dla celów testu kod to: ${code}`;
+    stepEmail.style.display = 'none';
+    stepCode.style.display = 'block';
+    modalCodeInput.focus();
+  });
+
+  // Weryfikacja kodu
+  modalVerify.addEventListener('click', () => {
+    const wpisany = modalCodeInput.value.trim();
+    if (!currentVerification.code) { alert('Brak wysłanego kodu — rozpocznij od początku.'); return; }
+    if (wpisany === currentVerification.code) {
+      // powiadom formularz opinii o zweryfikowanym e-mailu (ustaw ukrytą wartość)
+      document.getElementById('feedbackForm').dataset.verifiedEmail = currentVerification.email;
+      closeModal();
+      alert('E-mail zweryfikowany — możesz teraz wysłać opinię.');
+      // automatycznie pokaż formularz jeśli ukryty
+      document.getElementById('opinionForm').style.display = 'block';
+      document.getElementById('showFormBtn').style.display = 'none';
+    } else {
+      alert('Błędny kod weryfikacyjny. Sprawdź i spróbuj ponownie.');
+      modalCodeInput.focus();
+    }
+  });
+
+  // --- Submit opinii (z 24h blokadą) ---
+  document.getElementById('feedbackForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const form = this;
+
+    // 24h blokada
+    const ostatnia = localStorage.getItem('ostatniaOpinia');
+    if (ostatnia && (Date.now() - parseInt(ostatnia, 10)) < 24 * 60 * 60 * 1000) {
+      document.getElementById('formMsg').textContent = 'Możesz dodać nową opinię dopiero po 24 godzinach.';
+      return;
+    }
+
+    // wymagane: rating
+    const rating = form.rating.value;
+    if (!rating) {
+      document.getElementById('formMsg').textContent = 'Wybierz ocenę.';
+      return;
+    }
+
+    // wymagana weryfikacja e-mail poprzez modal
+    const verifiedEmail = form.dataset.verifiedEmail;
+    if (!verifiedEmail) {
+      alert('Proszę najpierw zweryfikować e-mail — kliknij "Napisz do nas" i podaj e-mail.');
+      return;
+    }
+
+    const name = form.name.value.trim() || 'Anonimowy klient';
+    const comment = form.comment.value.trim() || '';
+    const payload = { data: { name, rating, comment, email: verifiedEmail } };
+
+    try {
+      const res = await fetch(SHEETDB_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        document.getElementById('formMsg').textContent = '✅ Dziękujemy za opinię!';
+        localStorage.setItem('ostatniaOpinia', Date.now().toString());
+        // reset
+        form.reset();
+        delete form.dataset.verifiedEmail;
+        // ukryj i odśwież opinie
+        document.getElementById('opinionForm').style.display = 'none';
+        document.getElementById('showFormBtn').style.display = 'inline-block';
+        loadOpinie();
+      } else {
+        const txt = await res.text();
+        console.error('Błąd zapisu:', txt);
+        document.getElementById('formMsg').textContent = '❌ Wystąpił błąd. Spróbuj ponownie później.';
+      }
+    } catch (err) {
+      console.error(err);
+      document.getElementById('formMsg').textContent = 'Błąd sieci. Sprawdź połączenie z internetem.';
+    }
+  });
+
+  // Początkowe załadowanie opinii (nie pokazujemy ich domyślnie)
+  // loadOpinie(); // wywoływane po kliknięciu "Pokaż opinie"
+
+  // Accessibility: zamknij modal Esc
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (modalBackdrop.style.display === 'flex') closeModal();
+    }
+  });
+
 </script>
 </body>
 </html>

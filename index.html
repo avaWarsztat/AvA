@@ -1,181 +1,170 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AVA Warsztat Samochodowy</title>
-  <meta name="description" content="AVA Warsztat – naprawa samochodów, diagnostyka, mechanika. Zapraszamy!">
-  <meta name="keywords" content="AVA, warsztat, samochodowy, auto, mechanik, serwis, avawarsztat">
-  <meta name="author" content="AVA Warsztat">
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background-color: #1d1d1d;
-      color: #fff;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AVA Warsztat Samochodowy</title>
+<meta name="description" content="AVA Warsztat – naprawa samochodów, diagnostyka, mechanika. Zapraszamy!">
+<style>
+  body {
+    margin:0;
+    font-family:sans-serif;
+    background-color:#1d1d1d;
+    color:#fff;
+    overflow-x:hidden;
+  }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+  /* Menu u góry */
+  nav {
+    position:fixed;
+    top:20px;
+    width:100%;
+    text-align:center;
+    z-index:100;
+  }
 
-    header {
-      padding: 50px 20px;
-      text-align: center;
-      background: #111;
-    }
+  nav span {
+    margin:0 15px;
+    cursor:pointer;
+    font-size:16px;
+    transition:color 0.3s;
+  }
 
-    header h1 {
-      font-size: 42px;
-      margin: 0;
-    }
+  nav span:hover {
+    color:#28a745;
+  }
 
-    header p.subtitle {
-      font-size: 18px;
-      margin-top: 10px;
-    }
+  /* Ekrany startowe i podstrony */
+  .screen {
+    position:fixed;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background-color:#1d1d1d;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 0.8s ease;
+  }
 
-    .buttons {
-      margin: 30px 0;
-      text-align: center;
-    }
+  .screen.active {
+    opacity:1;
+    pointer-events:auto;
+  }
 
-    .buttons a {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 25px;
-      border-radius: 8px;
-      font-size: 16px;
-      transition: background-color 0.3s;
-      color: #fff;
-    }
+  h1,h2 {
+    margin:10px 0;
+  }
 
-    .buttons a.phone { background-color: #28a745; }
-    .buttons a.phone:hover { background-color: #1e7e34; }
+  .buttons a {
+    display:inline-block;
+    margin:10px;
+    padding:12px 25px;
+    border-radius:8px;
+    font-size:16px;
+    color:#fff;
+    transition:background-color 0.3s;
+  }
 
-    .buttons a.mail { background-color: #8bf9ff; color: #000; }
-    .buttons a.mail:hover { background-color: #5fd1d5; }
+  .buttons a.phone { background-color: #28a745; }
+  .buttons a.phone:hover { background-color:#1e7e34; }
+  .buttons a.map { background-color:#007bff; }
+  .buttons a.map:hover { background-color:#0056b3; }
+  .buttons a.mail { background-color:#8bf9ff; color:#000; }
+  .buttons a.mail:hover { background-color:#5fd1d5; }
+  .buttons a.facebook { background-color:#3b5998; }
+  .buttons a.facebook:hover { background-color:#2d4373; }
 
-    .buttons a.map { background-color: #007bff; }
-    .buttons a.map:hover { background-color: #0056b3; }
+  img.logo {
+    max-width:300px;
+    border-radius:10px;
+    margin-top:20px;
+  }
 
-    .buttons a.facebook { background-color: #3b5998; }
-    .buttons a.facebook:hover { background-color: #2d4373; }
+  ul { list-style:none; padding:0; text-align:left; max-width:600px; margin:20px auto; }
+  li { margin:10px 0; }
 
-    section {
-      padding: 50px 20px;
-      max-width: 900px;
-      margin: auto;
-      text-align: center;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
+  input,textarea,select {
+    background-color:#333;
+    color:#fff;
+    border:1px solid #777;
+    padding:8px;
+    border-radius:5px;
+    width:80%;
+    max-width:400px;
+    margin-bottom:10px;
+  }
 
-    section.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  button {
+    background-color:#007bff;
+    color:#fff;
+    border:none;
+    padding:10px 20px;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:10px;
+  }
 
-    #misja { background-color: #02060eb9; }
-    #dlaczego { background-color: #043529; }
-    #uslugi, #o-nas, #opinie, #faq { background-color: #111; }
+  button:hover { background-color:#0056b3; }
 
-    img.logo {
-      max-width: 300px;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
+  /* Powrót do startu */
+  #backBtn {
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background-color:#28a745;
+    border:none;
+    border-radius:50%;
+    width:50px;
+    height:50px;
+    font-size:24px;
+    cursor:pointer;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:200;
+  }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      text-align: left;
-      max-width: 600px;
-      margin: 20px auto;
-    }
-
-    li {
-      margin: 10px 0;
-    }
-
-    input, textarea, select {
-      background-color: #333;
-      color: #fff;
-      border: 1px solid #777;
-      padding: 8px;
-      border-radius: 5px;
-      width: 80%;
-      max-width: 400px;
-      margin-bottom: 10px;
-    }
-
-    button {
-      background-color: #007bff;
-      color: white !important;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    button:hover { background-color: #0056b3; }
-
-    footer {
-      background: #222;
-      color: #ccc;
-      padding: 20px;
-      text-align: center;
-    }
-
-    details {
-      margin: 10px 0;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    #statusWarsztatu {
-      font-weight: bold;
-      margin-top: 10px;
-    }
-
-    /* fade in dla dynamicznych sekcji */
-    .hidden { display: none; }
-  </style>
+  details { margin:10px 0; text-align:left; cursor:pointer; }
+</style>
 </head>
 <body>
 
-<header>
+<!-- Menu górne -->
+<nav>
+  <span data-target="misja">Misja</span>
+  <span data-target="dlaczego">Dlaczego AVA?</span>
+  <span data-target="uslugi">Usługi</span>
+  <span data-target="onas">O nas</span>
+  <span data-target="godziny">Godziny</span>
+  <span data-target="opinie">Opinie</span>
+  <span data-target="faq">FAQ</span>
+</nav>
+
+<!-- Ekran startowy -->
+<div id="startScreen" class="screen active">
   <h1>AVA Warsztat Samochodowy</h1>
-  <p class="subtitle">Naprawy, Diagnostyka, Serwis — Zapraszamy!</p>
+  <p>Naprawy, Diagnostyka, Serwis — Zapraszamy!</p>
   <div class="buttons">
-    <a href="tel:+48601749485" class="phone">📞 Zadzwoń teraz</a>
+    <a href="tel:+48601749485" class="phone">📞 Zadzwoń</a>
     <a href="https://maps.google.com?q=warsztat+AVA" target="_blank" class="map">📍 Dojazd</a>
-    <a href="mailto:ava.autosklep@gmail.com" class="mail">✉️ Napisz do nas</a>
+    <a href="mailto:ava.autosklep@gmail.com" class="mail">✉️ Napisz</a>
     <a href="https://www.facebook.com/profile.php?id=100075824936537" target="_blank" class="facebook">📘 Facebook</a>
   </div>
   <img src="AVA STR.jpeg" alt="AVA Warsztat" class="logo">
-</header>
+</div>
 
-<nav style="text-align:center; margin:30px 0;">
-  <button data-section="misja">Misja</button>
-  <button data-section="dlaczego">Dlaczego AVA?</button>
-  <button data-section="uslugi">Usługi</button>
-  <button data-section="o-nas">O nas</button>
-  <button data-section="godziny">Godziny</button>
-  <button data-section="opinie">Opinie</button>
-  <button data-section="faq">FAQ</button>
-</nav>
-
-<section id="misja">
+<!-- Podstrony -->
+<div id="misja" class="screen">
   <h2>Nasza Misja</h2>
   <p>Naszą misją jest dostarczanie niezawodnych i uczciwych usług motoryzacyjnych każdemu klientowi. Z pasji do aut i perfekcji – naprawiamy tak, jakby to było nasze własne auto.</p>
-</section>
+</div>
 
-<section id="dlaczego">
+<div id="dlaczego" class="screen">
   <h2>Dlaczego warto wybrać AVA?</h2>
   <ul>
     <li>✅ Doświadczona kadra mechaników</li>
@@ -183,9 +172,9 @@
     <li>✅ Uczciwe i przejrzyste ceny</li>
     <li>✅ Gwarancja na wykonane usługi</li>
   </ul>
-</section>
+</div>
 
-<section id="uslugi">
+<div id="uslugi" class="screen">
   <h2>Nasze usługi</h2>
   <ul>
     <li>🔧 Diagnostyka komputerowa</li>
@@ -194,26 +183,24 @@
     <li>❄️ Serwis klimatyzacji</li>
     <li>🚾 Wulkanizacja</li>
   </ul>
-</section>
+</div>
 
-<section id="o-nas">
+<div id="onas" class="screen">
   <h2>O nas</h2>
-  <p>W AVA dbamy o Twój samochód tak, jak o własny. Nasza pasja do motoryzacji i doświadczenie pozwalają nam oferować usługi na najwyższym poziomie. Zapraszamy do współpracy każdego, kto ceni sobie profesjonalizm i rzetelność.</p>
-</section>
+  <p>W AVA dbamy o Twój samochód tak, jak o własny. Nasza pasja do motoryzacji i doświadczenie pozwalają nam oferować usługi na najwyższym poziomie.</p>
+</div>
 
-<section id="godziny">
+<div id="godziny" class="screen">
   <h2>🕒 Godziny otwarcia</h2>
-  <p>Poniedziałek – Piątek: <strong>8:00 – 16:00</strong></p>
-  <p>Sobota: <strong>Nieczynne</strong></p>
-  <p>Niedziela: <strong>Nieczynne</strong></p>
-  <p>Święta: <strong>Nieczynne</strong></p>
+  <p>Pon–Pt: 8:00 – 16:00</p>
+  <p>Sobota/Niedziela/Święta: Nieczynne</p>
   <p id="statusWarsztatu"></p>
-</section>
+</div>
 
-<section id="opinie">
+<div id="opinie" class="screen">
   <h2>Opinie klientów</h2>
   <button id="showFormBtn">Dodaj opinię</button>
-  <div id="opinionForm" class="hidden">
+  <div id="opinionForm" style="display:none; margin-top:20px;">
     <form id="feedbackForm">
       <input type="text" name="name" placeholder="Twoje imię" required><br>
       <select name="rating" required>
@@ -230,59 +217,72 @@
     </form>
   </div>
   <div id="opinie-container" style="margin-top:20px;"></div>
-</section>
+</div>
 
-<section id="faq">
+<div id="faq" class="screen">
   <h2>❓ Najczęściej zadawane pytania</h2>
   <details><summary>Jak mogę umówić się na wizytę?</summary><p>Możesz zadzwonić do nas.</p></details>
-  <details><summary>Czy oferujecie samochód zastępczy?</summary><p>Nie, nie mamy możliwość udostępnienia auta zastępczego.</p></details>
-  <details><summary>Jakie auta naprawiacie?</summary><p>Naprawiamy wszystkie marki samochodów osobowych i dostawczych oprócz elektrycznych.</p></details>
-  <details><summary>Czy muszę się wcześniej umawiać?</summary><p>Tak, najlepiej zadzwonić lub napisać. W nagłych przypadkach spróbujemy pomóc od ręki.</p></details>
-</section>
+  <details><summary>Czy oferujecie samochód zastępczy?</summary><p>Nie, nie mamy możliwości auta zastępczego.</p></details>
+  <details><summary>Jakie auta naprawiacie?</summary><p>Naprawiamy wszystkie marki osobowe i dostawcze oprócz elektrycznych.</p></details>
+  <details><summary>Czy muszę się wcześniej umawiać?</summary><p>Tak, najlepiej zadzwonić lub napisać.</p></details>
+</div>
 
-<footer>
-  &copy; 2025 AVA Warsztat Samochodowy
-</footer>
+<!-- Powrót -->
+<button id="backBtn">🏠</button>
 
 <script>
-  // Sekcje fade-in i menu
-  const sections = document.querySelectorAll('section');
-  function showSection(id) {
-    sections.forEach(sec => {
-      if(sec.id === id) {
-        sec.classList.add('active');
-        sec.scrollIntoView({behavior:'smooth'});
-      }
+  const screens = document.querySelectorAll('.screen');
+  const navButtons = document.querySelectorAll('nav span');
+  const backBtn = document.getElementById('backBtn');
+  const startScreen = document.getElementById('startScreen');
+
+  // Pokaz ekran podstrony
+  navButtons.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const target=document.getElementById(btn.dataset.target);
+      screens.forEach(s=>s.classList.remove('active'));
+      target.classList.add('active');
+      backBtn.style.display='flex';
     });
-  }
-
-  document.querySelectorAll('nav button').forEach(btn => {
-    btn.addEventListener('click', () => showSection(btn.dataset.section));
   });
 
-  // Pokazuj formularz opinii
-  document.getElementById('showFormBtn').addEventListener('click', () => {
-    document.getElementById('opinionForm').classList.remove('hidden');
-    document.getElementById('showFormBtn').style.display='none';
+  // Powrót do startu
+  backBtn.addEventListener('click',()=>{
+    screens.forEach(s=>s.classList.remove('active'));
+    startScreen.classList.add('active');
+    backBtn.style.display='none';
   });
-  document.getElementById('cancelFormBtn').addEventListener('click', () => {
-    document.getElementById('opinionForm').classList.add('hidden');
-    document.getElementById('showFormBtn').style.display='inline-block';
+
+  // Formularz opinii
+  const showFormBtn=document.getElementById('showFormBtn');
+  const opinionForm=document.getElementById('opinionForm');
+  const cancelFormBtn=document.getElementById('cancelFormBtn');
+
+  showFormBtn.addEventListener('click',()=>{
+    opinionForm.style.display='block';
+    showFormBtn.style.display='none';
+  });
+
+  cancelFormBtn.addEventListener('click',()=>{
+    opinionForm.style.display='none';
+    showFormBtn.style.display='inline-block';
+    document.getElementById('feedbackForm').reset();
   });
 
   // Godziny otwarcia
-  function sprawdzGodzine() {
-    const teraz = new Date();
-    const dzien = teraz.getDay();
-    const godz = teraz.getHours();
-    const status = document.getElementById('statusWarsztatu');
-    const swieta = ['01-01','01-06','05-01','05-03','08-15','11-01','11-11','12-25','12-26'];
-    const data = `${(teraz.getMonth()+1).toString().padStart(2,'0')}-${teraz.getDate().toString().padStart(2,'0')}`;
-    if(swieta.includes(data)) { status.textContent="🎉 Dziś święto – warsztat nieczynny."; status.style.color="orange"; }
-    else if([1,2,3,4,5].includes(dzien) && godz>=8 && godz<16) { status.textContent="🔧 Otwarte – zapraszamy!"; status.style.color="green"; }
-    else { status.textContent="❌ Zamknięte – zapraszamy w godzinach 8:00–16:00 (pn–pt)"; status.style.color="red"; }
+  function sprawdzGodzine(){
+    const teraz=new Date();
+    const dzien=teraz.getDay();
+    const godz=teraz.getHours();
+    const status=document.getElementById('statusWarsztatu');
+    const swieta=['01-01','01-06','05-01','05-03','08-15','11-01','11-11','12-25','12-26'];
+    const data=`${(teraz.getMonth()+1).toString().padStart(2,'0')}-${teraz.getDate().toString().padStart(2,'0')}`;
+    if(swieta.includes(data)){ status.textContent="🎉 Dziś święto – warsztat nieczynny."; status.style.color="orange"; }
+    else if([1,2,3,4,5].includes(dzien)&&godz>=8&&godz<16){ status.textContent="🔧 Otwarte – zapraszamy!"; status.style.color="green"; }
+    else{ status.textContent="❌ Zamknięte – zapraszamy w godzinach 8:00–16:00 (pn–pt)"; status.style.color="red"; }
   }
-  window.addEventListener('DOMContentLoaded', sprawdzGodzine);
+  window.addEventListener('DOMContentLoaded',sprawdzGodzine);
 </script>
+
 </body>
 </html>

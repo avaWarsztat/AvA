@@ -6,135 +6,36 @@
 <title>AVA Warsztat Samochodowy</title>
 <meta name="description" content="AVA Warsztat – naprawa samochodów, diagnostyka, mechanika. Zapraszamy!">
 <style>
-  body {
-    margin:0;
-    font-family:sans-serif;
-    background-color:#1d1d1d;
-    color:#fff;
-    overflow-x:hidden;
-  }
-
-  /* Menu u góry */
-  nav {
-    position:fixed;
-    top:20px;
-    width:100%;
-    text-align:center;
-    z-index:100;
-  }
-
-  nav span {
-    margin:0 15px;
-    cursor:pointer;
-    font-size:16px;
-    transition:color 0.3s;
-  }
-
-  nav span:hover {
-    color:#28a745;
-  }
-
-  /* Ekrany startowe i podstrony */
-  .screen {
-    position:fixed;
-    top:0; left:0;
-    width:100%;
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    background-color:#1d1d1d;
-    opacity:0;
-    pointer-events:none;
-    transition:opacity 0.8s ease;
-  }
-
-  .screen.active {
-    opacity:1;
-    pointer-events:auto;
-  }
-
-  h1,h2 {
-    margin:10px 0;
-  }
-
-  .buttons a {
-    display:inline-block;
-    margin:10px;
-    padding:12px 25px;
-    border-radius:8px;
-    font-size:16px;
-    color:#fff;
-    transition:background-color 0.3s;
-  }
-
-  .buttons a.phone { background-color: #28a745; }
-  .buttons a.phone:hover { background-color:#1e7e34; }
-  .buttons a.map { background-color:#007bff; }
-  .buttons a.map:hover { background-color:#0056b3; }
-  .buttons a.mail { background-color:#8bf9ff; color:#000; }
-  .buttons a.mail:hover { background-color:#5fd1d5; }
-  .buttons a.facebook { background-color:#3b5998; }
-  .buttons a.facebook:hover { background-color:#2d4373; }
-
-  img.logo {
-    max-width:300px;
-    border-radius:10px;
-    margin-top:20px;
-  }
-
-  ul { list-style:none; padding:0; text-align:left; max-width:600px; margin:20px auto; }
-  li { margin:10px 0; }
-
-  input,textarea,select {
-    background-color:#333;
-    color:#fff;
-    border:1px solid #777;
-    padding:8px;
-    border-radius:5px;
-    width:80%;
-    max-width:400px;
-    margin-bottom:10px;
-  }
-
-  button {
-    background-color:#007bff;
-    color:#fff;
-    border:none;
-    padding:10px 20px;
-    border-radius:6px;
-    cursor:pointer;
-    margin-top:10px;
-  }
-
-  button:hover { background-color:#0056b3; }
-
-  /* Powrót do startu */
-  #backBtn {
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    background-color:#28a745;
-    border:none;
-    border-radius:50%;
-    width:50px;
-    height:50px;
-    font-size:24px;
-    cursor:pointer;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    z-index:200;
-  }
-
-  details { margin:10px 0; text-align:left; cursor:pointer; }
+  body,html{margin:0;padding:0;font-family:sans-serif;background:#1d1d1d;color:#fff;overflow-x:hidden;}
+  nav{position:fixed;top:20px;width:100%;text-align:center;z-index:100;}
+  nav span{margin:0 15px;cursor:pointer;font-size:16px;transition:color 0.3s;}
+  nav span:hover{color:#28a745;}
+  .screen{position:fixed;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;background:#1d1d1d;opacity:0;pointer-events:none;transition:opacity 0.8s ease;}
+  .screen.active{opacity:1;pointer-events:auto;}
+  h1,h2,h3{margin:10px 0;text-align:center;}
+  .buttons a{display:inline-block;margin:10px;padding:12px 25px;border-radius:8px;font-size:16px;color:#fff;transition:background-color 0.3s;}
+  .buttons a.phone{background-color:#28a745;} .buttons a.phone:hover{background-color:#1e7e34;}
+  .buttons a.map{background-color:#007bff;} .buttons a.map:hover{background-color:#0056b3;}
+  .buttons a.mail{background-color:#8bf9ff;color:#000;} .buttons a.mail:hover{background-color:#5fd1d5;}
+  .buttons a.facebook{background-color:#3b5998;} .buttons a.facebook:hover{background-color:#2d4373;}
+  img.logo{max-width:300px;border-radius:10px;margin-top:20px;}
+  ul{list-style:none;padding:0;text-align:left;max-width:700px;margin:20px auto;}
+  li{margin:10px 0;}
+  input,textarea,select{background:#333;color:#fff;border:1px solid #777;padding:8px;border-radius:5px;width:80%;max-width:400px;margin-bottom:10px;}
+  button{background:#007bff;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;margin-top:10px;}
+  button:hover{background:#0056b3;}
+  #backBtn{position:fixed;right:20px;bottom:20px;background:#28a745;border:none;border-radius:50%;width:50px;height:50px;font-size:24px;cursor:pointer;display:none;justify-content:center;align-items:center;z-index:200;}
+  details{margin:10px 0;text-align:left;cursor:pointer;}
+  /* Animowane tło sekcji O nas */
+  #onas{background:url('https://images.unsplash.com/photo-1619699151371-2fcf2c6b23a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGNhcnN8ZW58MHx8MHx8&ixlib=rb-4.0.3&w=1080&q=80') repeat-x; background-size:cover; animation:moveBg 30s linear infinite;}
+  @keyframes moveBg{0%{background-position:0 0;}100%{background-position:-1000px 0;}}
+  /* Galeria */
+  .gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;max-width:90%;margin:20px auto;}
+  .gallery img{height:200px;margin-right:10px;border-radius:10px;scroll-snap-align:start;}
 </style>
 </head>
 <body>
 
-<!-- Menu górne -->
 <nav>
   <span data-target="misja">Misja</span>
   <span data-target="dlaczego">Dlaczego AVA?</span>
@@ -145,7 +46,6 @@
   <span data-target="faq">FAQ</span>
 </nav>
 
-<!-- Ekran startowy -->
 <div id="startScreen" class="screen active">
   <h1>AVA Warsztat Samochodowy</h1>
   <p>Naprawy, Diagnostyka, Serwis — Zapraszamy!</p>
@@ -158,7 +58,6 @@
   <img src="AVA STR.jpeg" alt="AVA Warsztat" class="logo">
 </div>
 
-<!-- Podstrony -->
 <div id="misja" class="screen">
   <h2>Nasza Misja</h2>
   <p>Naszą misją jest dostarczanie niezawodnych i uczciwych usług motoryzacyjnych każdemu klientowi. Z pasji do aut i perfekcji – naprawiamy tak, jakby to było nasze własne auto.</p>
@@ -171,6 +70,8 @@
     <li>✅ Szybkie terminy realizacji</li>
     <li>✅ Uczciwe i przejrzyste ceny</li>
     <li>✅ Gwarancja na wykonane usługi</li>
+    <li>✅ Indywidualne podejście do klienta</li>
+    <li>✅ Diagnostyka najnowszym sprzętem</li>
   </ul>
 </div>
 
@@ -182,12 +83,19 @@
     <li>🚗 Naprawy zawieszenia</li>
     <li>❄️ Serwis klimatyzacji</li>
     <li>🚾 Wulkanizacja</li>
+    <li>🛠️ Naprawy silników</li>
+    <li>⚙️ Geometria kół</li>
   </ul>
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1611691540940-d05f3f3e14f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Auto1">
+    <img src="https://images.unsplash.com/photo-1619404069572-bb3b9b62e47f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Auto2">
+    <img src="https://images.unsplash.com/photo-1617486539755-28c40f33ef32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Auto3">
+  </div>
 </div>
 
 <div id="onas" class="screen">
   <h2>O nas</h2>
-  <p>W AVA dbamy o Twój samochód tak, jak o własny. Nasza pasja do motoryzacji i doświadczenie pozwalają nam oferować usługi na najwyższym poziomie.</p>
+  <p>W AVA dbamy o Twój samochód tak, jak o własny. Nasza pasja do motoryzacji i doświadczenie pozwalają nam oferować usługi na najwyższym poziomie. Zaufaj profesjonalistom.</p>
 </div>
 
 <div id="godziny" class="screen">
@@ -200,7 +108,7 @@
 <div id="opinie" class="screen">
   <h2>Opinie klientów</h2>
   <button id="showFormBtn">Dodaj opinię</button>
-  <div id="opinionForm" style="display:none; margin-top:20px;">
+  <div id="opinionForm" style="display:none;margin-top:20px;">
     <form id="feedbackForm">
       <input type="text" name="name" placeholder="Twoje imię" required><br>
       <select name="rating" required>
@@ -216,27 +124,25 @@
       <button type="button" id="cancelFormBtn" style="background-color:#dc3545;">Anuluj</button>
     </form>
   </div>
-  <div id="opinie-container" style="margin-top:20px;"></div>
+  <div id="opinie-container" style="margin-top:20px;max-width:700px;"></div>
 </div>
 
 <div id="faq" class="screen">
   <h2>❓ Najczęściej zadawane pytania</h2>
-  <details><summary>Jak mogę umówić się na wizytę?</summary><p>Możesz zadzwonić do nas.</p></details>
+  <details><summary>Jak mogę umówić się na wizytę?</summary><p>Możesz zadzwonić do nas lub napisać e-mail.</p></details>
   <details><summary>Czy oferujecie samochód zastępczy?</summary><p>Nie, nie mamy możliwości auta zastępczego.</p></details>
   <details><summary>Jakie auta naprawiacie?</summary><p>Naprawiamy wszystkie marki osobowe i dostawcze oprócz elektrycznych.</p></details>
   <details><summary>Czy muszę się wcześniej umawiać?</summary><p>Tak, najlepiej zadzwonić lub napisać.</p></details>
 </div>
 
-<!-- Powrót -->
 <button id="backBtn">🏠</button>
 
 <script>
-  const screens = document.querySelectorAll('.screen');
-  const navButtons = document.querySelectorAll('nav span');
-  const backBtn = document.getElementById('backBtn');
-  const startScreen = document.getElementById('startScreen');
+  const screens=document.querySelectorAll('.screen');
+  const navButtons=document.querySelectorAll('nav span');
+  const backBtn=document.getElementById('backBtn');
+  const startScreen=document.getElementById('startScreen');
 
-  // Pokaz ekran podstrony
   navButtons.forEach(btn=>{
     btn.addEventListener('click',()=>{
       const target=document.getElementById(btn.dataset.target);
@@ -246,7 +152,6 @@
     });
   });
 
-  // Powrót do startu
   backBtn.addEventListener('click',()=>{
     screens.forEach(s=>s.classList.remove('active'));
     startScreen.classList.add('active');
@@ -262,7 +167,6 @@
     opinionForm.style.display='block';
     showFormBtn.style.display='none';
   });
-
   cancelFormBtn.addEventListener('click',()=>{
     opinionForm.style.display='none';
     showFormBtn.style.display='inline-block';

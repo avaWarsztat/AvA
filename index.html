@@ -261,18 +261,93 @@
     </div>
   </section>
 
-  <!-- GALERIA -->
-  <section id="galeria" class="section" aria-labelledby="galeriaTitle">
-    <h3 id="galeriaTitle">Galeria naszych realizacji</h3>
-    <div class="gallery">
-      <img src="https://images.unsplash.com/photo-1611691540940-d05f3f3e14f3?w=900&q=80" alt="Samochód w warsztacie">
-      <img src="https://images.unsplash.com/photo-1619404069572-bb3b9b62e47f?w=900&q=80" alt="Prace przy silniku">
-      <img src="https://images.unsplash.com/photo-1590487983496-8ff16e7dc5c2?w=900&q=80" alt="Diagnostyka komputerowa">
-      <img src="https://images.unsplash.com/photo-1549921296-3f3223d8b273?w=900&q=80" alt="Wulkanizacja">
-      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80" alt="Zespół mechaników">
-    </div>
-    <p class="muted" style="margin-top:12px">Kliknij zdjęcie, by powiększyć (funkcja do dopisania) — na szybko galeria służy jako przegląd prac.</p>
-  </section>
+  <!-- 🏎️ Galeria BMW M3 Competition -->
+<section id="galeria" class="reveal">
+  <h2>Galeria BMW M3 Competition</h2>
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1615569451539-f84f65d3bb7c" alt="BMW M3 Competition czarne">
+    <img src="https://images.unsplash.com/photo-1617814075743-1fbbf70b2f04" alt="BMW M3 Competition żółte F1">
+    <img src="https://images.unsplash.com/photo-1622050547980-f4b9c9e6f122" alt="BMW M3 Competition torowe">
+    <img src="https://images.unsplash.com/photo-1617814075688-15a176b2a8e8" alt="BMW M3 Competition bokiem">
+    <img src="https://images.unsplash.com/photo-1604847887769-96f1d9f347b7" alt="BMW M3 Competition przód">
+    <img src="https://images.unsplash.com/photo-1617814075843-7e4b41b3e4a8" alt="BMW M3 Competition wnętrze">
+  </div>
+</section>
+
+<!-- 💡 Lightbox (pełny podgląd zdjęcia) -->
+<div id="lightbox" class="lightbox">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<style>
+  #galeria {
+    text-align: center;
+    padding: 60px 20px;
+    background: #121212;
+  }
+
+  #galeria h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+    color: #00b4ff;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+  }
+
+  .gallery img {
+    width: 100%;
+    border-radius: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+
+  .gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 180, 255, 0.4);
+  }
+
+  /* 🔍 Styl lightboxa */
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+  }
+</style>
+
+<script>
+  // 📸 Lightbox – kliknij zdjęcie, żeby powiększyć
+  const galleryImages = document.querySelectorAll('.gallery img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  galleryImages.forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.style.display = 'flex';
+    });
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+</script>
 
   <!-- OPINIE -->
   <section id="opinie" class="section" aria-labelledby="opinieTitle">

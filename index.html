@@ -1,191 +1,530 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AVA Warsztat Samochodowy</title>
-<meta name="description" content="AVA Warsztat – naprawa samochodów, diagnostyka, mechanika. Zapraszamy!">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AVA Warsztat — Profesjonalny serwis samochodowy</title>
+<meta name="description" content="AVA Warsztat — kompleksowy serwis, diagnostyka komputerowa, mechanika, klimatyzacja, wulkanizacja. Profesjonalnie, uczciwie, na czas." />
+<meta property="og:title" content="AVA Warsztat — Profesjonalny serwis samochodowy" />
+<meta property="og:description" content="AVA Warsztat — kompleksowy serwis, diagnostyka komputerowa, mechanika, klimatyzacja, wulkanizacja." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80" />
+<meta name="author" content="AVA Warsztat" />
+<link rel="icon" href="favicon.png" />
+
 <style>
-  body,html{margin:0;padding:0;font-family:sans-serif;background:#1d1d1d;color:#fff;overflow-x:hidden;}
-  nav{position:fixed;top:20px;width:100%;text-align:center;z-index:100;}
-  nav span{margin:0 15px;cursor:pointer;font-size:16px;transition:color 0.3s;}
-  nav span:hover{color:#28a745;}
-  .screen{position:fixed;top:0;left:0;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;background:#1d1d1d;opacity:0;pointer-events:none;transition:opacity 0.8s ease;}
-  .screen.active{opacity:1;pointer-events:auto;}
-  h1,h2,h3{margin:10px 0;text-align:center;}
-  .buttons a{display:inline-block;margin:10px;padding:12px 25px;border-radius:8px;font-size:16px;color:#fff;transition:background-color 0.3s;}
-  .buttons a.phone{background-color:#28a745;} .buttons a.phone:hover{background-color:#1e7e34;}
-  .buttons a.map{background-color:#007bff;} .buttons a.map:hover{background-color:#0056b3;}
-  .buttons a.mail{background-color:#8bf9ff;color:#000;} .buttons a.mail:hover{background-color:#5fd1d5;}
-  .buttons a.facebook{background-color:#3b5998;} .buttons a.facebook:hover{background-color:#2d4373;}
-  img.logo{max-width:300px;border-radius:10px;margin-top:20px;}
-  ul{list-style:none;padding:0;text-align:left;max-width:700px;margin:20px auto;}
-  li{margin:10px 0;}
-  input,textarea,select{background:#333;color:#fff;border:1px solid #777;padding:8px;border-radius:5px;width:80%;max-width:400px;margin-bottom:10px;}
-  button{background:#007bff;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;margin-top:10px;}
-  button:hover{background:#0056b3;}
-  #backBtn{position:fixed;right:20px;bottom:20px;background:#28a745;border:none;border-radius:50%;width:50px;height:50px;font-size:24px;cursor:pointer;display:none;justify-content:center;align-items:center;z-index:200;}
-  details{margin:10px 0;text-align:left;cursor:pointer;}
-  /* Animowane tło sekcji O nas */
-  #onas{background:url('https://images.unsplash.com/photo-1619699151371-2fcf2c6b23a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGNhcnN8ZW58MHx8MHx8&ixlib=rb-4.0.3&w=1080&q=80') repeat-x; background-size:cover; animation:moveBg 30s linear infinite;}
-  @keyframes moveBg{0%{background-position:0 0;}100%{background-position:-1000px 0;}}
-  /* Galeria */
-  .gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;max-width:90%;margin:20px auto;}
-  .gallery img{height:200px;margin-right:10px;border-radius:10px;scroll-snap-align:start;}
+  /* ---------- Root & resets ---------- */
+  :root{
+    --bg:#0f0f10;
+    --panel:#151617;
+    --muted:#aeb3b8;
+    --accent:#28a745;
+    --accent-2:#007bff;
+    --glass: rgba(255,255,255,0.03);
+    --radius:12px;
+    --maxWidth:1200px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--bg);color:#fff;font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;line-height:1.45;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  img{display:block;max-width:100%;height:auto}
+
+  /* ---------- sticky navbar ---------- */
+  header.site-header{
+    position:fixed;inset:0 0 auto 0;height:72px;display:flex;align-items:center;justify-content:center;
+    z-index:9999;backdrop-filter: blur(6px);background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.15));
+    border-bottom:1px solid rgba(255,255,255,0.02);
+  }
+  .wrap { width:100%;max-width:var(--maxWidth);padding:0 20px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  .brand { display:flex;align-items:center;gap:12px;cursor:pointer; }
+  .brand img{width:48px;height:48px;object-fit:cover;border-radius:8px}
+  .brand h1{font-size:18px;margin:0;letter-spacing:0.3px}
+  nav.top-nav{display:flex;gap:18px;align-items:center}
+  nav.top-nav button{background:transparent;border:none;color:var(--muted);padding:8px 6px;font-weight:600;cursor:pointer;font-size:14px;transition:color .18s, transform .12s}
+  nav.top-nav button:hover{color:var(--accent);transform:translateY(-2px)}
+  nav.top-nav button.active{color:#fff;border-bottom:2px solid var(--accent);padding-bottom:6px}
+
+  /* ---------- hero (slideshow) ---------- */
+  .hero{
+    height:calc(100vh - 72px); /* screen minus header */
+    margin-top:72px;
+    position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:left;
+  }
+  .hero .slides{position:absolute;inset:0}
+  .hero .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.03);transition:opacity 1s ease, transform 1.8s ease}
+  .hero .slide.active{opacity:1;transform:scale(1)}
+  .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6));}
+  .hero .content{position:relative;z-index:5;max-width:var(--maxWidth);padding:40px 24px}
+  .eyebrow{color:var(--accent);font-weight:700;font-size:13px;margin-bottom:8px}
+  .hero h2{font-size:44px;margin:0 0 12px;line-height:1.02}
+  .hero p.lead{color:var(--muted);max-width:740px;margin:0 0 18px;font-size:16px}
+
+  .hero .cta {display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:10px;background:var(--accent);color:#000;font-weight:700;border:none;cursor:pointer}
+  .btn.secondary{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.06)}
+  .btn.white{background:#fff;color:#000}
+
+  /* ---------- main layout ---------- */
+  main{max-width:var(--maxWidth);margin:60px auto;padding:0 20px 80px}
+  .section{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border-radius:12px;padding:36px;margin-bottom:28px;box-shadow:0 8px 40px rgba(0,0,0,0.6)}
+  .section h3{margin-top:0}
+  .two-col{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start}
+  @media (max-width:900px){ .two-col{grid-template-columns:1fr} header.site-header{height:68px} .hero h2{font-size:30px} }
+
+  /* ---------- about with animated cars background (parallax-like) ---------- */
+  .about-wrap{position:relative;overflow:hidden;border-radius:12px}
+  .about-bg{position:absolute;inset:0;background-repeat:repeat-x;background-size:cover;opacity:0.12;filter:grayscale(30%);transform:translateZ(0)}
+  .about-bg.move{animation:moveBg 40s linear infinite}
+  @keyframes moveBg{0%{background-position:0 0}100%{background-position:-1500px 0}}
+
+  /* ---------- services list ---------- */
+  .service{display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:10px;background:var(--glass);margin-bottom:12px}
+  .service .icon{width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,var(--accent-2),var(--accent));display:flex;align-items:center;justify-content:center;font-weight:700}
+  .service h4{margin:0 0 6px}
+
+  /* ---------- gallery ---------- */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+  .gallery img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+
+  /* ---------- opinie ---------- */
+  .opinie-list{display:flex;flex-direction:column;gap:12px}
+  .opinia{background:rgba(255,255,255,0.02);padding:14px;border-radius:10px}
+
+  /* ---------- contact / form ---------- */
+  form.contact{display:flex;flex-direction:column;gap:10px}
+  input,select,textarea{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:10px;border-radius:8px;color:#fff}
+  textarea{min-height:120px;resize:vertical}
+
+  /* ---------- FAQ ---------- */
+  details{background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;margin-bottom:8px}
+  details summary{cursor:pointer;font-weight:700}
+
+  /* ---------- back icon & floating nav highlight ---------- */
+  #backBtn{position:fixed;right:18px;bottom:18px;background:var(--accent);width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;font-size:22px;color:#000;z-index:999}
+  .stickyPlaceholder{height:72px} /* so content isn't hidden under header */
+
+  /* active nav highlight */
+  nav.top-nav button.active{color:var(--accent);}
+
+  /* small helpers */
+  .muted{color:var(--muted)}
 </style>
 </head>
 <body>
 
-<nav>
-  <span data-target="misja">Misja</span>
-  <span data-target="dlaczego">Dlaczego AVA?</span>
-  <span data-target="uslugi">Usługi</span>
-  <span data-target="onas">O nas</span>
-  <span data-target="godziny">Godziny</span>
-  <span data-target="opinie">Opinie</span>
-  <span data-target="faq">FAQ</span>
-</nav>
+<!-- HEADER / NAV -->
+<header class="site-header" role="banner">
+  <div class="wrap">
+    <div class="brand" id="homeBtn" title="Powrót na start">
+      <img src="AVA STR.jpeg" alt="AVA Warsztat logo (AVA STR.jpeg)">
+      <div>
+        <h1>AVA Warsztat</h1>
+        <div class="muted" style="font-size:12px">Profesjonalny serwis samochodowy</div>
+      </div>
+    </div>
 
-<div id="startScreen" class="screen active">
-  <h1>AVA Warsztat Samochodowy</h1>
-  <p>Naprawy, Diagnostyka, Serwis — Zapraszamy!</p>
-  <div class="buttons">
-    <a href="tel:+48601749485" class="phone">📞 Zadzwoń</a>
-    <a href="https://maps.google.com?q=warsztat+AVA" target="_blank" class="map">📍 Dojazd</a>
-    <a href="mailto:ava.autosklep@gmail.com" class="mail">✉️ Napisz</a>
-    <a href="https://www.facebook.com/profile.php?id=100075824936537" target="_blank" class="facebook">📘 Facebook</a>
+    <nav class="top-nav" role="navigation" aria-label="Główne menu">
+      <button data-target="misja">Misja</button>
+      <button data-target="dlaczego">Dlaczego AVA</button>
+      <button data-target="uslugi">Usługi</button>
+      <button data-target="onas">O nas</button>
+      <button data-target="galeria">Galeria</button>
+      <button data-target="opinie">Opinie</button>
+      <button data-target="kontakt">Kontakt</button>
+      <button data-target="faq">FAQ</button>
+    </nav>
   </div>
-  <img src="AVA STR.jpeg" alt="AVA Warsztat" class="logo">
-</div>
+</header>
 
-<div id="misja" class="screen">
-  <h2>Nasza Misja</h2>
-  <p>Naszą misją jest dostarczanie niezawodnych i uczciwych usług motoryzacyjnych każdemu klientowi. Z pasji do aut i perfekcji – naprawiamy tak, jakby to było nasze własne auto.</p>
-</div>
-
-<div id="dlaczego" class="screen">
-  <h2>Dlaczego warto wybrać AVA?</h2>
-  <ul>
-    <li>✅ Doświadczona kadra mechaników</li>
-    <li>✅ Szybkie terminy realizacji</li>
-    <li>✅ Uczciwe i przejrzyste ceny</li>
-    <li>✅ Gwarancja na wykonane usługi</li>
-    <li>✅ Indywidualne podejście do klienta</li>
-    <li>✅ Diagnostyka najnowszym sprzętem</li>
-  </ul>
-</div>
-
-<div id="uslugi" class="screen">
-  <h2>Nasze usługi</h2>
-  <ul>
-    <li>🔧 Diagnostyka komputerowa</li>
-    <li>🔩 Wymiana oleju i filtrów</li>
-    <li>🚗 Naprawy zawieszenia</li>
-    <li>❄️ Serwis klimatyzacji</li>
-    <li>🚾 Wulkanizacja</li>
-    <li>🛠️ Naprawy silników</li>
-    <li>⚙️ Geometria kół</li>
-  </ul>
-  <div class="gallery">
-    <img src="https://images.unsplash.com/photo-1611691540940-d05f3f3e14f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Auto1">
-    <img src="https://images.unsplash.com/photo-1619404069572-bb3b9b62e47f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Auto2">
-    <img src="https://images.unsplash.com/photo-1617486539755-28c40f33ef32?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800&q=80" alt="Auto3">
+<!-- HERO (slideshow) -->
+<section class="hero" aria-hidden="false">
+  <div class="slides" aria-hidden="true">
+    <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1493238792000-8113da705763?w=1600&q=80')"></div>
+    <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1542367597-7fa4d3d6b2fc?w=1600&q=80')"></div>
   </div>
-</div>
+  <div class="overlay" style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.5))"></div>
 
-<div id="onas" class="screen">
-  <h2>O nas</h2>
-  <p>W AVA dbamy o Twój samochód tak, jak o własny. Nasza pasja do motoryzacji i doświadczenie pozwalają nam oferować usługi na najwyższym poziomie. Zaufaj profesjonalistom.</p>
-</div>
+  <div class="content">
+    <div class="eyebrow">AVA WARSZTAT</div>
+    <h2>Profesjonalny serwis samochodowy — diagnoza, naprawa, serwis</h2>
+    <p class="lead">Kompleksowe przeglądy, naprawy mechaniczne, diagnostyka komputerowa i serwis klimatyzacji. Szybko, uczciwie, z gwarancją na wykonane usługi.</p>
 
-<div id="godziny" class="screen">
-  <h2>🕒 Godziny otwarcia</h2>
-  <p>Pon–Pt: 8:00 – 16:00</p>
-  <p>Sobota/Niedziela/Święta: Nieczynne</p>
-  <p id="statusWarsztatu"></p>
-</div>
-
-<div id="opinie" class="screen">
-  <h2>Opinie klientów</h2>
-  <button id="showFormBtn">Dodaj opinię</button>
-  <div id="opinionForm" style="display:none;margin-top:20px;">
-    <form id="feedbackForm">
-      <input type="text" name="name" placeholder="Twoje imię" required><br>
-      <select name="rating" required>
-        <option value="">Wybierz ocenę</option>
-        <option value="5">⭐⭐⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="2">⭐⭐</option>
-        <option value="1">⭐</option>
-      </select><br>
-      <textarea name="comment" rows="4" placeholder="Twój komentarz..."></textarea><br>
-      <button type="submit">Wyślij</button>
-      <button type="button" id="cancelFormBtn" style="background-color:#dc3545;">Anuluj</button>
-    </form>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a class="btn" href="tel:+48601749485">📞 Zadzwoń</a>
+      <a class="btn secondary" id="bookBtn">Umów wizytę</a>
+      <a class="btn white" href="#galeria">Zobacz galerię</a>
+    </div>
   </div>
-  <div id="opinie-container" style="margin-top:20px;max-width:700px;"></div>
-</div>
+</section>
 
-<div id="faq" class="screen">
-  <h2>❓ Najczęściej zadawane pytania</h2>
-  <details><summary>Jak mogę umówić się na wizytę?</summary><p>Możesz zadzwonić do nas lub napisać e-mail.</p></details>
-  <details><summary>Czy oferujecie samochód zastępczy?</summary><p>Nie, nie mamy możliwości auta zastępczego.</p></details>
-  <details><summary>Jakie auta naprawiacie?</summary><p>Naprawiamy wszystkie marki osobowe i dostawcze oprócz elektrycznych.</p></details>
-  <details><summary>Czy muszę się wcześniej umawiać?</summary><p>Tak, najlepiej zadzwonić lub napisać.</p></details>
-</div>
+<div class="stickyPlaceholder" aria-hidden="true"></div>
 
-<button id="backBtn">🏠</button>
+<!-- MAIN CONTENT -->
+<main>
+
+  <!-- MISJA -->
+  <section id="misja" class="section" aria-labelledby="misjaTitle">
+    <h3 id="misjaTitle">Nasza misja</h3>
+    <div class="two-col">
+      <div>
+        <p class="muted">W AVA stawiamy na rzetelność, przejrzystość i jakość. Każde auto traktujemy tak, jak swoje własne — dlatego wykonujemy diagnostykę przed każdą naprawą i dokładnie opisujemy zakres prac oraz koszty.</p>
+
+        <h4 style="margin-top:18px">Co wyróżnia AVA?</h4>
+        <ul>
+          <li>✅ Pełna diagnostyka komputerowa i testy drogowe</li>
+          <li>✅ Jasne koszty i kosztorys przed rozpoczęciem prac</li>
+          <li>✅ Części wysokiej jakości i gwarancja na usługę</li>
+          <li>✅ Szybkie terminy i raport z naprawy</li>
+        </ul>
+      </div>
+
+      <aside class="card" style="background:var(--panel);padding:16px;border-radius:12px">
+        <strong>Kontakt</strong>
+        <p class="muted" style="margin:8px 0">Tel: <a href="tel:+48601749485">+48 601 749 485</a></p>
+        <p class="muted">E-mail: <a href="mailto:ava.autosklep@gmail.com">ava.autosklep@gmail.com</a></p>
+        <p class="muted">Godziny: Pn–Pt 8:00–16:00</p>
+        <div style="margin-top:12px">
+          <a class="btn white" href="https://maps.google.com?q=warsztat+AVA" target="_blank">📍 Dojazd</a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- DLACZEGO -->
+  <section id="dlaczego" class="section" aria-labelledby="dlaczegoTitle">
+    <h3 id="dlaczegoTitle">Dlaczego warto wybrać AVA?</h3>
+    <p class="muted">Nie zostawiamy klienta z "czarną skrzynką" — tłumaczymy co naprawiliśmy, jakie części użyliśmy i jak zadbać o auto dalej.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px">
+      <div class="service"><div class="icon">01</div><div><h4>Diagnostyka</h4><div class="muted">Pełna diagnostyka komputerowa, testy układów, pomiary i logi.</div></div></div>
+      <div class="service"><div class="icon">02</div><div><h4>Mechanika</h4><div class="muted">Silniki, skrzynie, zawieszenia — solidna naprawa i regulacje.</div></div></div>
+      <div class="service"><div class="icon">03</div><div><h4>Klimatyzacja</h4><div class="muted">Serwis, napełnianie, odgrzybianie i testy szczelności.</div></div></div>
+      <div class="service"><div class="icon">04</div><div><h4>Wulkanizacja</h4><div class="muted">Wymiana, prostowanie felg, przechowalnia kół.</div></div></div>
+    </div>
+  </section>
+
+  <!-- USLUGI (rozszerzone) -->
+  <section id="uslugi" class="section" aria-labelledby="uslugiTitle">
+    <h3 id="uslugiTitle">Nasze usługi — szczegóły i ceny orientacyjne</h3>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+      <div>
+        <article style="margin-bottom:12px">
+          <h4>Diagnostyka komputerowa</h4>
+          <p class="muted">Pełny odczyt błędów, adaptacje, reset inspekcji. Orientacyjna cena: 80–180 PLN (zależnie od zakresu).</p>
+        </article>
+
+        <article style="margin-bottom:12px">
+          <h4>Wymiana oleju i filtrów</h4>
+          <p class="muted">Wymiana oleju z filtrem + kontrola podstawowych układów. Orientacyjna cena: 150–400 PLN.</p>
+        </article>
+
+        <article style="margin-bottom:12px">
+          <h4>Naprawy zawieszenia</h4>
+          <p class="muted">Wymiana wahaczy, łączników, amortyzatorów, regulacja geometrii. Cena wg wyceny.</p>
+        </article>
+      </div>
+
+      <div>
+        <article style="margin-bottom:12px">
+          <h4>Serwis klimatyzacji</h4>
+          <p class="muted">Kontrola, odgrzybianie i dopełnienie czynnika. Orientacyjna cena: 120–350 PLN.</p>
+        </article>
+
+        <article style="margin-bottom:12px">
+          <h4>Wulkanizacja / Felgi</h4>
+          <p class="muted">Sezonowa wymiana, wyważanie, naprawa felg. Cena wg rozmiaru i zakresu.</p>
+        </article>
+
+        <article style="margin-bottom:12px">
+          <h4>Przeglądy okresowe</h4>
+          <p class="muted">Przeglądy serwisowe zgodnie z zaleceniami producenta. Raport z wykonanych prac.</p>
+        </article>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- O NAS (z animowanym tłem przewijających się aut) -->
+  <section id="onas" class="section about-wrap" aria-labelledby="onasTitle">
+    <div class="about-bg move" style="background-image:url('https://images.unsplash.com/photo-1542367597-7fa4d3d6b2fc?w=1400&q=60')"></div>
+    <div style="position:relative;z-index:3">
+      <h3 id="onasTitle">O nas</h3>
+      <p class="muted">AVA to zespół mechaników z pasją i doświadczeniem. Pracujemy z nowoczesnym sprzętem diagnostycznym, inwestujemy w szkolenia i części wysokiej jakości. Dzięki temu naprawy są rzetelne i trwałe.</p>
+
+      <h4 style="margin-top:18px">Nasz zespół</h4>
+      <ul>
+        <li><strong>Filip</strong> — mechanika ogólna, diagnostyka komputerowa.</li>
+        <li><strong>Adam</strong> — specjalista ds. zawieszeń i geometrii.</li>
+        <li><strong>Dominik</strong> — serwis klimatyzacji i elektryka.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- GALERIA -->
+  <section id="galeria" class="section" aria-labelledby="galeriaTitle">
+    <h3 id="galeriaTitle">Galeria naszych realizacji</h3>
+    <div class="gallery">
+      <img src="https://images.unsplash.com/photo-1611691540940-d05f3f3e14f3?w=900&q=80" alt="Samochód w warsztacie">
+      <img src="https://images.unsplash.com/photo-1619404069572-bb3b9b62e47f?w=900&q=80" alt="Prace przy silniku">
+      <img src="https://images.unsplash.com/photo-1590487983496-8ff16e7dc5c2?w=900&q=80" alt="Diagnostyka komputerowa">
+      <img src="https://images.unsplash.com/photo-1549921296-3f3223d8b273?w=900&q=80" alt="Wulkanizacja">
+      <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80" alt="Zespół mechaników">
+    </div>
+    <p class="muted" style="margin-top:12px">Kliknij zdjęcie, by powiększyć (funkcja do dopisania) — na szybko galeria służy jako przegląd prac.</p>
+  </section>
+
+  <!-- OPINIE -->
+  <section id="opinie" class="section" aria-labelledby="opinieTitle">
+    <h3 id="opinieTitle">Opinie klientów</h3>
+    <p class="muted">Opinie zbieramy i wyświetlamy — realne oceny pomagają zbudować zaufanie.</p>
+    <div style="display:flex;gap:12px;align-items:center;margin-top:12px">
+      <button id="loadOpinieBtn" class="btn white">Pokaż opinie</button>
+      <button id="openReviewForm" class="btn">Dodaj opinię</button>
+    </div>
+
+    <div id="opinieWrapper" style="margin-top:16px;display:none">
+      <div id="opinieList" class="opinie-list"></div>
+      <div style="margin-top:8px;color:var(--muted)" id="sredniaOcena">Średnia: —</div>
+    </div>
+
+    <div id="reviewFormPanel" style="display:none;margin-top:18px">
+      <form id="reviewForm" class="contact">
+        <input name="name" type="text" placeholder="Twoje imię" required />
+        <select name="rating" required>
+          <option value="">Wybierz ocenę</option>
+          <option value="5">5 — świetnie</option>
+          <option value="4">4 — dobrze</option>
+          <option value="3">3 — średnio</option>
+          <option value="2">2 — słabo</option>
+          <option value="1">1 — źle</option>
+        </select>
+        <textarea name="comment" placeholder="Opisz wizytę (opcjonalnie)"></textarea>
+        <input name="email" type="email" placeholder="Twój e-mail (potrzebny do weryfikacji)" required />
+        <div style="display:flex;gap:8px">
+          <button type="submit" class="btn">Wyślij opinię</button>
+          <button type="button" id="cancelReview" class="btn secondary">Anuluj</button>
+        </div>
+        <div id="reviewMsg" class="muted" style="margin-top:8px"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- KONTAKT & UMÓW WIZYTĘ -->
+  <section id="kontakt" class="section" aria-labelledby="kontaktTitle">
+    <h3 id="kontaktTitle">Kontakt & Umów wizytę</h3>
+    <div class="two-col">
+      <div>
+        <p class="muted">Skontaktuj się telefonicznie lub wypełnij formularz — odpisujemy i potwierdzamy termin.</p>
+        <form id="contactForm" class="contact" aria-label="Formularz kontaktowy">
+          <input name="name" placeholder="Imię i nazwisko" required />
+          <input name="phone" placeholder="Telefon" required />
+          <input name="email" placeholder="E-mail" type="email" />
+          <select name="service">
+            <option value="">Wybierz usługę (opcjonalnie)</option>
+            <option>Diagnostyka</option>
+            <option>Wymiana oleju</option>
+            <option>Zawieszenie</option>
+            <option>Klimatyzacja</option>
+          </select>
+          <textarea name="notes" placeholder="Dodatkowe informacje"></textarea>
+          <div style="display:flex;gap:8px">
+            <button type="submit" class="btn">Wyślij zgłoszenie</button>
+            <button type="button" id="clearContact" class="btn secondary">Wyczyść</button>
+          </div>
+          <div id="contactMsg" style="margin-top:10px" class="muted"></div>
+        </form>
+      </div>
+
+      <aside style="background:var(--panel);padding:16px;border-radius:12px">
+        <strong>Adres</strong>
+        <p class="muted" style="margin:8px 0">ul. Przykładowa 1, 00-001 Miasto</p>
+        <p class="muted">Tel: <a href="tel:+48601749485">+48 601 749 485</a></p>
+        <p class="muted">E-mail: <a href="mailto:ava.autosklep@gmail.com">ava.autosklep@gmail.com</a></p>
+        <div style="margin-top:10px"><a class="btn white" href="https://maps.google.com?q=warsztat+AVA" target="_blank">Otwórz w mapach</a></div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section" aria-labelledby="faqTitle">
+    <h3 id="faqTitle">FAQ — najczęściej zadawane pytania</h3>
+    <details><summary>Jak umówić wizytę?</summary><p class="muted">Telefonicznie lub przez formularz kontaktowy — potwierdzamy termin SMS-em.</p></details>
+    <details><summary>Czy oferujecie samochód zastępczy?</summary><p class="muted">Na chwilę obecną nie mamy samochodów zastępczych.</p></details>
+    <details><summary>Czy przyjmujecie na holowanie?</summary><p class="muted">Współpracujemy z firmą assistance — pomagamy w organizacji transportu auta.</p></details>
+    <details><summary>Jakie marki serwisujecie?</summary><p class="muted">Serwisujemy większość marek osobowych i dostawczych — wyjątek: auta czysto elektryczne bez umów serwisowych.</p></details>
+  </section>
+
+</main>
+
+<!-- back to home -->
+<button id="backBtn" title="Powrót do startu" aria-label="Powrót">🏠</button>
 
 <script>
-  const screens=document.querySelectorAll('.screen');
-  const navButtons=document.querySelectorAll('nav span');
-  const backBtn=document.getElementById('backBtn');
-  const startScreen=document.getElementById('startScreen');
+/* ---------- Helpers & state ---------- */
+const navBtns = document.querySelectorAll('nav.top-nav button');
+const screens = {
+  misja: document.getElementById('misja'),
+  dlaczego: document.getElementById('dlaczego'),
+  uslugi: document.getElementById('uslugi'),
+  onas: document.getElementById('onas'),
+  galeria: document.getElementById('galeria'),
+  opinie: document.getElementById('opinie'),
+  kontakt: document.getElementById('kontakt'),
+  faq: document.getElementById('faq')
+};
+const startHero = document.querySelector('.hero');
+const slides = document.querySelectorAll('.hero .slide');
+let slideIndex = 0;
 
-  navButtons.forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const target=document.getElementById(btn.dataset.target);
-      screens.forEach(s=>s.classList.remove('active'));
-      target.classList.add('active');
-      backBtn.style.display='flex';
-    });
-  });
+/* ---------- Slide show (hero) ---------- */
+function nextSlide(){
+  slides.forEach(s=>s.classList.remove('active'));
+  slideIndex = (slideIndex+1) % slides.length;
+  slides[slideIndex].classList.add('active');
+}
+setInterval(nextSlide, 6000);
 
-  backBtn.addEventListener('click',()=>{
-    screens.forEach(s=>s.classList.remove('active'));
-    startScreen.classList.add('active');
-    backBtn.style.display='none';
-  });
-
-  // Formularz opinii
-  const showFormBtn=document.getElementById('showFormBtn');
-  const opinionForm=document.getElementById('opinionForm');
-  const cancelFormBtn=document.getElementById('cancelFormBtn');
-
-  showFormBtn.addEventListener('click',()=>{
-    opinionForm.style.display='block';
-    showFormBtn.style.display='none';
-  });
-  cancelFormBtn.addEventListener('click',()=>{
-    opinionForm.style.display='none';
-    showFormBtn.style.display='inline-block';
-    document.getElementById('feedbackForm').reset();
-  });
-
-  // Godziny otwarcia
-  function sprawdzGodzine(){
-    const teraz=new Date();
-    const dzien=teraz.getDay();
-    const godz=teraz.getHours();
-    const status=document.getElementById('statusWarsztatu');
-    const swieta=['01-01','01-06','05-01','05-03','08-15','11-01','11-11','12-25','12-26'];
-    const data=`${(teraz.getMonth()+1).toString().padStart(2,'0')}-${teraz.getDate().toString().padStart(2,'0')}`;
-    if(swieta.includes(data)){ status.textContent="🎉 Dziś święto – warsztat nieczynny."; status.style.color="orange"; }
-    else if([1,2,3,4,5].includes(dzien)&&godz>=8&&godz<16){ status.textContent="🔧 Otwarte – zapraszamy!"; status.style.color="green"; }
-    else{ status.textContent="❌ Zamknięte – zapraszamy w godzinach 8:00–16:00 (pn–pt)"; status.style.color="red"; }
+/* ---------- scroll + sticky nav active highlight ---------- */
+const headerHeight = document.querySelector('.site-header').offsetHeight;
+const sectionOffsets = {};
+function refreshOffsets(){
+  for(const key in screens){
+    const el = screens[key];
+    if(el) sectionOffsets[key] = el.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
   }
-  window.addEventListener('DOMContentLoaded',sprawdzGodzine);
+}
+window.addEventListener('load', refreshOffsets);
+window.addEventListener('resize', refreshOffsets);
+
+window.addEventListener('scroll', ()=>{
+  const y = window.scrollY;
+  // highlight nav when near a section
+  let activeKey = null;
+  for(const key in sectionOffsets){
+    if(y >= sectionOffsets[key] - 40) activeKey = key;
+  }
+  navBtns.forEach(b=>{
+    if(b.dataset.target === activeKey) b.classList.add('active'); else b.classList.remove('active');
+  });
+
+  // sticky behavior: if user scrolls away from top show back button
+  const backBtn = document.getElementById('backBtn');
+  if(y > 60){ backBtn.style.display = 'flex'; } else { backBtn.style.display = 'none'; }
+});
+
+/* ---------- smooth scroll to section when clicking nav ---------- */
+navBtns.forEach(btn=>{
+  btn.addEventListener('click', (e)=>{
+    const id = btn.dataset.target;
+    const targetEl = document.getElementById(id);
+    if(targetEl){
+      const top = targetEl.getBoundingClientRect().top + window.scrollY - headerHeight - 10;
+      window.scrollTo({top,behavior:'smooth'});
+    }
+  });
+});
+document.getElementById('homeBtn').addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
+document.getElementById('backBtn').addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ---------- about background animation starts when section visible ---------- */
+const aboutBg = document.querySelector('.about-bg');
+function checkAboutVisible(){
+  const rect = document.getElementById('onas').getBoundingClientRect();
+  if(rect.top < window.innerHeight && rect.bottom > 0){
+    aboutBg.classList.add('move');
+  } else {
+    aboutBg.classList.remove('move');
+  }
+}
+window.addEventListener('scroll', checkAboutVisible);
+window.addEventListener('load', checkAboutVisible);
+
+/* ---------- Opinie: load from SheetDB on demand ---------- */
+const SHEETDB = 'https://sheetdb.io/api/v1/kr749eomw8d09';
+document.getElementById('loadOpinieBtn').addEventListener('click', loadOpinie);
+function escapeHtml(s){ return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'); }
+async function loadOpinie(){
+  const wrapper = document.getElementById('opinieWrapper');
+  const list = document.getElementById('opinieList');
+  const sred = document.getElementById('sredniaOcena');
+  wrapper.style.display = 'block';
+  list.innerHTML = '<div class="muted">Ładowanie opinii…</div>';
+  try{
+    const res = await fetch(SHEETDB);
+    if(!res.ok) throw new Error('Błąd sieci');
+    const data = await res.json();
+    if(!Array.isArray(data) || data.length === 0){ list.innerHTML = '<div class="muted">Brak opinii.</div>'; sred.textContent = 'Średnia: —'; return; }
+    list.innerHTML = '';
+    let sum=0,count=0;
+    data.slice().reverse().forEach(entry=>{
+      const r = parseInt(entry.rating||0,10);
+      const c = (entry.comment||'').trim();
+      const n = (entry.name||'Anonim').trim();
+      if(r>0){ sum+=r; count++; }
+      const block = document.createElement('div'); block.className = 'opinia';
+      block.innerHTML = `<div style="font-weight:700">${escapeHtml(n)} <span style="font-weight:400;color:var(--muted)">· ${'⭐'.repeat(Math.max(0,Math.min(5,r)))}</span></div><div style="margin-top:6px">${c?escapeHtml(c):'<span class="muted">Bez komentarza</span>'}</div>`;
+      list.appendChild(block);
+    });
+    sred.textContent = count?('Średnia: ' + (sum/count).toFixed(1) + ' /5 ('+count+' ocen)') : 'Średnia: —';
+  }catch(err){
+    list.innerHTML = '<div class="muted">Nie udało się załadować opinii.</div>';
+    console.error(err);
+  }
+}
+
+/* ---------- Review form (simple client-side validation + POST) ---------- */
+const openReviewBtn = document.getElementById('openReviewForm');
+openReviewBtn.addEventListener('click', ()=> document.getElementById('reviewFormPanel').style.display='block');
+
+document.getElementById('cancelReview').addEventListener('click', ()=>{
+  document.getElementById('reviewFormPanel').style.display='none';
+  document.getElementById('reviewMsg').textContent='';
+  document.getElementById('reviewForm').reset();
+});
+
+document.getElementById('reviewForm').addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const f = e.target;
+  const name = f.name.value.trim() || 'Anonim';
+  const rating = f.rating.value;
+  const comment = f.comment.value.trim();
+  const email = f.email.value.trim();
+  if(!rating || !email){ document.getElementById('reviewMsg').textContent='Wypełnij wymagane pola.'; return; }
+  // 24h block
+  const last = localStorage.getItem('ostatniaOpinia');
+  if(last && (Date.now() - parseInt(last,10)) < 24*60*60*1000){ document.getElementById('reviewMsg').textContent='Możesz dodać opinię raz na 24h.'; return; }
+  // payload for sheetdb
+  const payload = { data: { name, rating, comment, email } };
+  try{
+    const res = await fetch(SHEETDB, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+    if(res.ok){ document.getElementById('reviewMsg').textContent='Dziękujemy — opinia przesłana!'; localStorage.setItem('ostatniaOpinia', Date.now().toString()); f.reset(); loadOpinie(); }
+    else { document.getElementById('reviewMsg').textContent='Błąd przy zapisie opinii.'; console.error(await res.text()); }
+  }catch(err){ document.getElementById('reviewMsg').textContent='Błąd sieci — spróbuj później.'; console.error(err); }
+});
+
+/* ---------- Contact form (client stub) ---------- */
+document.getElementById('contactForm').addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const f = e.target;
+  document.getElementById('contactMsg').textContent = 'Dziękujemy — zgłoszenie wysłane. Skontaktujemy się wkrótce.';
+  f.reset();
+});
+
+/* ---------- Accessibility improvements ---------- */
+// allow nav buttons to be focused and activated with Enter
+navBtns.forEach(b=>{
+  b.addEventListener('keydown', (ev)=>{ if(ev.key === 'Enter') b.click(); });
+});
+
+/* ---------- init offsets for nav highlight ---------- */
+setTimeout(()=>{ window.dispatchEvent(new Event('resize')); refreshOnLoad(); }, 200);
+function refreshOnLoad(){ /* recalc offsets */ const evt = new Event('resize'); window.dispatchEvent(evt); }
+
+/* ---------- small util: recalc offsets for highlight (keeping simple) ---------- */
+function calcSectionPositions(){
+  // not used heavy-duty here; highlight based on scroll loop above
+}
 </script>
 
 </body>

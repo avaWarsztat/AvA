@@ -136,7 +136,8 @@
 </header>
 
 <!-- HERO (slideshow) -->
-<div class="slides" aria-hidden="true">
+<section class="hero" aria-label="Slideshow">
+  <div class="slides" aria-hidden="true">
   <div class="slide active" style="background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1600&q=80')"></div>
   <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1493238792000-8113da705763?w=1600&q=80')"></div>
   <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1542367597-7fa4d3d6b2fc?w=1600&q=80')"></div>
@@ -268,15 +269,24 @@
   <section id="galeria" class="section" aria-labelledby="galeriaTitle">
     <h3 id="galeriaTitle">Galeria naszych realizacji</h3>
     <div class="gallery">
-  <img src="https://images.unsplash.com/photo-1611691540940-d05f3f3e14f3?w=900&q=80" alt="Samochód w warsztacie">
-  <img src="https://images.unsplash.com/photo-1619404069572-bb3b9b62e47f?w=900&q=80" alt="Prace przy silniku">
-  <img src="https://images.unsplash.com/photo-1590487983496-8ff16e7dc5c2?w=900&q=80" alt="Diagnostyka komputerowa">
-  <img src="https://images.unsplash.com/photo-1549921296-3f3223d8b273?w=900&q=80" alt="Wulkanizacja">
-  <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80" alt="Zespół mechaników">
   <!-- nowe sportowe auta -->
   <img src="https://images.unsplash.com/photo-1618335571254-3e2e5e70b1c7?w=900&q=80" alt="BMW M4">
   <img src="https://images.unsplash.com/photo-1600180758895-0a2ffb9876ea?w=900&q=80" alt="Porsche 911">
   <img src="https://images.unsplash.com/photo-1611764335916-0ad278f3c00d?w=900&q=80" alt="Audi R8">
+    <!-- dodatkowe sportowe auta -->
+  <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?w=900&q=80" alt="Ferrari 488">
+  <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?w=900&q=80" alt="Lamborghini Huracán">
+  <img src="https://images.unsplash.com/photo-1618237120355-5f7d71a0e42f?w=900&q=80" alt="Nissan GT-R">
+  <img src="https://images.unsplash.com/photo-1600706834446-018d5e1c1c9c?w=900&q=80" alt="Toyota Supra">
+
+  <!-- klasyki -->
+  <img src="https://images.unsplash.com/photo-1558980394-0c79e8c31a4d?w=900&q=80" alt="Ford Mustang klasyk">
+  <img src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=900&q=80" alt="Chevrolet Bel Air">
+
+  <!-- auta podczas napraw -->
+  <img src="https://images.unsplash.com/photo-1625041465380-5d285b9a1e0e?w=900&q=80" alt="Auto na podnośniku">
+  <img src="https://images.unsplash.com/photo-1586201375761-83865001e31b?w=900&q=80" alt="Praca w warsztacie">
+  <img src="https://images.unsplash.com/photo-1625041458761-4e0c36b0d6b0?w=900&q=80" alt="Silnik w naprawie">
 </div>
     <p class="muted" style="margin-top:12px">Kliknij zdjęcie, by powiększyć (funkcja do dopisania) — na szybko galeria służy jako przegląd prac.</p>
   </section>
@@ -321,7 +331,7 @@
 
       <aside style="background:var(--panel);padding:16px;border-radius:12px">
         <strong>Adres</strong>
-        <p class="muted" style="margin:8px 0">ul. Przykładowa 1, 00-001 Miasto</p>
+        <p class="muted" style="margin:8px 0">Strachocin 1C 73-110</p>
         <p class="muted">Tel: <a href="tel:+48601749485">+48 601 749 485</a></p>
         <p class="muted">E-mail: <a href="mailto:ava.autosklep@gmail.com">ava.autosklep@gmail.com</a></p>
         <div style="margin-top:10px"><a class="btn white" href="https://maps.google.com?q=warsztat+AVA" target="_blank">Otwórz w mapach</a></div>
@@ -332,9 +342,9 @@
   <!-- FAQ -->
   <section id="faq" class="section" aria-labelledby="faqTitle">
     <h3 id="faqTitle">FAQ — najczęściej zadawane pytania</h3>
-    <details><summary>Jak umówić wizytę?</summary><p class="muted">Telefonicznie lub przez formularz kontaktowy — potwierdzamy termin SMS-em.</p></details>
+    <details><summary>Jak umówić wizytę?</summary><p class="muted">Telefonicznie — potwierdzamy termin telefonicznie.</p></details>
     <details><summary>Czy oferujecie samochód zastępczy?</summary><p class="muted">Na chwilę obecną nie mamy samochodów zastępczych.</p></details>
-    <details><summary>Czy przyjmujecie na holowanie?</summary><p class="muted">Współpracujemy z firmą assistance — pomagamy w organizacji transportu auta.</p></details>
+    <details><summary>Czy przyjmujecie na holowanie?</summary><p class="muted">Niestety nie posiadamy lawety.</p></details>
     <details><summary>Jakie marki serwisujecie?</summary><p class="muted">Serwisujemy większość marek osobowych i dostawczych — wyjątek: auta czysto elektryczne bez umów serwisowych.</p></details>
   </section>
 
@@ -353,179 +363,59 @@ const screens = {
   onas: document.getElementById('onas'),
   galeria: document.getElementById('galeria'),
   opinie: document.getElementById('opinie'),
-  kontakt: document.getElementById('kontakt'),
   faq: document.getElementById('faq')
 };
-const startHero = document.querySelector('.hero');
 const slides = document.querySelectorAll('.hero .slide');
 let slideIndex = 0;
+let slideTimer;
 
-/* ---------- Slide show (hero) ---------- */
-function nextSlide(){
-  slides.forEach(s=>s.classList.remove('active'));
-  slideIndex = (slideIndex+1) % slides.length;
-  slides[slideIndex].classList.add('active');
+/* ---------- Slideshow autoplay + arrow control ---------- */
+function showSlide(index) {
+  slides.forEach((s, i) => s.classList.toggle('active', i === index));
 }
-setInterval(nextSlide, 6000);
+function nextSlide() {
+  slideIndex = (slideIndex + 1) % slides.length;
+  showSlide(slideIndex);
+}
+function prevSlide() {
+  slideIndex = (slideIndex - 1 + slides.length) % slides.length;
+  showSlide(slideIndex);
+}
+function startAutoplay() {
+  clearInterval(slideTimer);
+  slideTimer = setInterval(nextSlide, 5000);
+}
+startAutoplay();
 
-/* ---------- scroll + sticky nav active highlight ---------- */
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') {
+    nextSlide();
+    startAutoplay();
+  } else if (e.key === 'ArrowLeft') {
+    prevSlide();
+    startAutoplay();
+  }
+});
+
+/* ---------- Scroll + active nav highlight ---------- */
 const headerHeight = document.querySelector('.site-header').offsetHeight;
-const sectionOffsets = {};
-function refreshOffsets(){
-  for(const key in screens){
-    const el = screens[key];
-    if(el) sectionOffsets[key] = el.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
-  }
-}
-window.addEventListener('load', refreshOffsets);
-window.addEventListener('resize', refreshOffsets);
-
-window.addEventListener('scroll', ()=>{
-  const y = window.scrollY;
-  // highlight nav when near a section
-  let activeKey = null;
-  for(const key in sectionOffsets){
-    if(y >= sectionOffsets[key] - 40) activeKey = key;
-  }
-  navBtns.forEach(b=>{
-    if(b.dataset.target === activeKey) b.classList.add('active'); else b.classList.remove('active');
+const sections = document.querySelectorAll('main section');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => {
+    const top = window.scrollY;
+    const offset = sec.offsetTop - headerHeight - 50;
+    const height = sec.offsetHeight;
+    if (top >= offset && top < offset + height) current = sec.id;
   });
-
-  // sticky behavior: if user scrolls away from top show back button
-  const backBtn = document.getElementById('backBtn');
-  if(y > 60){ backBtn.style.display = 'flex'; } else { backBtn.style.display = 'none'; }
-});
-
-/* ---------- smooth scroll to section when clicking nav ---------- */
-navBtns.forEach(btn=>{
-  btn.addEventListener('click', (e)=>{
-    const id = btn.dataset.target;
-    const targetEl = document.getElementById(id);
-    if(targetEl){
-      const top = targetEl.getBoundingClientRect().top + window.scrollY - headerHeight - 10;
-      window.scrollTo({top,behavior:'smooth'});
-    }
+  navBtns.forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.target === current);
   });
 });
-document.getElementById('homeBtn').addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
-document.getElementById('backBtn').addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
 
-/* ---------- about background animation starts when section visible ---------- */
-const aboutBg = document.querySelector('.about-bg');
-function checkAboutVisible(){
-  const rect = document.getElementById('onas').getBoundingClientRect();
-  if(rect.top < window.innerHeight && rect.bottom > 0){
-    aboutBg.classList.add('move');
-  } else {
-    aboutBg.classList.remove('move');
-  }
-}
-window.addEventListener('scroll', checkAboutVisible);
-window.addEventListener('load', checkAboutVisible);
-
-/* ---------- Opinie: load from SheetDB on demand ---------- */
-const SHEETDB = 'https://sheetdb.io/api/v1/kr749eomw8d09';
-document.getElementById('loadOpinieBtn').addEventListener('click', loadOpinie);
-function escapeHtml(s){ return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'); }
-async function loadOpinie(){
-  const wrapper = document.getElementById('opinieWrapper');
-  const list = document.getElementById('opinieList');
-  const sred = document.getElementById('sredniaOcena');
-  wrapper.style.display = 'block';
-  list.innerHTML = '<div class="muted">Ładowanie opinii…</div>';
-  try{
-    const res = await fetch(SHEETDB);
-    if(!res.ok) throw new Error('Błąd sieci');
-    const data = await res.json();
-    if(!Array.isArray(data) || data.length === 0){ list.innerHTML = '<div class="muted">Brak opinii.</div>'; sred.textContent = 'Średnia: —'; return; }
-    list.innerHTML = '';
-    let sum=0,count=0;
-    data.slice().reverse().forEach(entry=>{
-      const r = parseInt(entry.rating||0,10);
-      const c = (entry.comment||'').trim();
-      const n = (entry.name||'Anonim').trim();
-      if(r>0){ sum+=r; count++; }
-      const block = document.createElement('div'); block.className = 'opinia';
-      block.innerHTML = `<div style="font-weight:700">${escapeHtml(n)} <span style="font-weight:400;color:var(--muted)">· ${'⭐'.repeat(Math.max(0,Math.min(5,r)))}</span></div><div style="margin-top:6px">${c?escapeHtml(c):'<span class="muted">Bez komentarza</span>'}</div>`;
-      list.appendChild(block);
-    });
-    sred.textContent = count?('Średnia: ' + (sum/count).toFixed(1) + ' /5 ('+count+' ocen)') : 'Średnia: —';
-  }catch(err){
-    list.innerHTML = '<div class="muted">Nie udało się załadować opinii.</div>';
-    console.error(err);
-  }
-}
-
-/* ---------- Review form (simple client-side validation + POST) ---------- */
-const openReviewBtn = document.getElementById('openReviewForm');
-openReviewBtn.addEventListener('click', ()=> document.getElementById('reviewFormPanel').style.display='block');
-
-document.getElementById('cancelReview').addEventListener('click', ()=>{
-  document.getElementById('reviewFormPanel').style.display='none';
-  document.getElementById('reviewMsg').textContent='';
-  document.getElementById('reviewForm').reset();
-});
-
-document.getElementById('reviewForm').addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  const f = e.target;
-  const name = f.name.value.trim() || 'Anonim';
-  const rating = f.rating.value;
-  const comment = f.comment.value.trim();
-  const email = f.email.value.trim();
-  if(!rating || !email){ document.getElementById('reviewMsg').textContent='Wypełnij wymagane pola.'; return; }
-  // 24h block
-  const last = localStorage.getItem('ostatniaOpinia');
-  if(last && (Date.now() - parseInt(last,10)) < 24*60*60*1000){ document.getElementById('reviewMsg').textContent='Możesz dodać opinię raz na 24h.'; return; }
-  // payload for sheetdb
-  const payload = { data: { name, rating, comment, email } };
-  try{
-    const res = await fetch(SHEETDB, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
-    if(res.ok){ document.getElementById('reviewMsg').textContent='Dziękujemy — opinia przesłana!'; localStorage.setItem('ostatniaOpinia', Date.now().toString()); f.reset(); loadOpinie(); }
-    else { document.getElementById('reviewMsg').textContent='Błąd przy zapisie opinii.'; console.error(await res.text()); }
-  }catch(err){ document.getElementById('reviewMsg').textContent='Błąd sieci — spróbuj później.'; console.error(err); }
-});
-
-/* ---------- Contact form (client stub) ---------- */
-document.getElementById('contactForm').addEventListener('submit', (e)=>{
-  e.preventDefault();
-  const f = e.target;
-  document.getElementById('contactMsg').textContent = 'Dziękujemy — zgłoszenie wysłane. Skontaktujemy się wkrótce.';
-  f.reset();
-});
-
-/* ---------- Accessibility improvements ---------- */
-// allow nav buttons to be focused and activated with Enter
-navBtns.forEach(b=>{
-  b.addEventListener('keydown', (ev)=>{ if(ev.key === 'Enter') b.click(); });
-});
-
-/* ---------- init offsets for nav highlight ---------- */
-setTimeout(()=>{ window.dispatchEvent(new Event('resize')); refreshOnLoad(); }, 200);
-function refreshOnLoad(){ /* recalc offsets */ const evt = new Event('resize'); window.dispatchEvent(evt); }
-
-/* ---------- small util: recalc offsets for highlight (keeping simple) ---------- */
-function calcSectionPositions(){
-  // not used heavy-duty here; highlight based on scroll loop above
-}
-// Powiększanie zdjęć galerii
-const galleryImgs = document.querySelectorAll('.gallery img');
-galleryImgs.forEach(img => {
-  img.style.cursor = 'pointer';
-  img.addEventListener('click', () => {
-    // Stwórz modal
-    const modal = document.createElement('div');
-    modal.style.position = 'fixed';
-    modal.style.inset = '0';
-    modal.style.background = 'rgba(0,0,0,0.9)';
-    modal.style.display = 'flex';
-    modal.style.alignItems = 'center';
-    modal.style.justifyContent = 'center';
-    modal.style.zIndex = 99999;
-    modal.innerHTML = `<img src="${img.src}" style="max-width:90%;max-height:90%;border-radius:12px;">`;
-    modal.addEventListener('click', ()=> modal.remove());
-    document.body.appendChild(modal);
-  });
+/* ---------- Back to top ---------- */
+document.getElementById('backBtn').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 </script>
 

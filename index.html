@@ -1,147 +1,137 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AVA Warsztat Samochodowy</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>AVA Warsztat — Profesjonalny serwis samochodowy</title>
+<meta name="description" content="AVA Warsztat — kompleksowy serwis, diagnostyka komputerowa, mechanika, klimatyzacja, wulkanizacja. Profesjonalnie, uczciwie, na czas." />
+<meta property="og:title" content="AVA Warsztat — Profesjonalny serwis samochodowy" />
+<meta property="og:description" content="AVA Warsztat — kompleksowy serwis, diagnostyka komputerowa, mechanika, klimatyzacja, wulkanizacja." />
+<meta property="og:image" content="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1200&q=80" />
+<meta name="author" content="AVA Warsztat" />
+<link rel="icon" href="AVA_STR.jpeg" />
+
 <style>
-  body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #1d1d1d;
-    color: #f1f1f1;
+  /* ---------- Root & resets ---------- */
+  :root{
+    --bg:#0f0f10;
+    --panel:#151617;
+    --muted:#aeb3b8;
+    --accent:#28a745;
+    --accent-2:#007bff;
+    --glass: rgba(255,255,255,0.03);
+    --radius:12px;
+    --maxWidth:1200px;
   }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;background:var(--bg);color:#fff;font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif;line-height:1.45;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  img{display:block;max-width:100%;height:auto}
 
-  header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: #111;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  /* ---------- sticky navbar ---------- */
+  header.site-header{
+    position:fixed;inset:0 0 auto 0;height:72px;display:flex;align-items:center;justify-content:center;
+    z-index:9999;backdrop-filter: blur(6px);background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.15));
+    border-bottom:1px solid rgba(255,255,255,0.02);
   }
+  .wrap { width:100%;max-width:var(--maxWidth);padding:0 20px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+  .brand { display:flex;align-items:center;gap:12px;cursor:pointer; }
+  .brand img{width:48px;height:48px;object-fit:cover;border-radius:8px}
+  .brand h1{font-size:18px;margin:0;letter-spacing:0.3px}
+  nav.top-nav{display:flex;gap:18px;align-items:center}
+  nav.top-nav button{background:transparent;border:none;color:var(--muted);padding:8px 6px;font-weight:600;cursor:pointer;font-size:14px;transition:color .18s, transform .12s}
+  nav.top-nav button:hover{color:var(--accent);transform:translateY(-2px)}
+  nav.top-nav button.active{color:#fff;border-bottom:2px solid var(--accent);padding-bottom:6px}
 
-  header h1 {
-    color: #00bcd4;
-    font-size: 1.5em;
+  /* ---------- hero (slideshow) ---------- */
+  .hero{
+    height:calc(100vh - 72px); /* screen minus header */
+    margin-top:72px;
+    position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:left;
   }
+  .hero .slides{position:absolute;inset:0}
+  .hero .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.03);transition:opacity 1s ease, transform 1.8s ease}
+  .hero .slide.active{opacity:1;transform:scale(1)}
+  .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.6));}
+  .hero .content{position:relative;z-index:5;max-width:var(--maxWidth);padding:40px 24px}
+  .eyebrow{color:var(--accent);font-weight:700;font-size:13px;margin-bottom:8px}
+  .hero h2{font-size:44px;margin:0 0 12px;line-height:1.02}
+  .hero p.lead{color:var(--muted);max-width:740px;margin:0 0 18px;font-size:16px}
 
-  nav button {
-    background: none;
-    border: none;
-    color: #f1f1f1;
-    font-size: 1em;
-    margin: 0 10px;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-  nav button:hover, nav button.active {
-    color: #00bcd4;
-  }
+  .hero .cta {display:flex;gap:12px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:10px;background:var(--accent);color:#000;font-weight:700;border:none;cursor:pointer}
+  .btn.secondary{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.06)}
+  .btn.white{background:#fff;color:#000}
 
-  main { margin-top: 80px; }
+  /* ---------- main layout ---------- */
+  main{max-width:var(--maxWidth);margin:60px auto;padding:0 20px 80px}
+  .section{background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border-radius:12px;padding:36px;margin-bottom:28px;box-shadow:0 8px 40px rgba(0,0,0,0.6)}
+  .section h3{margin-top:0}
+  .two-col{display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start}
+  @media (max-width:900px){ .two-col{grid-template-columns:1fr} header.site-header{height:68px} .hero h2{font-size:30px} }
 
-  /* ===== HERO (slider) ===== */
-  .hero {
-    position: relative;
-    overflow: hidden;
-    height: 80vh;
-  }
-  .slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-  }
-  .slide.active { opacity: 1; }
-  .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  /* ---------- about with animated cars background (parallax-like) ---------- */
+  .about-wrap{position:relative;overflow:hidden;border-radius:12px}
+  .about-bg{position:absolute;inset:0;background-repeat:repeat-x;background-size:cover;opacity:0.12;filter:grayscale(30%);transform:translateZ(0)}
+  .about-bg.move{animation:moveBg 40s linear infinite}
+  @keyframes moveBg{0%{background-position:0 0}100%{background-position:-1500px 0}}
 
-  /* Strzałki */
-  .arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    border: none;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-    z-index: 10;
-    padding: 10px 20px;
-    border-radius: 50%;
-    transition: background 0.3s;
-  }
-  .arrow:hover { background: rgba(0,0,0,0.8); }
-  .arrow.left { left: 20px; }
-  .arrow.right { right: 20px; }
+  /* ---------- services list ---------- */
+  .service{display:flex;gap:14px;align-items:flex-start;padding:14px;border-radius:10px;background:var(--glass);margin-bottom:12px}
+  .service .icon{width:48px;height:48px;border-radius:8px;background:linear-gradient(135deg,var(--accent-2),var(--accent));display:flex;align-items:center;justify-content:center;font-weight:700}
+  .service h4{margin:0 0 6px}
 
-  /* ===== SECTIONS ===== */
-  section {
-    padding: 80px 20px;
-    text-align: center;
-    max-width: 1000px;
-    margin: auto;
-  }
-  section h2 {
-    color: #00bcd4;
-    margin-bottom: 20px;
-  }
+  /* ---------- gallery ---------- */
+  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+  .gallery img{width:100%;height:160px;object-fit:cover;border-radius:8px}
 
-  /* ===== GALLERY ===== */
-  .gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-  }
-  .gallery img {
-    width: 100%;
-    border-radius: 12px;
-    transition: transform 0.3s ease;
-  }
-  .gallery img:hover {
-    transform: scale(1.05);
-  }
+  /* ---------- opinie ---------- */
+  .opinie-list{display:flex;flex-direction:column;gap:12px}
+  .opinia{background:rgba(255,255,255,0.02);padding:14px;border-radius:10px}
 
-  /* ===== FOOTER ===== */
-  footer {
-    text-align: center;
-    padding: 40px;
-    background: #111;
-    color: #888;
-  }
+  /* ---------- contact / form ---------- */
+  form.contact{display:flex;flex-direction:column;gap:10px}
+  input,select,textarea{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:10px;border-radius:8px;color:#fff}
+  textarea{min-height:120px;resize:vertical}
 
-  /* RESPONSYWNOŚĆ */
-  @media (max-width: 768px) {
-    header {
-      flex-direction: column;
-    }
-    .arrow {
-      font-size: 1.5rem;
-      padding: 8px 14px;
-    }
-  }
+  /* ---------- FAQ ---------- */
+  details{background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;margin-bottom:8px}
+  details summary{cursor:pointer;font-weight:700}
+
+  /* ---------- back icon & floating nav highlight ---------- */
+  #backBtn{position:fixed;right:18px;bottom:18px;background:var(--accent);width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;font-size:22px;color:#000;z-index:999}
+  .stickyPlaceholder{height:72px} /* so content isn't hidden under header */
+
+  /* active nav highlight */
+  nav.top-nav button.active{color:var(--accent);}
+
+  /* small helpers */
+  .muted{color:var(--muted)}
 </style>
 </head>
 <body>
 
-<header>
-  <h1 id="homeBtn">AVA WARSZTAT</h1>
-  <nav class="top-nav">
-    <button data-target="misja">Misja</button>
-    <button data-target="uslugi">Usługi</button>
-    <button data-target="onas">O nas</button>
-    <button data-target="galeria">Galeria</button>
-    <button data-target="opinie">Opinie</button>
-  </nav>
- /
+<!-- HEADER / NAV -->
+<header class="site-header" role="banner">
+  <div class="wrap">
+    <div class="brand" id="homeBtn" title="Powrót na start">
+      <img src="AVA_STR.jpeg" alt="AVA Warsztat logo (AVA STR.jpeg)">
+      <div>
+        <h1>AVA Warsztat</h1>
+        <div class="muted" style="font-size:12px">Profesjonalny serwis samochodowy</div>
+      </div>
+    </div>
+
+    <nav class="top-nav" role="navigation" aria-label="Główne menu">
+      <button data-target="misja">Misja</button>
+      <button data-target="dlaczego">Dlaczego AVA</button>
+      <button data-target="uslugi">Usługi</button>
+      <button data-target="onas">O nas</button>
+      <button data-target="galeria">Galeria</button>
+      <button data-target="opinie">Opinie</button>
+      <button data-target="kontakt">Kontakt</button>
+      <button data-target="faq">FAQ</button>
+    </nav>
   </div>
 </header>
 
@@ -152,9 +142,14 @@
   <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1493238792000-8113da705763?w=1600&q=80')"></div>
   <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1542367597-7fa4d3d6b2fc?w=1600&q=80')"></div>
   <!-- nowe sportowe auta -->
-  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1618335571254-3e2e5e70b1c7?w=1600&q=80')"></div> <!-- BMW -->
-  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1600180758895-0a2ffb9876ea?w=1600&q=80')"></div> <!-- Porsche -->
-  <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1611764335916-0ad278f3c00d?w=1600&q=80')"></div> <!-- Audi R8 -->
+  <div class="slide" style="background-image:url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.luxauto.lu%2Fblog%2Fen%2Ftests%2Fbmw-m3-2%2F&psig=AOvVaw2tQrkoTu9CsZ6k19N9X-EL&ust=1763130612700000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCIje2cCr75ADFQAAAAAdAAAAABAE')"></div> <!-- BMW -->
+  <div class="slide" style="background-image:url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.topgear.com%2Fcar-reviews%2Fbmw%2Fm3-competition&psig=AOvVaw2tQrkoTu9CsZ6k19N9X-EL&ust=1763130612700000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCIje2cCr75ADFQAAAAAdAAAAABAY')"></div> <!-- Porsche -->
+  <div class="slide" style="background-image:url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.press.bmwgroup.com%2Fpoland%2Fphoto%2Fdetail%2FP90416678%2FThe-all-new-BMW-M3-Competition-Sedan-with-M-xDrive-04-2021&psig=AOvVaw2tQrkoTu9CsZ6k19N9X-EL&ust=1763130612700000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCIje2cCr75ADFQAAAAAdAAAAABAk')"></div> <!-- Audi R8 -->
+  <div class="slide" style="background-image:url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fmaxtondesign.pl%2Fproduct-pol-22036-Bodykit-Audi-R8-Mk2-Facelift.html&psig=AOvVaw2sloMUqR5-HJpZjqMvlNJt&ust=1763130883701000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCJio_MCs75ADFQAAAAAdAAAAABAE')"></div>
+  <div class="slide" style="background-image:url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fhodoor.world%2Fproduct%2Ftoyota-supra-custom-body-kit-by-hycade&psig=AOvVaw2QYirJLV5bnQKsFoYCFllq&ust=1763130850672000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCMCyw7Cs75ADFQAAAAAdAAAAABAE')"></div>
+  <div class="slide" style="background-image:url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fevomagazine.pl%2Faktualnosci%2Fporsche-911-gt3-rs-od-manthey-generuje-wiekszy-docisk-niz-mclaren-p1%2Caid%2C1191&psig=AOvVaw0fhqvyYcm99TzsbHBkyJuB&ust=1763130762101000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKilzoWs75ADFQAAAAAdAAAAABAX')"></div>
+  <div class="slide" style="background-image:url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.porsche.com%2Fpoland%2Fmodels%2F911%2F911-gt3-rs%2F911-gt3-rs%2F&psig=AOvVaw0fhqvyYcm99TzsbHBkyJuB&ust=1763130762101000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKilzoWs75ADFQAAAAAdAAAAABAL')"></div>
+  <div class="slide" style="background-image:url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vcentrum.pl%2Fporsche-gt3-rs-992-vcentrum%2F&psig=AOvVaw0fhqvyYcm99TzsbHBkyJuB&ust=1763130762101000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCKilzoWs75ADFQAAAAAdAAAAABAE')"></div>
 </div>
   <div class="overlay" style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.5))"></div>
 
